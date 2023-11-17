@@ -1,5 +1,3 @@
---Create Table
-
 Create Table Personne(
     idPersonne int,
     nom varchar(50),
