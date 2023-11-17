@@ -24,7 +24,7 @@ Create Table Usager (
     constraint pk_idUser primary key(idUsager),
     constraint fk_userPersonne foreign key(idUsager) references Personne(idPersonne),
     constraint fk_medecinReferent foreign key(idReferent) references Medecin(idMedecin),
-    constraint ck_id-ref_diff_id-user check(idUsager != idReferent)
+    constraint ck_id_ref_diff_id_user check(idUsager != idReferent)
 );
 
 Create Table RendezVous(
