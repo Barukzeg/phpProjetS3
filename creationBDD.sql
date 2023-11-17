@@ -1,29 +1,29 @@
 --Create Table
 
 Create Table Personne(
-    idPersonne counter,
-    nom varchar2(50),
+    idPersonne int,
+    nom varchar(50),
     civilite char(2),
-    primary key(idPersonne)
+    constraint pk_idPerson primary key(idPersonne)
 );
 
 Create Table Medecin (
-    idMedecin int not null,
-    primary key(idMedecin),
-    foreign key(idMedecin) references Personne(idPersonne)
+    idMedecin int,
+    constraint pk_idMedecin primary key(idMedecin),
+    constraint fk_medecinPersonne foreign key(idMedecin) references Personne(idPersonne)
 );
 
 Create Table Usager (
     idUsager int,
     idReferent int not null unique,
-    adresseComplete varchar2(50),
-    codePostal number(5),
+    adresseComplete varchar(50),
+    codePostal decimal(5,0),
     dateNaissance date,
-    lieuNaissance varchar2(58),
-    NumSecuriteSociale number(15)
-    primary key(idUsager),
-    foreign key(idUsager) references Personne(idPersonne),
-    foreign key(idReferent) references Medecin(idMedecin),
+    lieuNaissance varchar(58),
+    NumSecuriteSociale decimal(15,0),
+    constraint pk_idUser primary key(idUsager),
+    constraint fk_userPersonne foreign key(idUsager) references Personne(idPersonne),
+    constraint fk_medecinReferent foreign key(idReferent) references Medecin(idMedecin),
     constraint ck_id-ref_diff_id-user check(idUsager != idReferent)
 );
 
@@ -32,7 +32,7 @@ Create Table RendezVous(
     idClient int,
     DateEtHeure date,
     DureeEnMinutes int,
-    primary key (idMedecin, idClient),
-    foreign key (idMedecin) references Medecin(idMedecin),
-    foreign key (idClient) references Usager(idUsager)
+    constraint pk_medecinClient primary key (idMedecin, idClient),
+    constraint fk_medecin foreign key (idMedecin) references Medecin(idMedecin),
+    constraint fk_clientUser foreign key (idClient) references Usager(idUsager)
 );
