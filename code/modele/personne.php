@@ -44,4 +44,30 @@
             $this->civilite = $civilite;
         }
     }
+
+    public static function getById($id) {
+        ///Connexion au serveur MySQL
+        $server = "localhost";
+        $db="cabinet_medical";
+        $login="root";
+        $mdp="";
+        try {
+            $mysqlClient = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
+        }
+        catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        };
+        $query = $db->prepare("SELECT * FROM personnes WHERE idPersonne = :id");
+        $query->bindParam(':id', $id);
+        $query->execute();
+
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            return new Personne($result['idPersonne'], $result['nom'], $result['prenom'], $result['civilite']);
+        } else {
+            return null;
+        }
+    }
+
 ?>
