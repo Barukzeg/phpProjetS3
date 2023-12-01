@@ -1,6 +1,7 @@
 Create Table Personne(
     idPersonne int,
     nom varchar(50),
+    prenom varchar(50),
     civilite char(2),
     constraint pk_idPerson primary key(idPersonne)
 );
