@@ -1,41 +1,45 @@
 <?php
     class BDD {
-        private static $instance = null;
-        private $connection;
+        private static $instance = null;    //singleton
+        private $connection;                //connection a la bd
 
-        // Informations de connexion à la base de données
-        private $host = 'localhost';
-        private $dbname = 'ma_base_de_donnees';
-        private $username = 'utilisateur';
-        private $password = 'mot_de_passe';
+        ///Connexion au serveur MySQL
+        private $server = "localhost";
+        private $db = "cabinet_medical";
+        private $login = "root";
+        private $mdp = "";
 
-        // Constructeur privé pour empêcher l'instanciation directe
+        // Constructeur singleton
         private function __construct() {
-            $this->connection = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password);
-            // Autres paramètres de connexion et configurations si nécessaire
+            try {
+                $this -> connection = new PDO("mysql:host=$this->server;dbname=$this->db", $this->login, $this->mdp);
+            }
+            catch (Exception $e) {
+                die('Erreur : ' . $e->getMessage());
+            };
         }
 
-        // Méthode pour obtenir l'instance unique de la classe
-        public static function getInstance() {
+        public static function getBDD() {
             if (self::$instance === null) {
                 self::$instance = new BDD();
             }
             return self::$instance;
         }
 
-        // Méthode pour récupérer la connexion à la base de données
+        // connexion
         public function getConnection() {
             return $this->connection;
         }
 
-        // Empêcher la duplication de l'instance via le clonage
-        private function __clone() {}
-
-        // Empêcher la désérialisation de l'instance
-        private function __wakeup() {}
+        //Fonctions de sécurité
+        
+            // Sécurité contre la duplication
+            private function __clone() {}
+            // Sécurité contre la désérialisation
+            private function __wakeup() {}
     }
 
     // Exemple d'utilisation
-    $bdd = BDD::getInstance();
+    $bdd = BDD::getBDD();
     $connexion = $bdd->getConnection();
 ?>
