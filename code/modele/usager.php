@@ -74,5 +74,26 @@
         public function setNumSecuriteSociale($NumSecuriteSociale) {
             $this->NumSecuriteSociale = $NumSecuriteSociale;
         }
-    }
+
+        public static function getById($id) {
+
+            // connexion
+            $db = BDD::getBDD()->getConnection();
+    
+            // requete
+            $query = $db->prepare("SELECT p.*, u.idUsager, u.idReferant, u.adresseComplete, u.codePostal, u.dateNaissance, u.lieuNaissance, u.NumSecuriteSociale FROM Personne p INNER JOIN Usager u ON p.idPersonne = u.idUsager WHERE p.idPersonne = :id");
+            $query->bindParam(':id', $id);
+
+            // execution
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+    
+            // retour d'une instance de Usager
+            if ($result) {
+                return new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferant'], $result['adresseComplete'], $result['codePostal'], $result['dateNaissance'], $result['lieuNaissance'], $result['NumSecuriteSociale']);
+            } else {
+                return null;
+            }
+        }
+
 ?>
