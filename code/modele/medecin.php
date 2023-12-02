@@ -42,5 +42,61 @@
                 return null;
             }
         }
+
+        public static function isPresent($nom, $prenom) {
+
+            // connexion
+            $db = BDD::getBDD()->getConnection();
+    
+            // requete
+            $query = $db->prepare("SELECT p.*, m.idMedecin FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE p.nom = :nom AND p.prenom = :prenom");
+            $query->bindParam(':nom', $nom);
+            $query->bindParam(':prenom', $prenom);
+
+            // execution
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+    
+            // retour d'un booleen pour savoir si le medecin est présent dans la bd
+            if ($result) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // ajoute un medecin
+        public function addMedecin() {
+
+            // connexion
+            $db = BDD::getBDD()->getConnection();
+    
+            // il existe ?
+            $search = Medecin::isPresent($this->getNom(), $this->getPrenom());
+
+            // Si oui
+            if (!$search) {
+
+                // insertion personne
+                $qP = $db->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
+                $qP->bindParam(':nom', $this->getNom());
+                $qP->bindParam(':prenom', $this->getPrenom());
+                $qP->bindParam(':civilite', $this->getCivilite());
+
+                $qP->execute();
+        
+                // get l'id de la personne insérée 
+                $idPersonne = $db->lastInsertId();
+        
+                // Insérer dans la table Usager
+                $qM = $db->prepare("INSERT INTO Medecin (idMedecin) VALUES (:idMedecin)");
+                $qM->bindParam(':idMedecin', $idPersonne);
+                
+                $qM->execute();
+
+            } else {
+                echo "Ce medecin existe déjà.";
+            }
+        }
     }
 ?>
