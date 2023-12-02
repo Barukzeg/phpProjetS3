@@ -1,5 +1,5 @@
 Create Table Personne(
-    idPersonne int,
+    idPersonne int auto_increment,
     nom varchar(50),
     prenom varchar(50),
     civilite char(2),
