@@ -3,18 +3,25 @@
 
         private $idMedecin;
 
+        // Constructeur
         public function __construct($idMedecin, $nom, $prenom, $civilite) {
             parent::__construct($idMedecin, $nom, $prenom, $civilite);
         }
 
+        // Getters
         public function getIdMedecin() {
             return $this->idMedecin;
         }
 
+        // Setters
         public function setIdMedecin($idMedecin) {
             $this->idMedecin = $idMedecin;
         }
 
+
+        // Fonctions
+
+        // get un médecin par son id
         public static function getById($id) {
 
             // connexion
