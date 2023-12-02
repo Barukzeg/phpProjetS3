@@ -32,14 +32,10 @@
         }
 
         //Fonctions de sécurité
-        
+
             // Sécurité contre la duplication
             private function __clone() {}
             // Sécurité contre la désérialisation
             private function __wakeup() {}
     }
-
-    // Exemple d'utilisation
-    $bdd = BDD::getBDD();
-    $connexion = $bdd->getConnection();
 ?>
