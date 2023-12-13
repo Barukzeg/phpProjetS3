@@ -91,6 +91,30 @@
             }
         }
 
+        // get tous les usagers
+        public static function getAll() {
+
+            // connexion
+            $db = BDD::getBDD()->getConnection();
+    
+            // requete
+            $query = $db->prepare("SELECT * FROM Usager");
+
+            // execution
+            $query->execute();
+            $resultats = $query->fetchAll(PDO::FETCH_ASSOC);
+    
+            // remplissage de la liste de tout les usagers
+            $liste = array();
+            foreach ($resultats as $result) {
+                $usager = new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferant'], $result['adresseComplete'], $result['codePostal'], $result['dateNaissance'], $result['lieuNaissance'], $result['NumSecuriteSociale']);
+                $liste[$result['idUsager']] = $usager;
+            }
+            
+            //retour de la liste
+            return $liste;
+        }
+
         // get un usager par son numéro de sécurité sociale
         public static function getByNumSoc($numSecuriteSociale) {
 

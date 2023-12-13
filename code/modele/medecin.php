@@ -43,6 +43,30 @@
             }
         }
 
+        // get tous les medecins
+        public static function getAll() {
+
+            // connexion
+            $db = BDD::getBDD()->getConnection();
+    
+            // requete
+            $query = $db->prepare("SELECT * FROM Medecin");
+
+            // execution
+            $query->execute();
+            $resultats = $query->fetchAll(PDO::FETCH_ASSOC);
+    
+            // remplissage de la liste de tout les medecins
+            $liste = array();
+            foreach ($resultats as $result) {
+                $medecin = new Medecin($result['idMedecin'], $result['nom'], $result['prenom'], $result['civilite']);
+                $liste[$result['idMedecin']] = $medecin;
+            }
+            
+            //retour de la liste
+            return $liste;
+        }
+
         public static function isPresent($nom, $prenom) {
 
             // connexion
