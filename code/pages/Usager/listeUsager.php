@@ -2,8 +2,8 @@
     <body>
         <h1>Usagers :</h1>
         <?php
-            include "../modele/bdd.php";
-            include "../modele/usager.php";
+            include "../../modele/bdd.php";
+            include "../../modele/usager.php";
 
             ///Connexion au serveur MySQL
             $server = "localhost";
