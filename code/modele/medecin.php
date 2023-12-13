@@ -151,5 +151,27 @@
                 echo "Ce medecin n'existe pas dans la base de données.";
             }
         }
+
+        //TODO verifs
+        public function getTotalHeures() {
+
+            // connexion
+            $db = BDD::getBDD()->getConnection();
+
+            // requete
+            $query = $db->prepare("SELECT SUM(duree) AS total FROM Consultation WHERE idMedecin = :idMedecin");
+            $query->bindParam(':idMedecin', $this->getIdMedecin());
+
+            // execution
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+
+            // retour d'un booleen pour savoir si le medecin est présent dans la bd
+            if ($result) {
+                return $result['total'];
+            } else {
+                return 0;
+            }
+        }
     }
 ?>
