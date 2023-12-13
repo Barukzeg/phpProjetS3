@@ -1,37 +1,25 @@
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Page d'accueil</title>
+        <div>
+            <h1>Bienvenue sur votre outil de gestion de votre Cabinet Médical</h1>
+        </div>
+    </head>
     <body>
-        <h1>Usagers :</h1>
-        <?php
-
-            ///Connexion au serveur MySQL
-            $server = "localhost";
-            $db="cabinet_medical";
-            $login="root";
-            $mdp="";
-            try {
-                $mysqlClient = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
-            }
-            catch (Exception $e) {
-                die('Erreur : ' . $e->getMessage());
-            };
-
-            $getPersonne = "Select * FROM personne where IdPersonne in (SELECT IdUsager FROM usager)";
-            $resultat = $mysqlClient->query($getPersonne);
-
-            // Vérifier si la requête a réussi
-            if ($resultat) {
-                // Afficher les résultats
-                echo "<ul>";
-                while ($row = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<li>" . $row["nom"] . " - " . $row["prenom"] . "</li>";
-                }
-                echo "</ul>";
-                
-            } else {
-                // En cas d'erreur dans la requête
-                echo "Erreur dans la requête : " . $mysqlClient->error;
-            }
-
-        ?>
+        <div class="boite-boutons">
+            <div class="btn-1" href="/Usager/listeUsager.php">
+                <img src="" alt="">
+                <h3>Accès à la liste des usagers</h3>
+            </div>
+            <div class="btn-2">
+                <img src="" alt="">
+                <h3>Accès à la liste des médecins</h3>
+            </div>
+            <div class="btn-3">
+                <img src="" alt="">
+                <h3>Accès à la liste des rendez-vous</h3>
+            </div>
+        </div>
     </body>
 </html>
