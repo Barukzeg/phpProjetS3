@@ -9,12 +9,14 @@
     </header>
     <body>
         <div class="boite-boutons">
-            <div class="btn" href="/Usager/listeUsager.php">
-                <img src="../image/iconUsager.png" alt="icon User">
-                <h3>Accès à la liste des usagers</h3>
+            <div class="btn">
+                <a href="./Usager/listeUsager.php">
+                    <img src="../image/iconUsager.png" alt="icon User">
+                    <h3>Accès à la liste des usagers</h3>
+                </a>
             </div>
             <div class="btn">
-                <img src="../image/iconMedecin.png" alt="">
+                <img src="../image/iconMedecin.png" alt="icon Medecin">
                 <h3>Accès à la liste des médecins</h3>
             </div>
             <div class="btn">
