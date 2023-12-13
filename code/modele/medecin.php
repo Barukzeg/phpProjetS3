@@ -98,7 +98,7 @@
             // il existe ?
             $search = Medecin::isPresent($this->getNom(), $this->getPrenom());
 
-            // Si oui
+            // Si non
             if (!$search) {
 
                 // insertion personne
@@ -112,7 +112,7 @@
                 // get l'id de la personne insérée 
                 $idPersonne = $db->lastInsertId();
         
-                // Insérer dans la table Usager
+                // Insérer dans la table Medecin
                 $qM = $db->prepare("INSERT INTO Medecin (idMedecin) VALUES (:idMedecin)");
                 $qM->bindParam(':idMedecin', $idPersonne);
                 
@@ -120,6 +120,35 @@
 
             } else {
                 echo "Ce medecin existe déjà.";
+            }
+        }
+
+        // retire un medecin
+        public function remMedecin() {
+
+            // connexion
+            $db = BDD::getBDD()->getConnection();
+    
+            // il existe ?
+            $search = Medecin::isPresent($this->getNom(), $this->getPrenom());
+
+            // Si oui
+            if ($search) {
+        
+                // supprimer dans la table Medecin
+                $qM = $db->prepare("DELETE FROM Medecin WHERE idMedecin = :idMedecin");
+                $qM->bindParam(':idMedecin', $this->getIdMedecin());
+                
+                $qM->execute();
+
+                // supprimer la personne
+                $qP = $db->prepare("DELETE FROM Personne WHERE idPersonne = :idMedecin");
+                $qM->bindParam(':idMedecin', $this->getIdMedecin());
+
+                $qP->execute();
+
+            } else {
+                echo "Ce medecin n'existe pas dans la base de données.";
             }
         }
     }

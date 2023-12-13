@@ -146,7 +146,7 @@
             // il existe ?
             $search = Usager::getByNumSoc($this->getNumSecuriteSociale());
 
-            // Si oui
+            // Si non
             if (!$search) {
 
                 // insertion personne
@@ -174,6 +174,35 @@
 
             } else {
                 echo "Ce client existe déjà.";
+            }
+        }
+
+        // retire un usager
+        public function remUsager() {
+
+            // connexion
+            $db = BDD::getBDD()->getConnection();
+    
+            // il existe ?
+            $search = Usager::getByNumSoc($this->getNumSecuriteSociale());
+
+            // Si oui
+            if ($search) {
+        
+                // supprimer dans la table Usager
+                $qM = $db->prepare("DELETE FROM Usager WHERE idUsager = :idUsager");
+                $qM->bindParam(':idUsager', $this->getIdUsager());
+                
+                $qM->execute();
+
+                // supprimer la personne
+                $qP = $db->prepare("DELETE FROM Personne WHERE idPersonne = :idUsager");
+                $qM->bindParam(':idUsager', $this->getIdUsager());
+
+                $qP->execute();
+
+            } else {
+                echo "Cet usager n'existe pas dans la base de données.";
             }
         }
     }
