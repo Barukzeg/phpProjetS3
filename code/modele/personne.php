@@ -37,26 +37,5 @@
         public function setCivilite($civilite) {
             $this->civilite = $civilite;
         }
-
-        public static function getById($id) {
-
-            // connexion
-            $bd = BDD::getBDD() -> getConnection();
-    
-            // requete
-            $query = $db->prepare("SELECT * FROM personnes WHERE idPersonne = :id");
-            $query->bindParam(':id', $id);
-    
-            // execution
-            $query->execute();
-            $result = $query->fetch(PDO::FETCH_ASSOC);
-    
-            // retour d'une instance de Personne
-            if ($result) {
-                return new Personne($result['idPersonne'], $result['nom'], $result['prenom'], $result['civilite']);
-            } else {
-                return null;
-            }
-        }
     }
 ?>
