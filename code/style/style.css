@@ -17,16 +17,6 @@ header {
     font-size: 24px;
 }
 
-header h1 {
-    font-size: 24px;
-    margin: 0;
-}
-
-body{
-    width: 100%;
-    background-color: #c4f9f3;
-}
-
 .boite-boutons{
     display: flex;
     justify-content: center;
@@ -37,25 +27,35 @@ body{
 
 .btn{
     width: 30%;
-    height: 400px;
+    height: auto;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .btn:hover{
     background-color: #c4f9f3;
-    /*transition: 0.5s;*/
-    size: 5%;
+    transition: 0.1s;
+    scale : 1.05;
+}
+
+img {
+    width: 10%;
+    height: auto;
 }
 
 a{
     text-decoration: none;
     color: #000;
+}
+
+body{
+    width: 100%;
+    background-color: #c4f9f3;
 }
 
 
