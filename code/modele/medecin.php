@@ -1,4 +1,7 @@
 <?php
+
+    include 'code/modele/personne.php';
+    
     class Medecin extends Personne {
 
         private $idMedecin;
