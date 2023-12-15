@@ -7,27 +7,31 @@ html{
     align-items: center;
 }
 header {
-    margin-top: 10px;
-    margin-bottom: 50px;
     background-color: #a5a5a5;
     border-radius: 10px;
     color: #fff;
     padding: 20px;
     text-align: center;
-    font-size: 24px;
+    display: flex;
 }
 
+.boite-logo{
+    width: 10%;
+    border: #000 solid 2px;
+    align-items: left;
+}
 .boite-boutons{
+    border: #000 solid 2px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 20px;
+    align-items: right;
     flex-wrap: nowrap;
 }
 
 .btn{
-    width: 30%;
+    width: 25%;
     height: auto;
+    gap: 20px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
@@ -36,15 +40,25 @@ header {
     align-items: center;
     flex-direction: row;
 }
+    .btn p{
+        display: none;
+    }
 
-.btn:hover{
-    background-color: #c4f9f3;
-    transition: 0.1s;
-    scale : 1.05;
-}
+    .btn:hover{
+        background-color: #c4f9f3;
+        transition: 0.1s;
+        scale : 1.05;
+    }
+    .btn:hover img{
+        display : none;
+    }
+    .btn:hover p{
+        display : block;
+        font-size: 16px;
+    }
 
 img {
-    width: 10%;
+    width: 30%;
     height: auto;
 }
 
