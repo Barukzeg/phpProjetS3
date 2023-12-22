@@ -1,0 +1,97 @@
+html{
+    width: 100%;
+    height: 100%;
+    font-family: "Arial", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header {
+    background-color: #a5a5a5;
+    box-shadow: 0 0 10px rgb(88, 88, 88);
+    height: auto;
+    border-radius: 10px;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    font-size: 16px;
+}
+
+.items{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.boite-logo{
+    display: flex;
+    align-items: left;
+    height: 100%;
+}
+
+.boite-titre{
+    /*a modif*/
+    border: 1px solid #000;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.boite-boutons{
+    display: contents;
+    align-items: right;
+    height: 100%;
+    justify-content: center;
+    align-items: right;
+    flex-wrap: nowrap;
+}
+
+.btn{
+    width: 20%;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+    .btn p{
+        display: none;
+    }
+
+    .btn:hover{
+        background-color: #c4f9f3;
+        transition: 0.1s;
+        scale : 1.2;
+    }
+    .btn:hover img{
+        display : none;
+    }
+    .btn:hover p{
+        display: block;
+        font-size: 16px;
+    }
+
+img {
+    width: 30%;
+    height: auto;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+body{
+    width: 100%;
+    background-color: #c4f9f3;
+}
+
+
