@@ -1,10 +1,10 @@
 <?php
 
-    include "../repository/repoUsager.php";
+    include "../../repository/repoUsager.php";
 
     class ServiceUsager {
 
-        private static ServiceUsager $instance = null;    //singleton
+        private static ?ServiceUsager $instance = null;    //singleton
 
         // Constructeur
         private function __construct() {}
