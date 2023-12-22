@@ -4,16 +4,16 @@
 
     class Usager extends Personne {
 
-        private $idUsager;
-        private $idReferant;
-        private $adresseComplete;
-        private $codePostal;
-        private $dateNaissance;
-        private $lieuNaissance;
-        private $NumSecuriteSociale;
+        private int $idUsager;
+        private string $idReferant;
+        private string $adresseComplete;
+        private string $codePostal;
+        private date $dateNaissance;
+        private string $lieuNaissance;
+        private string $NumSecuriteSociale;
 
         // Constructeur
-        public function __construct($idUsager, $nom, $prenom, $civilite) {
+        public function __construct(int $idUsager, string $nom, string $prenom, string $civilite, int $idReferant, string $adresseComplete, string $codePostal, date $dateNaissance, string $lieuNaissance, string $NumSecuriteSociale) {
             parent::__construct($idUsager, $nom, $prenom, $civilite);
             $this-> idReferant = $idReferant;
             $this-> adresseComplete = $adresseComplete;
@@ -47,25 +47,25 @@
         }
 
         // Setters
-        public function setIdUsager($idUsager) {
+        public function setIdUsager(int $idUsager) {
             $this->idUsager = $idUsager;
         }
-        public function setIdReferant($idReferant) {
+        public function setIdReferant(int $idReferant) {
             $this->idReferant = $idReferant;
         }
-        public function setAdresseComplete($adresseComplete) {
+        public function setAdresseComplete(string $adresseComplete) {
             $this->adresseComplete = $adresseComplete;
         }
-        public function setCodePostal($codePostal) {
+        public function setCodePostal(string $codePostal) {
             $this->codePostal = $codePostal;
         }
-        public function setDateNaissance($dateNaissance) {
+        public function setDateNaissance(date $dateNaissance) {
             $this->dateNaissance = $dateNaissance;
         }
-        public function setLieuNaissance($lieuNaissance) {
+        public function setLieuNaissance(string $lieuNaissance) {
             $this->lieuNaissance = $lieuNaissance;
         }
-        public function setNumSecuriteSociale($NumSecuriteSociale) {
+        public function setNumSecuriteSociale(string $NumSecuriteSociale) {
             $this->NumSecuriteSociale = $NumSecuriteSociale;
         }
     }

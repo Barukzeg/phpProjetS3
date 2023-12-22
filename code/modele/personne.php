@@ -1,12 +1,12 @@
 <<?php
     class Personne {
-        private $idPersonne;
-        private $nom;
-        private $prenom;
-        private $civilite;
+        private int $idPersonne;
+        private string $nom;
+        private string $prenom;
+        private string $civilite;
 
         // Constructeur
-        public function __construct($idPersonne, $nom, $prenom, $civilite) {
+        public function __construct(int $idPersonne, string $nom, string $prenom, string $civilite) {
             $this->idPersonne = $idPersonne;
             $this->nom = $nom;
             $this->prenom = $prenom;
@@ -28,13 +28,13 @@
         }
         
         // Setters
-        public function setNom($nom) {
+        public function setNom(string $nom) {
             $this->nom = $nom;
         }
-        public function setPrenom($prenom) {
+        public function setPrenom(string $prenom) {
             $this->prenom = $prenom;
         }
-        public function setCivilite($civilite) {
+        public function setCivilite(string $civilite) {
             $this->civilite = $civilite;
         }
     }

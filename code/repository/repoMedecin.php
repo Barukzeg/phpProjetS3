@@ -5,8 +5,8 @@
 
     class RepoMedecin {
 
-        private static $instance = null;    //singleton
-        private $db;
+        private static RepoMedecin $instance = null;    //singleton
+        private BDD $db;
 
         // Constructeur
         private function __construct() {
@@ -25,7 +25,7 @@
         }
 
         // get un médecin par son id
-        public static function getById($id) {
+        public static function getById(int $id) {
 
             $query = $this->getBD()->prepare("SELECT * FROM Medecin WHERE idMedecin = :id");
             // requete
@@ -65,7 +65,7 @@
             return $liste;
         }
 
-        public static function isPresent($nom, $prenom) {
+        public static function isPresent(string $nom, string $prenom) {
     
             // requete
             $query = $this->getBD()->prepare("SELECT p.*, m.idMedecin FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE p.nom = :nom AND p.prenom = :prenom");

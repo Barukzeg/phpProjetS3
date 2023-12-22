@@ -5,7 +5,7 @@
 
     class ServiceUsager {
 
-        private static $instance = null;    //singleton
+        private static ServiceUsager $instance = null;    //singleton
 
         // Constructeur
         private function __construct() {}

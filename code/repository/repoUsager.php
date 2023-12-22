@@ -5,8 +5,8 @@
 
     class RepoUsager {
 
-        private static $instance = null;    //singleton
-        private $db;
+        private static RepoUsager $instance = null;    //singleton
+        private BDD $db;
 
         // Constructeur
         private function __construct() {
@@ -27,7 +27,7 @@
         // Fonctions
 
         // get un usager par son id
-        public static function getById($id) {
+        public static function getById(int $id) {
 
             // connexion
             $db = BDD::getBDD()->getConnection();
@@ -73,7 +73,7 @@
         }
 
         // get un usager par son numéro de sécurité sociale
-        public static function getByNumSoc($numSecuriteSociale) {
+        public static function getByNumSoc( string $numSecuriteSociale) {
 
             // connexion
             $db = BDD::getBDD()->getConnection();

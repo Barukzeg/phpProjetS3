@@ -4,10 +4,10 @@
     
     class Medecin extends Personne {
 
-        private $idMedecin;
+        private int $idMedecin;
 
         // Constructeur
-        public function __construct($idMedecin, $nom, $prenom, $civilite) {
+        public function __construct(int $idMedecin, string $nom, string $prenom, string $civilite) {
             parent::__construct($idMedecin, $nom, $prenom, $civilite);
         }
 
