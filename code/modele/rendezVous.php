@@ -1,7 +1,7 @@
 <?php
     
-    include 'code/modele/medecin.php';
-    include 'code/modele/usager.php';
+    include 'medecin.php';
+    include 'usager.php';
 
     class RendezVous {
 
