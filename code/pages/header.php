@@ -4,11 +4,12 @@
         <div class="items">
             <div class="boite-logo">
                 <img src="../image/placeholder.webp" alt="logo cabinet medical">
+                <div class="boite-titre">
+                    <h1>Cabinet Médical</h1>
+                </div>      
             </div>
             <!-- TODO modif le titre pour que ce soit jolie-->
-            <div class="boite-titre">
-                <h1>Cabinet Médical</h1>
-            </div>
+            
             <div class="boite-boutons">
                 <div class="btn">
                     <a href="./Usager/listeUsager.php">
