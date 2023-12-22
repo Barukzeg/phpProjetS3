@@ -1,11 +1,13 @@
 <html>
     <header>
-        <meta charset="UTF-8">
-        <title>Page d'accueil</title>
         <link href="../style/style.css" rel="stylesheet">
         <div class="items">
             <div class="boite-logo">
                 <img src="../image/placeholder.webp" alt="logo cabinet medical">
+            </div>
+            <!-- TODO modif le titre pour que ce soit jolie-->
+            <div class="boite-titre">
+                <h1>Cabinet Médical</h1>
             </div>
             <div class="boite-boutons">
                 <div class="btn">
