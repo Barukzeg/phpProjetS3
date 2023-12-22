@@ -1,4 +1,4 @@
-<<?php
+<?php
     class Personne {
         private int $idPersonne;
         private string $nom;

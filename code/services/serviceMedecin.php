@@ -1,7 +1,7 @@
 <?php
 
-    include 'code/modele/medecin.php';
-    include 'code/repository/repoMedecin.php';
+    include '../modele/medecin.php';
+    include '../repository/repoMedecin.php';
 
     class ServiceMedecin {
 

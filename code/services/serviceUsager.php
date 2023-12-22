@@ -1,7 +1,7 @@
 <?php
 
-    include 'code/modele/usager.php';
-    include 'code/repository/repoUsager.php';
+    include '../modele/usager.php';
+    include '../repository/repoUsager.php';
 
     class ServiceUsager {
 
@@ -34,7 +34,7 @@
                     $sexe = "FE";
                     break;
                 default:
-                    $sexe = "MA";
+                    $sexe = "NB";
                     break;
             }
 

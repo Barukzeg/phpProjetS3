@@ -1,6 +1,6 @@
 <?php
 
-    include 'code/modele/personne.php';
+    include 'personne.php';
     
     class Medecin extends Personne {
 

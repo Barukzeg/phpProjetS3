@@ -1,11 +1,11 @@
 <?php
 
-    include 'code/modele/personne.php';
+    include 'personne.php';
 
     class Usager extends Personne {
 
         private int $idUsager;
-        private string $idReferant;
+        private int $idReferant;
         private string $adresseComplete;
         private string $codePostal;
         private date $dateNaissance;

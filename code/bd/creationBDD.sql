@@ -19,7 +19,7 @@ Create Table Usager (
     codePostal decimal(5,0),
     dateNaissance date,
     lieuNaissance varchar(58),
-    NumSecuriteSociale decimal(15,0) unique,
+    numSecuriteSociale decimal(15,0) unique,
     constraint pk_idUser primary key(idUsager),
     constraint fk_userPersonne foreign key(idUsager) references Personne(idPersonne),
     constraint fk_medecinReferent foreign key(idReferent) references Medecin(idMedecin),
@@ -29,9 +29,9 @@ Create Table Usager (
 Create Table RendezVous(
     idMedecin int,
     idClient int,
-    DateEtHeure date,
-    DureeEnMinutes int,
-    constraint pk_medecinClient primary key (idMedecin, idClient),
+    dateEtHeure date,
+    dureeEnMinutes int,
+    constraint pk_medecinClient primary key (idMedecin, idClient, DateEtHeure),
     constraint fk_medecin foreign key (idMedecin) references Medecin(idMedecin),
     constraint fk_clientUser foreign key (idClient) references Usager(idUsager)
 );
