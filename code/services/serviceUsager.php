@@ -1,7 +1,6 @@
 <?php
 
-    include '../modele/usager.php';
-    include '../repository/repoUsager.php';
+    include "../repository/repoUsager.php";
 
     class ServiceUsager {
 

@@ -2,7 +2,6 @@
     <body>
         <h1>Usagers :</h1>
         <?php
-            include "../../modele/usager.php";
             include "../../repository/repoUsager.php";
 
             //$resultat = serviceUsager::getUsagerAgeSexe(0,0);
@@ -23,5 +22,8 @@
             }
             */
         ?>
+        <div class="bouton-add">
+            <button type="submit">Ajouter un usager</button>
+        </div>
     </body>
 </html>
