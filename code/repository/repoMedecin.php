@@ -1,34 +1,35 @@
 <?php
-    class Medecin extends Personne {
 
-        private $idMedecin;
+    include 'code/modele/medecin.php';
+    include 'code/bd/bdd.php';
+
+    class RepoMedecin {
+
+        private static RepoMedecin $instance = null;    //singleton
+        private BDD $db;
 
         // Constructeur
-        public function __construct($idMedecin, $nom, $prenom, $civilite) {
-            parent::__construct($idMedecin, $nom, $prenom, $civilite);
+        private function __construct() {
+            $this->db = BDD::getBDD()->getConnection();
         }
 
-        // Getters
-        public function getIdMedecin() {
-            return $this->idMedecin;
+        private function getBD() {
+            return $this->db;
         }
 
-        // Setters
-        public function setIdMedecin($idMedecin) {
-            $this->idMedecin = $idMedecin;
+        public static function getRepo() {
+            if (self::$instance === null) {
+                self::$instance = new RepoMedecin();
+            }
+            return self::$instance;
         }
-
-
-        // Fonctions
 
         // get un médecin par son id
-        public static function getById($id) {
+        public static function getById(int $id) {
 
-            // connexion
-            $db = BDD::getBDD()->getConnection();
-
+            $query = $this->getBD()->prepare("SELECT * FROM Medecin WHERE idMedecin = :id");
             // requete
-            $query = $db->prepare("SELECT * FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE m.idMedecin = :id");
+            $query = $this->getBD()->prepare("SELECT * FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE m.idMedecin = :id");
             $query->bindParam(':id', $id);
 
             // execution
@@ -45,12 +46,9 @@
 
         // get tous les medecins
         public static function getAll() {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
     
             // requete
-            $query = $db->prepare("SELECT * FROM Medecin");
+            $query = $this->getBD()->prepare("SELECT * FROM Medecin");
 
             // execution
             $query->execute();
@@ -67,13 +65,10 @@
             return $liste;
         }
 
-        public static function isPresent($nom, $prenom) {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
+        public static function isPresent(string $nom, string $prenom) {
     
             // requete
-            $query = $db->prepare("SELECT p.*, m.idMedecin FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE p.nom = :nom AND p.prenom = :prenom");
+            $query = $this->getBD()->prepare("SELECT p.*, m.idMedecin FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE p.nom = :nom AND p.prenom = :prenom");
             $query->bindParam(':nom', $nom);
             $query->bindParam(':prenom', $prenom);
 
@@ -91,9 +86,6 @@
 
         // ajoute un medecin
         public function addMedecin() {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
     
             // il existe ?
             $search = Medecin::isPresent($this->getNom(), $this->getPrenom());
@@ -102,7 +94,7 @@
             if (!$search) {
 
                 // insertion personne
-                $qP = $db->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
+                $qP = $this->getBD()->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
                 $qP->bindParam(':nom', $this->getNom());
                 $qP->bindParam(':prenom', $this->getPrenom());
                 $qP->bindParam(':civilite', $this->getCivilite());
@@ -110,10 +102,10 @@
                 $qP->execute();
         
                 // get l'id de la personne insérée 
-                $idPersonne = $db->lastInsertId();
+                $idPersonne = $this->getBD()->lastInsertId();
         
                 // Insérer dans la table Medecin
-                $qM = $db->prepare("INSERT INTO Medecin (idMedecin) VALUES (:idMedecin)");
+                $qM = $this->getBD()->prepare("INSERT INTO Medecin (idMedecin) VALUES (:idMedecin)");
                 $qM->bindParam(':idMedecin', $idPersonne);
                 
                 $qM->execute();
@@ -125,9 +117,6 @@
 
         // retire un medecin
         public function remMedecin() {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
     
             // il existe ?
             $search = Medecin::isPresent($this->getNom(), $this->getPrenom());
@@ -136,41 +125,19 @@
             if ($search) {
         
                 // supprimer dans la table Medecin
-                $qM = $db->prepare("DELETE FROM Medecin WHERE idMedecin = :idMedecin");
+                $qM = $this->getBD()->prepare("DELETE FROM Medecin WHERE idMedecin = :idMedecin");
                 $qM->bindParam(':idMedecin', $this->getIdMedecin());
                 
                 $qM->execute();
 
                 // supprimer la personne
-                $qP = $db->prepare("DELETE FROM Personne WHERE idPersonne = :idMedecin");
+                $qP = $this->getBD()->prepare("DELETE FROM Personne WHERE idPersonne = :idMedecin");
                 $qM->bindParam(':idMedecin', $this->getIdMedecin());
 
                 $qP->execute();
 
             } else {
                 echo "Ce medecin n'existe pas dans la base de données.";
-            }
-        }
-
-        //TODO verifs
-        public function getTotalHeures() {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
-
-            // requete
-            $query = $db->prepare("SELECT SUM(duree) AS total FROM Consultation WHERE idMedecin = :idMedecin");
-            $query->bindParam(':idMedecin', $this->getIdMedecin());
-
-            // execution
-            $query->execute();
-            $result = $query->fetch(PDO::FETCH_ASSOC);
-
-            // retour d'un booleen pour savoir si le medecin est présent dans la bd
-            if ($result) {
-                return $result['total'];
-            } else {
-                return 0;
             }
         }
     }
