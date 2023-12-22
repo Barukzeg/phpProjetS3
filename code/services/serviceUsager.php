@@ -34,7 +34,7 @@
                     $sexe = "FE";
                     break;
                 default:
-                    $sexe = "MA";
+                    $sexe = "NB";
                     break;
             }
 

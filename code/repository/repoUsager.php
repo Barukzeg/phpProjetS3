@@ -1,11 +1,11 @@
 <?php
 
-    include '../modele/usager.php';
-    include '../bd/bdd.php'
+    include '../../modele/usager.php';
+    //include '../../bd/bdd.php';
 
     class RepoUsager {
 
-        private static RepoUsager $instance = null;    //singleton
+        private static ?RepoUsager $instance = null;    //singleton
         private BDD $db;
 
         // Constructeur
