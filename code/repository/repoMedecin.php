@@ -85,27 +85,27 @@
         }
 
         // ajoute un medecin
-        public function addMedecin() {
+        public function addMedecin(Medecin $medecin) {
     
             // il existe ?
-            $search = Medecin::isPresent($this->getNom(), $this->getPrenom());
+            $search = Medecin::isPresent($medecin->getNom(), $medecin->getPrenom());
 
             // Si non
             if (!$search) {
 
                 // insertion personne
-                $qP = $this->getBD()->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
-                $qP->bindParam(':nom', $this->getNom());
-                $qP->bindParam(':prenom', $this->getPrenom());
-                $qP->bindParam(':civilite', $this->getCivilite());
+                $qP = $db->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
+                $qP->bindParam(':nom', $medecin->getNom());
+                $qP->bindParam(':prenom', $medecin->getPrenom());
+                $qP->bindParam(':civilite', $medecin->getCivilite());
 
                 $qP->execute();
         
                 // get l'id de la personne insérée 
-                $idPersonne = $this->getBD()->lastInsertId();
+                $idPersonne = $medecin->getBD()->lastInsertId();
         
                 // Insérer dans la table Medecin
-                $qM = $this->getBD()->prepare("INSERT INTO Medecin (idMedecin) VALUES (:idMedecin)");
+                $qM = $medecin->getBD()->prepare("INSERT INTO Medecin (idMedecin) VALUES (:idMedecin)");
                 $qM->bindParam(':idMedecin', $idPersonne);
                 
                 $qM->execute();

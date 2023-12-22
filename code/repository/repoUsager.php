@@ -95,22 +95,19 @@
         }
 
         // ajoute un usager
-        public function addUsager() {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
+        public function addUsager(Usager $usager) {
     
             // il existe ?
-            $search = Usager::getByNumSoc($this->getNumSecuriteSociale());
+            $search = Usager::getByNumSoc($usager->getNumSecuriteSociale());
 
             // Si non
             if (!$search) {
 
                 // insertion personne
                 $qP = $db->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
-                $qP->bindParam(':nom', $this->getNom());
-                $qP->bindParam(':prenom', $this->getPrenom());
-                $qP->bindParam(':civilite', $this->getCivilite());
+                $qP->bindParam(':nom', $usager->getNom());
+                $qP->bindParam(':prenom', $usager->getPrenom());
+                $qP->bindParam(':civilite', $usager->getCivilite());
 
                 $qP->execute();
         
@@ -120,12 +117,12 @@
                 // Insérer dans la table Usager
                 $qU = $db->prepare("INSERT INTO Usager (idUsager, idReferant, adresseComplete, codePostal, dateNaissance, lieuNaissance, NumSecuriteSociale) VALUES (:idUsager, :idReferant, :adresseComplete, :codePostal, :dateNaissance, :lieuNaissance, :NumSecuriteSociale)");
                 $qU->bindParam(':idUsager', $idPersonne);
-                $qU->bindParam(':idReferant', $this->getIdReferant());
-                $qU->bindParam(':adresseComplete', $this->getAdresseComplete());
-                $qU->bindParam(':codePostal', $this->getCodePostal());
-                $qU->bindParam(':dateNaissance', $this->getDateNaissance());
-                $qU->bindParam(':lieuNaissance', $this->getLieuNaissance());
-                $qU->bindParam(':NumSecuriteSociale', $this->getNumSecuriteSociale());
+                $qU->bindParam(':idReferant', $usager->getIdReferant());
+                $qU->bindParam(':adresseComplete', $thusageris->getAdresseComplete());
+                $qU->bindParam(':codePostal', $usager->getCodePostal());
+                $qU->bindParam(':dateNaissance', $usager->getDateNaissance());
+                $qU->bindParam(':lieuNaissance', $usager->getLieuNaissance());
+                $qU->bindParam(':NumSecuriteSociale', $usager->getNumSecuriteSociale());
                 
                 $qU->execute();
 
