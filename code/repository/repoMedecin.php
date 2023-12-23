@@ -27,9 +27,9 @@
         // get un médecin par son id
         public static function getById(int $id) {
 
-            $query = $this->getBD()->prepare("SELECT * FROM Medecin WHERE idMedecin = :id");
+            $query = self::getBD()->prepare("SELECT * FROM Medecin WHERE idMedecin = :id");
             // requete
-            $query = $this->getBD()->prepare("SELECT * FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE m.idMedecin = :id");
+            //$query = self::getBD()->prepare("SELECT * FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE m.idMedecin = :id");
             $query->bindParam(':id', $id);
 
             // execution
@@ -48,7 +48,7 @@
         public static function getAll() {
     
             // requete
-            $query = $this->getBD()->prepare("SELECT * FROM Medecin");
+            $query = self::getBD()->prepare("SELECT * FROM Medecin");
 
             // execution
             $query->execute();
@@ -68,7 +68,7 @@
         public static function isPresent(string $nom, string $prenom) {
     
             // requete
-            $query = $this->getBD()->prepare("SELECT p.*, m.idMedecin FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE p.nom = :nom AND p.prenom = :prenom");
+            $query = self::getBD()->prepare("SELECT p.*, m.idMedecin FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE p.nom = :nom AND p.prenom = :prenom");
             $query->bindParam(':nom', $nom);
             $query->bindParam(':prenom', $prenom);
 
@@ -85,7 +85,7 @@
         }
 
         // ajoute un medecin
-        public function addMedecin(Medecin $medecin) {
+        public static function addMedecin(Medecin $medecin) {
     
             // il existe ?
             $search = Medecin::isPresent($medecin->getNom(), $medecin->getPrenom());
@@ -94,7 +94,7 @@
             if (!$search) {
 
                 // insertion personne
-                $qP = $db->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
+                $qP = self::getBD()->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
                 $qP->bindParam(':nom', $medecin->getNom());
                 $qP->bindParam(':prenom', $medecin->getPrenom());
                 $qP->bindParam(':civilite', $medecin->getCivilite());
@@ -125,7 +125,7 @@
             if ($search) {
         
                 // supprimer dans la table Medecin
-                $qM = $this->getBD()->prepare("DELETE FROM Medecin WHERE idMedecin = :idMedecin");
+                $qM = self::getBD()->prepare("DELETE FROM Medecin WHERE idMedecin = :idMedecin");
                 $qM->bindParam(':idMedecin', $this->getIdMedecin());
                 
                 $qM->execute();
