@@ -139,12 +139,13 @@
         public static function getByMedecinEtDate(int $idM, date $dateEtHeure, int $dureeMinutes) {
     
             $sqlDate = $dateEtHeure->format('Y-m-d H:i:s');
-            sqlDateFin = $dateEtHeure->add(new DateInterval('PT'.$dureeMinutes.'M'))->format('Y-m-d H:i:s');
+            $sqlDateFin = $dateEtHeure->add(new DateInterval('PT'.$dureeMinutes.'M'))->format('Y-m-d H:i:s');
 
             // requete
-            $query = $db->prepare("SELECT * FROM RendezVous WHERE idMedecin = :idM AND dateEtHeure = :dateEtHeure");
+            $query = $db->prepare("SELECT * FROM RendezVous WHERE idMedecin = :idM AND dateEtHeure BETWEEN :dateEtHeure AND :dateDeFin");
             $query->bindParam(':idM', $idM);
-            $query->bindParam(':date', $sqlDate);
+            $query->bindParam(':dateEtHeure', $sqlDate);
+            $query->bindParam(':dateDeFin', $sqlDateFin);
 
             // execution
             $query->execute();

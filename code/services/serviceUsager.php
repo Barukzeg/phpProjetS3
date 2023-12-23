@@ -21,19 +21,19 @@
         // get tous les usagers par age et sexe (0 = homme, 1 = femme) et age (0 = <25, 1 = 25-50, 2 = 50>)
         public function getUsagerAgeSexe(int $age, int $civilite) {
 
-            // connexion
-            $db = BDD::getBDD()->getConnection();
+            $listUsagers = RepoUsager::getRepo()->getAll();
+
 
             // gestion des paramètres
             switch ($civilite) {
                 case 0:
-                    $sexe = "MA";
+                    $sexe = "M";
                     break;
                 case 1:
-                    $sexe = "FE";
+                    $sexe = "F";
                     break;
                 default:
-                    $sexe = "NB";
+                    $sexe = "X";
                     break;
             }
 
@@ -56,6 +56,12 @@
                     break;
             }
 
+            foreach ($listUsagers as $user){
+                $age = ($usager->getDateNaissance() - new DateInterval()).getYear();
+                if (($age) >= $age1 && ($age <= $age2)){
+                    
+                }
+            }
             // requete
             $query = $db->prepare("SELECT p.*, u.idUsager, u.idReferant, u.adresseComplete, u.codePostal, u.dateNaissance, u.lieuNaissance, u.NumSecuriteSociale FROM Personne p INNER JOIN Usager u ON p.idPersonne = u.idUsager WHERE p.civilite = :sexe AND YEAR(CURDATE() - u.dateNaissance) BETWEEN :age1 AND :age2");
             $query->bindParam(':sexe', $sexe);

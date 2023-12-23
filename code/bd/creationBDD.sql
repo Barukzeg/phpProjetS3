@@ -2,7 +2,7 @@ Create Table Personne(
     idPersonne int auto_increment,
     nom varchar(50),
     prenom varchar(50),
-    civilite char(2),
+    civilite char,
     constraint pk_idPerson primary key(idPersonne)
 );
 
