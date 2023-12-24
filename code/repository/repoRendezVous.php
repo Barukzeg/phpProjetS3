@@ -31,7 +31,7 @@
             $sqlDateEtHeure = $dateEtHeure->format('Y-m-d H:i:s');
 
             // requete
-            $query = $db->prepare("SELECT * FROM RendezVous WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
+            $query = self::getBD()->prepare("SELECT * FROM RendezVous WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
             $query->bindParam(':idM', $idM);
             $query->bindParam(':idC', $idC);
             $query->bindParam(':dateEtHeure', $sqlDateEtHeure);
@@ -52,7 +52,7 @@
         public static function getByMedecin(int $idM) {
     
             // requete
-            $query = $db->prepare("SELECT * FROM RendezVous WHERE idMedecin = :idM");
+            $query = self::getBD()->prepare("SELECT * FROM RendezVous WHERE idMedecin = :idM");
             $query->bindParam(':idM', $idM);
 
             // execution
@@ -75,7 +75,7 @@
         public static function getByClient(int $idC) {
     
             // requete
-            $query = $db->prepare("SELECT * FROM RendezVous WHERE idClient = :idC");
+            $query = self::getBD()->prepare("SELECT * FROM RendezVous WHERE idClient = :idC");
             $query->bindParam(':idC', $idC);
 
             // execution
@@ -98,7 +98,7 @@
         public static function addRendezVous(RendezVous $rendezVous) {
     
             // requete
-            $query = $db->prepare("INSERT INTO RendezVous (idMedecin, idClient, dateEtHeure, dureeMinutes) VALUES (:idM, :idC, :dateEtHeure, :dureeMinutes)");
+            $query = self::getBD()->prepare("INSERT INTO RendezVous (idMedecin, idClient, dateEtHeure, dureeMinutes) VALUES (:idM, :idC, :dateEtHeure, :dureeMinutes)");
             $query->bindParam(':idM', $rendezVous->getIdMedecin());
             $query->bindParam(':idC', $rendezVous->getIdClient());
             $query->bindParam(':dateEtHeure', $rendezVous->getDateEtHeure());
@@ -112,7 +112,7 @@
         public static function updateRendezVous(RendezVous $rendezVous) {
     
             // requete
-            $query = $db->prepare("UPDATE RendezVous SET dureeMinutes = :dureeMinutes WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
+            $query = self::getBD()->prepare("UPDATE RendezVous SET dureeMinutes = :dureeMinutes WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
             $query->bindParam(':idM', $rendezVous->getIdMedecin());
             $query->bindParam(':idC', $rendezVous->getIdClient());
             $query->bindParam(':dateEtHeure', $rendezVous->getDateEtHeure());
@@ -126,7 +126,7 @@
         public static function remRendezVous(RendezVous $rendezVous) {
     
             // requete
-            $query = $db->prepare("DELETE FROM RendezVous WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
+            $query = self::getBD()->prepare("DELETE FROM RendezVous WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
             $query->bindParam(':idM', $rendezVous->getIdMedecin());
             $query->bindParam(':idC', $rendezVous->getIdClient());
             $query->bindParam(':dateEtHeure', $rendezVous->getDateEtHeure());
@@ -142,7 +142,7 @@
             $sqlDateFin = $dateEtHeure->add(new DateInterval('PT'.$dureeMinutes.'M'))->format('Y-m-d H:i:s');
 
             // requete
-            $query = $db->prepare("SELECT * FROM RendezVous WHERE idMedecin = :idM AND dateEtHeure BETWEEN :dateEtHeure AND :dateDeFin");
+            $query = self::getBD()->prepare("SELECT * FROM RendezVous WHERE idMedecin = :idM AND dateEtHeure BETWEEN :dateEtHeure AND :dateDeFin");
             $query->bindParam(':idM', $idM);
             $query->bindParam(':dateEtHeure', $sqlDate);
             $query->bindParam(':dateDeFin', $sqlDateFin);
@@ -167,7 +167,7 @@
         public static function getAll() {
     
             // requete
-            $query = $db->prepare("SELECT * FROM RendezVous");
+            $query = self::getBD()->prepare("SELECT * FROM RendezVous");
 
             // execution
             $query->execute();

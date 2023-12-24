@@ -28,12 +28,12 @@
 
         // get un usager par son id
         public static function getById(int $id) {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
     
             // requete
-            $query = $db->prepare("SELECT p.*, u.idUsager, u.idReferant, u.adresseComplete, u.codePostal, u.dateNaissance, u.lieuNaissance, u.NumSecuriteSociale FROM Personne p INNER JOIN Usager u ON p.idPersonne = u.idUsager WHERE p.idPersonne = :id");
+            $query = self::getBD()->prepare("SELECT p.*, u.* 
+                                                FROM Personne p, Usager u 
+                                                WHERE p.idPersonne = u.idUsager 
+                                                AND u.idUsager = :id");
             $query->bindParam(':id', $id);
 
             // execution
@@ -50,12 +50,9 @@
 
         // get tous les usagers
         public static function getAll() {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
     
             // requete
-            $query = $db->prepare("SELECT * FROM Usager");
+            $query = self::getBD()->prepare("SELECT p.*, u.* FROM Personne p, Usager u");
 
             // execution
             $query->execute();
@@ -74,12 +71,12 @@
 
         // get un usager par son numéro de sécurité sociale
         public static function getByNumSoc( string $numSecuriteSociale) {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
     
             // requete
-            $query = $db->prepare("SELECT p.*, u.idUsager, u.idReferent, u.adresseComplete, u.codePostal, u.dateNaissance, u.lieuNaissance, u.NumSecuriteSociale FROM Personne p INNER JOIN Usager u ON p.idPersonne = u.idUsager WHERE u.NumSecuriteSociale = :numSecuriteSociale");
+            $query = self::getBD()->prepare("SELECT p.*, u.* 
+                                                FROM Personne p, Usager u 
+                                                WHERE p.idPersonne = u.idUsager 
+                                                AND u.NumSecuriteSociale = :numSecuriteSociale");
             $query->bindParam(':numSecuriteSociale', $numSecuriteSociale);
 
             // execution
@@ -104,7 +101,7 @@
             if (!$search) {
 
                 // insertion personne
-                $qP = $db->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
+                $qP = self::getBD()->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
                 $qP->bindParam(':nom', $usager->getNom());
                 $qP->bindParam(':prenom', $usager->getPrenom());
                 $qP->bindParam(':civilite', $usager->getCivilite());
@@ -112,10 +109,10 @@
                 $qP->execute();
         
                 // get l'id de la personne insérée 
-                $idPersonne = $db->lastInsertId();
+                $idPersonne = self::getBD()->lastInsertId();
         
                 // Insérer dans la table Usager
-                $qU = $db->prepare("INSERT INTO Usager (idUsager, idReferant, adresseComplete, codePostal, dateNaissance, lieuNaissance, NumSecuriteSociale) VALUES (:idUsager, :idReferant, :adresseComplete, :codePostal, :dateNaissance, :lieuNaissance, :NumSecuriteSociale)");
+                $qU = self::getBD()->prepare("INSERT INTO Usager (idUsager, idReferant, adresseComplete, codePostal, dateNaissance, lieuNaissance, NumSecuriteSociale) VALUES (:idUsager, :idReferant, :adresseComplete, :codePostal, :dateNaissance, :lieuNaissance, :NumSecuriteSociale)");
                 $qU->bindParam(':idUsager', $idPersonne);
                 $qU->bindParam(':idReferant', $usager->getIdReferant());
                 $qU->bindParam(':adresseComplete', $thusageris->getAdresseComplete());
@@ -133,9 +130,6 @@
 
         // retire un usager
         public function remUsager() {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
     
             // il existe ?
             $search = Usager::getByNumSoc($this->getNumSecuriteSociale());
@@ -144,13 +138,13 @@
             if ($search) {
         
                 // supprimer dans la table Usager
-                $qM = $db->prepare("DELETE FROM Usager WHERE idUsager = :idUsager");
+                $qM = self::getBD()->prepare("DELETE FROM Usager WHERE idUsager = :idUsager");
                 $qM->bindParam(':idUsager', $this->getIdUsager());
                 
                 $qM->execute();
 
                 // supprimer la personne
-                $qP = $db->prepare("DELETE FROM Personne WHERE idPersonne = :idUsager");
+                $qP = self::getBD()->prepare("DELETE FROM Personne WHERE idPersonne = :idUsager");
                 $qM->bindParam(':idUsager', $this->getIdUsager());
 
                 $qP->execute();
