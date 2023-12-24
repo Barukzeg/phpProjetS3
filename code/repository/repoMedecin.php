@@ -158,7 +158,7 @@
             }
         }
 
-        public function getUsagers(Medecin $medecin){
+        public static function getUsagers(Medecin $medecin){
 
             try {
                 // il existe ?
@@ -197,7 +197,7 @@
         }
 
         // retire un medecin
-        public function remMedecin(Medecin $medecin) {
+        public static function remMedecin(Medecin $medecin) {
             try {
                 // il existe ?
                 $search = Medecin::isPresent($medecin->getNom(), $medecin->getPrenom());
@@ -220,7 +220,7 @@
 
                         $qP->execute();
                     }
-                    
+
                 } else {
                     throw new Exception("Ce medecin n'existe pas dans la base de données.");
                 }
