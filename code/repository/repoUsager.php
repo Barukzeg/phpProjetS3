@@ -18,7 +18,7 @@
         }
 
         public static function getRepo() {
-            if (self::$instance === null) {
+            if (self::$instance == null) {
                 self::$instance = new RepoUsager();
             }
             return self::$instance;
