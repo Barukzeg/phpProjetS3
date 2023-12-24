@@ -29,7 +29,7 @@
 
             // $query = self::getBD()->prepare("SELECT * FROM Medecin WHERE idMedecin = :id");
             // requete
-            $query = self::getBD()->prepare("SELECT p.nom, p.prenom, p.civilite, m.idMedecin
+            $query = self::getBD()->prepare("SELECT p.*, m.*
                                                 FROM Personne p, Medecin m
                                                 WHERE p.idPersonne = m.idMedecin
                                                 AND m.idMedecin = :id");
@@ -97,7 +97,7 @@
     
             try {
                 // il existe ?
-                $search = Medecin::isPresent($medecin->getNom(), $medecin->getPrenom());
+                $search = RepoMedecin::isPresent($medecin->getNom(), $medecin->getPrenom());
 
                 // Si non
                 if (!$search) {
@@ -134,7 +134,7 @@
     
             try {
                 // il existe ?
-                $search = Medecin::isPresent($medecin->getNom(), $medecin->getPrenom());
+                $search = RepoMedecin::isPresent($medecin->getNom(), $medecin->getPrenom());
 
                 // Si oui
                 if ($search) {
@@ -162,7 +162,7 @@
 
             try {
                 // il existe ?
-                $search = Medecin::isPresent($medecin->getNom(), $medecin->getPrenom());
+                $search = RepoMedecin::isPresent($medecin->getNom(), $medecin->getPrenom());
 
                 // Si oui
                 if ($search) {
@@ -200,7 +200,7 @@
         public static function remMedecin(Medecin $medecin) {
             try {
                 // il existe ?
-                $search = Medecin::isPresent($medecin->getNom(), $medecin->getPrenom());
+                $search = RepoMedecin::isPresent($medecin->getNom(), $medecin->getPrenom());
 
                 // Si oui
                 if ($search) {
