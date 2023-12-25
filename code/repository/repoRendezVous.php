@@ -1,4 +1,5 @@
 <?php
+
     include '../modele/rendezVous.php';
     include '../bd/bdd.php'
 
@@ -9,11 +10,11 @@
 
         // Constructeur
         private function __construct() {
-            $this->db = BDD::getBDD()->getConnection();
+            $this->db = BDD::getBDD();
         }
 
-        private function getBD() {
-            return $this->db;
+        private static function getBD() {
+            return self::getRepo()->db->getConnection();
         }
 
         public static function getRepo() {
