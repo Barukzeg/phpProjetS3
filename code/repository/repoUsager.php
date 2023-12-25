@@ -5,7 +5,7 @@
 
     class RepoUsager {
 
-        private static RepoUsager $instance = null;    //singleton
+        private static ?RepoUsager $instance = null;    //singleton
         private BDD $db;
 
         // Constructeur

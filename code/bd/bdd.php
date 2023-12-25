@@ -20,7 +20,7 @@
         }
 
         public static function getBDD() {
-            if (self::$instance == null) {
+            if (!isset(self::$instance)) {
                 self::$instance = new BDD();
             }
             return self::$instance;
@@ -36,6 +36,6 @@
             // Sécurité contre la duplication
             private function __clone() {}
             // Sécurité contre la désérialisation
-            private function __wakeup() {}
+            public function __wakeup() {}
     }
 ?>
