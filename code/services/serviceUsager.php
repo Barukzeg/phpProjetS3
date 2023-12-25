@@ -18,8 +18,8 @@
 
         // Fonctions
 
-        // get tous les usagers par age et sexe (0 = homme, 1 = femme) et age (0 = <25, 1 = 25-50, 2 = 50>)
-        public function getUsagerAgeSexe(int $age, int $civilite) {
+        // get le nombre d'usagers par age et sexe (0 = homme, 1 = femme) et age (0 = <25, 1 = 25-50, 2 = 50>)
+        public function getCountUsagerAgeSexe(int $age, int $civilite) {
 
             // gestion des paramètres
             switch ($civilite) {
@@ -67,7 +67,7 @@
                 }
             }
 
-            return $listeFinale;
+            return count($listeFinale);
         }
 
         //fonction qui retourne tout les usagers, triés par ordre alphabétique
