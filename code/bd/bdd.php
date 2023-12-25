@@ -1,7 +1,7 @@
 <?php
     class BDD {
         private static $instance = null;    //singleton
-        private $connection;                //connection a la bd
+        private PDO $connection;            //connection a la bd
 
         ///Connexion au serveur MySQL
         private $server = "localhost";

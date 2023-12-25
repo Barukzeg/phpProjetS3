@@ -4,7 +4,7 @@
 
     class RepoRendezVous {
 
-        private static RepoRendezVous $instance = null;    //singleton
+        private static ?RepoRendezVous $instance = null;    //singleton
         private BDD $db;
 
         // Constructeur

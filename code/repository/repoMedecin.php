@@ -5,7 +5,7 @@
 
     class RepoMedecin {
 
-        private static RepoMedecin $instance = null;    //singleton
+        private static ?RepoMedecin $instance = null;    //singleton
         private BDD $db;
 
         // Constructeur
