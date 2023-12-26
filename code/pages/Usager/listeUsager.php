@@ -3,12 +3,13 @@
         <title>Liste des usagers</title>
         <link rel="stylesheet" href="../../style/style.css">
     </head>
+    <?php include "header.php"; ?>
     <body>
         <h1>Usagers :</h1>
         <?php
             include "../../services/serviceUsager.php";
 
-            $resultat = serviceUsager::getService()->getUsagerAgeSexe(0,0);
+            $resultat = serviceUsager::getService()->getUsagerAlpha();
 
             // Vérifier si la requête a réussi
             
