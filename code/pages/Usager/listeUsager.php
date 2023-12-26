@@ -3,7 +3,7 @@
         <title>Liste des usagers</title>
         <link rel="stylesheet" href="../../style/style.css">
     </head>
-    <?php include "header.php"; ?>
+    <?php include "../header.php"; ?>
     <body>
         <h1>Usagers :</h1>
         <?php
@@ -23,7 +23,7 @@
                 
             } else {
                 // En cas d'erreur dans la requête
-                echo "Erreur dans la requête : " . $mysqlClient->error;
+                echo "Erreur dans la requête : ";
             }
             
         ?>

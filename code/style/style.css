@@ -34,6 +34,8 @@ header {
 }
 
 .boite-titre{
+    height: 100%;
+    vertical-align: middle;
     margin-top: 30px;
     margin-left: 20px;
     color: #000;
