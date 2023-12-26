@@ -9,23 +9,16 @@
         <?php
             include "../../services/serviceUsager.php";
 
-            $resultat = serviceUsager::getService()->getUsagerAlpha();
-
-            // Vérifier si la requête a réussi
-            
-            if ($resultat) {
-                // Afficher les résultats
+            try{
+                $resultat = serviceUsager::getService()->getUsagerAlpha();
                 echo '<div class="affichageResult">';
                 foreach ($resultat as $row) {
                     echo '<div class="result">' . $row["nom"] . ' - ' . $row["prenom"] . '</div>';
                 }
                 echo "</div>";
-                
-            } else {
-                // En cas d'erreur dans la requête
-                echo "Erreur dans la requête : ";
+            }catch (Exception $e){
+                echo $e->getMessage();
             }
-            
         ?>
         <div class="bouton-add">
             <form action="addUsager.php">

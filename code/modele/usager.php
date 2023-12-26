@@ -8,12 +8,12 @@
         private int $idReferant;
         private string $adresseComplete;
         private string $codePostal;
-        private date $dateNaissance;
+        private DateTime $dateNaissance;
         private string $lieuNaissance;
         private string $NumSecuriteSociale;
 
         // Constructeur
-        public function __construct(int $idUsager, string $nom, string $prenom, string $civilite, int $idReferant, string $adresseComplete, string $codePostal, date $dateNaissance, string $lieuNaissance, string $NumSecuriteSociale) {
+        public function __construct(int $idUsager, string $nom, string $prenom, string $civilite, int $idReferant, string $adresseComplete, string $codePostal, DateTime $dateNaissance, string $lieuNaissance, string $NumSecuriteSociale) {
             parent::__construct($idUsager, $nom, $prenom, $civilite);
             $this-> idReferant = $idReferant;
             $this-> adresseComplete = $adresseComplete;
@@ -59,7 +59,7 @@
         public function setCodePostal(string $codePostal) {
             $this->codePostal = $codePostal;
         }
-        public function setDateNaissance(date $dateNaissance) {
+        public function setDateNaissance(DateTime $dateNaissance) {
             $this->dateNaissance = $dateNaissance;
         }
         public function setLieuNaissance(string $lieuNaissance) {

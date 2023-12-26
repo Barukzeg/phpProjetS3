@@ -18,7 +18,8 @@
                     $villeNaissance = $_POST['villeNaissance'];
                     $numSecu = $_POST['numSecu'];
                     $usager = new Usager(1,$nom, $prenom, $civilite, 1,$adresse, $codepostal, $dateNaissance, $villeNaissance, $numSecu);
-                    $resultat = serviceUsager::addUsager($usager);
+                    $repoUsager = new RepoUsager();
+                    $resultat = $repoUsager->addUsager($usager);
                     if ($resultat) {
                         echo "Usager ajouté";
                     } else {
@@ -34,7 +35,7 @@
                 - int $idUsager
                 - int $idReferant 
             -->
-                <div>
+                <div class="title-input">
                     Nom : <input type="text" name="nom"><br>
                 </div>
                 <div>
@@ -60,8 +61,12 @@
                 </div>
 
                 <div class="bouton-out">
-                    <input type="reset" name="reset" value="Reset">
-                    <input type="submit" name="envoie" value="Envoyer">
+                    <form action="">
+                        <input type="reset" name="reset" value="Reset">
+                    </form>
+                    <form action="listeUsager.php">
+                        <input type="submit" name="envoie" value="Envoyer">
+                    </form>
                 </div>
             </form>
         </div>
