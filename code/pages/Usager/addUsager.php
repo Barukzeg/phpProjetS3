@@ -4,16 +4,66 @@
     <body>
         <div>
             <h1>Saisie :</h1>
-            <form action="ajoutcontact.php" method="post">
-                Nom : <input type="text" name="nom"><br>
-                Prenom : <input type="text" name="prenom"><br>
-                Adresse : <input type="text" name="adresse"><br>
-                Code postal : <input type="text" name="codepostal"><br>
-                Ville : <input type="text" name="ville"><br>
-                Numero de tel : <input type="tel" name="numerotel"><br>
-                <input type="reset" name="reset" value="Reset">
-                <input type="submit" name="envoie" value="Envoyer">
-            </form>   
+            <?php
+                include "../../services/serviceUsager.php";
+                $url = "/listeUsager.php";
+                if (isset($_POST['envoie'])) {
+                    $nom = $_POST['nom'];
+                    $prenom = $_POST['prenom'];
+                    $civilite = $_POST['civilite'];
+                    $adresse = $_POST['adresse'];
+                    $codepostal = $_POST['codepostal'];
+                    $date = $_POST['dateNaissance'];
+                    $dateNaissance = new DateTime($date);
+                    $villeNaissance = $_POST['villeNaissance'];
+                    $numSecu = $_POST['numSecu'];
+                    $usager = new Usager(1,$nom, $prenom, $civilite, 1,$adresse, $codepostal, $dateNaissance, $villeNaissance, $numSecu);
+                    $resultat = serviceUsager::addUsager($usager);
+                    if ($resultat) {
+                        echo "Usager ajouté";
+                    } else {
+                        echo "Erreur dans la requête : " . $mysqlClient->error;
+                    }
+                }else if(isset($_POST['reset'])){
+                    $url = "addUsager.php";
+                }
+                header("Location".$url)
+            ?>
+            <form action="addUsager.php" method="post">
+            <!-- TODO voir pour les trucs apres la
+                - int $idUsager
+                - int $idReferant 
+            -->
+                <div>
+                    Nom : <input type="text" name="nom"><br>
+                </div>
+                <div>
+                    Prenom :<input type="text" name="prenom"><br>
+                </div>
+                <div>
+                    Civilité :<input type="text" name="civilite"><br>
+                </div>
+                <div>
+                    Adresse :<input type="text" name="adresse"><br>
+                </div>
+                <div>
+                    Code postal :<input type="text" name="codepostal"><br>
+                </div>
+                <div>
+                    Date de naissance :<input type="date" name="dateNaissance"><br>
+                </div>
+                <div>
+                    Ville de naissance :<input type="text" name="villeNaissance"><br>
+                </div>
+                <div>
+                    Numero de sécurité sociale :<input type="text" name="numSecu"><br>
+                </div>
+
+                <div class="bouton-out">
+                    <input type="reset" name="reset" value="Reset">
+                    <input type="submit" name="envoie" value="Envoyer">
+                </div>
+            </form>
         </div>
     </body>
 </html>

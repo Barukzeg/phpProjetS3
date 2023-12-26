@@ -1,0 +1,17 @@
+.affichageResultat {
+    margin: 0 auto;
+    width: 80%;
+    box-shadow: 0 0 10px rgb(88, 88, 88);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.result{
+    margin: 0 auto;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}

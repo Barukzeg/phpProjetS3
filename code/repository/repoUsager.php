@@ -1,7 +1,7 @@
 <?php
 
-    include '../../modele/usager.php';
-    //include '../../bd/bdd.php';
+    include "../../modele/usager.php";
+    include "../../bd/bdd.php";
 
     class RepoUsager {
 
@@ -10,15 +10,15 @@
 
         // Constructeur
         private function __construct() {
-            $this->db = BDD::getBDD()->getConnection();
+            $this->db = BDD::getBDD();
         }
 
-        private function getBD() {
-            return $this->db;
+        private static function getBD() {
+            return self::getRepo()->db->getConnection();
         }
 
         public static function getRepo() {
-            if (self::$instance === null) {
+            if (self::$instance == null) {
                 self::$instance = new RepoUsager();
             }
             return self::$instance;
@@ -28,12 +28,12 @@
 
         // get un usager par son id
         public static function getById(int $id) {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
     
             // requete
-            $query = $db->prepare("SELECT p.*, u.idUsager, u.idReferant, u.adresseComplete, u.codePostal, u.dateNaissance, u.lieuNaissance, u.NumSecuriteSociale FROM Personne p INNER JOIN Usager u ON p.idPersonne = u.idUsager WHERE p.idPersonne = :id");
+            $query = self::getBD()->prepare("SELECT p.*, u.* 
+                                                FROM Personne p, Usager u 
+                                                WHERE p.idPersonne = u.idUsager 
+                                                AND u.idUsager = :id");
             $query->bindParam(':id', $id);
 
             // execution
@@ -50,12 +50,11 @@
 
         // get tous les usagers
         public static function getAll() {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
     
             // requete
-            $query = $db->prepare("SELECT * FROM Usager");
+            $query = self::getBD()->prepare("SELECT p.*, u.* 
+                                                FROM Personne p, Usager u
+                                                WHERE p.idPersonne = u.idUsager");
 
             // execution
             $query->execute();
@@ -74,12 +73,12 @@
 
         // get un usager par son numéro de sécurité sociale
         public static function getByNumSoc( string $numSecuriteSociale) {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
     
             // requete
-            $query = $db->prepare("SELECT p.*, u.idUsager, u.idReferent, u.adresseComplete, u.codePostal, u.dateNaissance, u.lieuNaissance, u.NumSecuriteSociale FROM Personne p INNER JOIN Usager u ON p.idPersonne = u.idUsager WHERE u.NumSecuriteSociale = :numSecuriteSociale");
+            $query = self::getBD()->prepare("SELECT p.*, u.* 
+                                                FROM Personne p, Usager u 
+                                                WHERE p.idPersonne = u.idUsager 
+                                                AND u.NumSecuriteSociale = :numSecuriteSociale");
             $query->bindParam(':numSecuriteSociale', $numSecuriteSociale);
 
             // execution
@@ -97,66 +96,116 @@
         // ajoute un usager
         public function addUsager(Usager $usager) {
     
-            // il existe ?
-            $search = Usager::getByNumSoc($usager->getNumSecuriteSociale());
+            try {
+                // il existe ?
+                $search = RepoUsager::getByNumSoc($usager->getNumSecuriteSociale());
 
-            // Si non
-            if (!$search) {
+                // Si non
+                if (!$search) {
 
-                // insertion personne
-                $qP = $db->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
-                $qP->bindParam(':nom', $usager->getNom());
-                $qP->bindParam(':prenom', $usager->getPrenom());
-                $qP->bindParam(':civilite', $usager->getCivilite());
+                    // insertion personne
+                    $qP = self::getBD()->prepare("INSERT INTO Personne (nom, prenom, civilite) 
+                                                                VALUES (:nom, :prenom, :civilite)");
+                    $qP->bindParam(':nom', $usager->getNom());
+                    $qP->bindParam(':prenom', $usager->getPrenom());
+                    $qP->bindParam(':civilite', $usager->getCivilite());
 
-                $qP->execute();
-        
-                // get l'id de la personne insérée 
-                $idPersonne = $db->lastInsertId();
-        
-                // Insérer dans la table Usager
-                $qU = $db->prepare("INSERT INTO Usager (idUsager, idReferant, adresseComplete, codePostal, dateNaissance, lieuNaissance, NumSecuriteSociale) VALUES (:idUsager, :idReferant, :adresseComplete, :codePostal, :dateNaissance, :lieuNaissance, :NumSecuriteSociale)");
-                $qU->bindParam(':idUsager', $idPersonne);
-                $qU->bindParam(':idReferant', $usager->getIdReferant());
-                $qU->bindParam(':adresseComplete', $thusageris->getAdresseComplete());
-                $qU->bindParam(':codePostal', $usager->getCodePostal());
-                $qU->bindParam(':dateNaissance', $usager->getDateNaissance());
-                $qU->bindParam(':lieuNaissance', $usager->getLieuNaissance());
-                $qU->bindParam(':NumSecuriteSociale', $usager->getNumSecuriteSociale());
-                
-                $qU->execute();
+                    $qP->execute();
+            
+                    // get l'id de la personne insérée 
+                    $idPersonne = self::getBD()->lastInsertId();
+            
+                    // Insérer dans la table Usager
+                    $qU = self::getBD()->prepare("INSERT INTO Usager (idUsager, idReferant, adresseComplete, codePostal, dateNaissance, lieuNaissance, NumSecuriteSociale) 
+                                                            VALUES (:idUsager, :idReferant, :adresseComplete, :codePostal, :dateNaissance, :lieuNaissance, :NumSecuriteSociale)");
+                    $qU->bindParam(':idUsager', $idPersonne);
+                    $qU->bindParam(':idReferant', $usager->getIdReferant());
+                    $qU->bindParam(':adresseComplete', $usager->getAdresseComplete());
+                    $qU->bindParam(':codePostal', $usager->getCodePostal());
+                    $qU->bindParam(':dateNaissance', $usager->getDateNaissance());
+                    $qU->bindParam(':lieuNaissance', $usager->getLieuNaissance());
+                    $qU->bindParam(':NumSecuriteSociale', $usager->getNumSecuriteSociale());
+                    
+                    $qU->execute();
 
-            } else {
-                echo "Ce client existe déjà.";
+                } else {
+                    throw new Exception("Cet usager existe déjà dans la base de données.");
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+        }
+
+        // update un usager
+        public function updateUsager(Usager $usager) {
+    
+            try {
+                // il existe ?
+                $search = RepoUsager::getByNumSoc($usager->getNumSecuriteSociale());
+
+                // Si oui
+                if ($search) {
+
+                    // update personne
+                    $qP = self::getBD()->prepare("UPDATE Personne 
+                                                    SET nom = :nom, prenom = :prenom, civilite = :civilite 
+                                                    WHERE idPersonne = :idUsager");
+                    $qP->bindParam(':nom', $usager->getNom());
+                    $qP->bindParam(':prenom', $usager->getPrenom());
+                    $qP->bindParam(':civilite', $usager->getCivilite());
+                    $qP->bindParam(':idUsager', $usager->getIdUsager());
+
+                    $qP->execute();
+            
+                    // update Usager
+                    $qU = self::getBD()->prepare("UPDATE Usager 
+                                                    SET idReferant = :idReferant, adresseComplete = :adresseComplete, codePostal = :codePostal, dateNaissance = :dateNaissance, lieuNaissance = :lieuNaissance, NumSecuriteSociale = :NumSecuriteSociale 
+                                                    WHERE idUsager = :idUsager");
+                    $qU->bindParam(':idReferant', $usager->getIdReferant());
+                    $qU->bindParam(':adresseComplete', $usager->getAdresseComplete());
+                    $qU->bindParam(':codePostal', $usager->getCodePostal());
+                    $qU->bindParam(':dateNaissance', $usager->getDateNaissance());
+                    $qU->bindParam(':lieuNaissance', $usager->getLieuNaissance());
+                    $qU->bindParam(':NumSecuriteSociale', $usager->getNumSecuriteSociale());
+                    $qU->bindParam(':idUsager', $usager->getIdUsager());
+                    
+                    $qU->execute();
+
+                } else {
+                    throw new Exception("Cet usager n'existe pas dans la base de données.");
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
             }
         }
 
         // retire un usager
-        public function remUsager() {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
+        public function remUsager(Usager $usager) {
     
-            // il existe ?
-            $search = Usager::getByNumSoc($this->getNumSecuriteSociale());
+            try {
+                // il existe ?
+                $search = RepoUsager::getByNumSoc($usager->getNumSecuriteSociale());
 
-            // Si oui
-            if ($search) {
-        
-                // supprimer dans la table Usager
-                $qM = $db->prepare("DELETE FROM Usager WHERE idUsager = :idUsager");
-                $qM->bindParam(':idUsager', $this->getIdUsager());
-                
-                $qM->execute();
+                // Si oui
+                if ($search) {
+            
+                    // supprimer dans la table Usager
+                    $qM = self::getBD()->prepare("DELETE FROM Usager WHERE idUsager = :idUsager");
+                    $qM->bindParam(':idUsager', $usager->getIdUsager());
+                    
+                    $qM->execute();
 
-                // supprimer la personne
-                $qP = $db->prepare("DELETE FROM Personne WHERE idPersonne = :idUsager");
-                $qM->bindParam(':idUsager', $this->getIdUsager());
+                    // supprimer la personne
+                    $qP = self::getBD()->prepare("DELETE FROM Personne WHERE idPersonne = :idUsager");
+                    $qP->bindParam(':idUsager', $usager->getIdUsager());
 
-                $qP->execute();
+                    $qP->execute();
 
-            } else {
-                echo "Cet usager n'existe pas dans la base de données.";
+                } else {
+                    throw new Exception("Cet usager n'existe pas dans la base de données.");
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
             }
         }
     }

@@ -7,11 +7,11 @@
 
         private int $idMedecin;
         private int $idClient;
-        private date $dateEtHeure;
+        private DateTime $dateEtHeure;
         private int $dureeMinutes;
 
         // Constructeur
-        public function __construct(int $idMedecin, int $idClient, date $dateEtHeure, int $dureeMinutes) {
+        public function __construct(int $idMedecin, int $idClient, DateTime $dateEtHeure, int $dureeMinutes) {
             $this->idMedecin = $idMedecin;
             $this->didClientate = $idClient;
             $this->dateEtHeure = $dateEtHeure;
@@ -44,7 +44,7 @@
             $this->idClient = $idClient;
         }
 
-        public function setDateEtHeure(date $dateEtHeure) {
+        public function setDateEtHeure(DateTime $dateEtHeure) {
             $this->dateEtHeure = $dateEtHeure;
         }
 

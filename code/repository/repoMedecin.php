@@ -5,31 +5,36 @@
 
     class RepoMedecin {
 
-        private static RepoMedecin $instance = null;    //singleton
+        private static ?RepoMedecin $instance = null;    //singleton
         private BDD $db;
 
         // Constructeur
         private function __construct() {
-            $this->db = BDD::getBDD()->getConnection();
+            $this->db = BDD::getBDD();
         }
 
-        private function getBD() {
-            return $this->db;
+        private static function getBD() {
+            return self::getRepo()->db->getConnection();
         }
 
         public static function getRepo() {
-            if (self::$instance === null) {
+            if (self::$instance == null) {
                 self::$instance = new RepoMedecin();
             }
             return self::$instance;
         }
 
+        // Fonctions
+
         // get un médecin par son id
         public static function getById(int $id) {
 
-            $query = $this->getBD()->prepare("SELECT * FROM Medecin WHERE idMedecin = :id");
+            // $query = self::getBD()->prepare("SELECT * FROM Medecin WHERE idMedecin = :id");
             // requete
-            $query = $this->getBD()->prepare("SELECT * FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE m.idMedecin = :id");
+            $query = self::getBD()->prepare("SELECT p.*, m.*
+                                                FROM Personne p, Medecin m
+                                                WHERE p.idPersonne = m.idMedecin
+                                                AND m.idMedecin = :id");
             $query->bindParam(':id', $id);
 
             // execution
@@ -48,7 +53,9 @@
         public static function getAll() {
     
             // requete
-            $query = $this->getBD()->prepare("SELECT * FROM Medecin");
+            $query = self::getBD()->prepare("SELECT m.*, p.* 
+                                                FROM Medecin m, Personne p 
+                                                WHERE m.idMedecin = p.idPersonne");
 
             // execution
             $query->execute();
@@ -68,7 +75,10 @@
         public static function isPresent(string $nom, string $prenom) {
     
             // requete
-            $query = $this->getBD()->prepare("SELECT p.*, m.idMedecin FROM Personne p INNER JOIN Medecin m ON p.idPersonne = m.idMedecin WHERE p.nom = :nom AND p.prenom = :prenom");
+            $query = self::getBD()->prepare("SELECT p.*, m.* 
+                                                FROM Personne p, Medecin m 
+                                                WHERE p.idPersonne = m.idMedecin 
+                                                AND p.nom = :nom AND p.prenom = :prenom");
             $query->bindParam(':nom', $nom);
             $query->bindParam(':prenom', $prenom);
 
@@ -85,59 +95,139 @@
         }
 
         // ajoute un medecin
-        public function addMedecin(Medecin $medecin) {
+        public static function addMedecin(Medecin $medecin) {
     
-            // il existe ?
-            $search = Medecin::isPresent($medecin->getNom(), $medecin->getPrenom());
+            try {
+                // il existe ?
+                $search = RepoMedecin::isPresent($medecin->getNom(), $medecin->getPrenom());
 
-            // Si non
-            if (!$search) {
+                // Si non
+                if (!$search) {
 
-                // insertion personne
-                $qP = $db->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
-                $qP->bindParam(':nom', $medecin->getNom());
-                $qP->bindParam(':prenom', $medecin->getPrenom());
-                $qP->bindParam(':civilite', $medecin->getCivilite());
+                    // insertion personne
+                    $qP = self::getBD()->prepare("INSERT INTO Personne (nom, prenom, civilite) 
+                                                                VALUES (:nom, :prenom, :civilite)");
+                    $qP->bindParam(':nom', $medecin->getNom());
+                    $qP->bindParam(':prenom', $medecin->getPrenom());
+                    $qP->bindParam(':civilite', $medecin->getCivilite());
 
-                $qP->execute();
-        
-                // get l'id de la personne insérée 
-                $idPersonne = $medecin->getBD()->lastInsertId();
-        
-                // Insérer dans la table Medecin
-                $qM = $medecin->getBD()->prepare("INSERT INTO Medecin (idMedecin) VALUES (:idMedecin)");
-                $qM->bindParam(':idMedecin', $idPersonne);
-                
-                $qM->execute();
+                    $qP->execute();
+            
+                    // get l'id de la personne insérée 
+                    $idPersonne = self::getBD()->lastInsertId();
+            
+                    // Insérer dans la table Medecin
+                    $qM = self::getBD()->prepare("INSERT INTO Medecin (idMedecin) 
+                                                                    VALUES (:idMedecin)");
+                    $qM->bindParam(':idMedecin', $idPersonne);
+                    
+                    $qM->execute();
 
-            } else {
-                echo "Ce medecin existe déjà.";
+                } else {
+                    throw new Exception("Ce medecin existe déjà.");
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+        }
+
+        // update un medecin
+        public static function updateMedecin(Medecin $medecin) {
+    
+            try {
+                // il existe ?
+                $search = RepoMedecin::isPresent($medecin->getNom(), $medecin->getPrenom());
+
+                // Si oui
+                if ($search) {
+
+                    // update personne
+                    $qP = self::getBD()->prepare("UPDATE Personne 
+                                                    SET nom = :nom, prenom = :prenom, civilite = :civilite 
+                                                    WHERE idPersonne = :idMedecin");
+                    $qP->bindParam(':nom', $medecin->getNom());
+                    $qP->bindParam(':prenom', $medecin->getPrenom());
+                    $qP->bindParam(':civilite', $medecin->getCivilite());
+                    $qP->bindParam(':idMedecin', $medecin->getIdMedecin());
+
+                    $qP->execute();
+
+                } else {
+                    throw new Exception("Ce medecin n'existe pas dans la base de données.");
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+        }
+
+        public static function getUsagers(Medecin $medecin){
+
+            try {
+                // il existe ?
+                $search = RepoMedecin::isPresent($medecin->getNom(), $medecin->getPrenom());
+
+                // Si oui
+                if ($search) {
+
+                    // requete
+                    $query = self::getBD()->prepare("SELECT u.*, p.* 
+                                                        FROM Usager u, Personne p 
+                                                        WHERE u.idUsager = p.idPersonne 
+                                                        AND u.idReferent = :idReferant");
+                    $query->bindParam(':idReferant', $medecin->getIdMedecin());
+
+                    // execution
+                    $query->execute();
+                    $resultats = $query->fetchAll(PDO::FETCH_ASSOC);
+            
+                    // remplissage de la liste de tout les usagers
+                    $liste = array();
+                    foreach ($resultats as $result) {
+                        $usager = new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['dateNaissance'], $result['adresse'], $result['telephone'], $result['idReferant']);
+                        $liste[$result['idUsager']] = $usager;
+                    }
+                    
+                    //retour de la liste
+                    return $liste;
+
+                } else {
+                    throw new Exception("Ce medecin n'existe pas dans la base de données.");
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
             }
         }
 
         // retire un medecin
-        public function remMedecin() {
-    
-            // il existe ?
-            $search = Medecin::isPresent($this->getNom(), $this->getPrenom());
+        public static function remMedecin(Medecin $medecin) {
+            try {
+                // il existe ?
+                $search = RepoMedecin::isPresent($medecin->getNom(), $medecin->getPrenom());
 
-            // Si oui
-            if ($search) {
-        
-                // supprimer dans la table Medecin
-                $qM = $this->getBD()->prepare("DELETE FROM Medecin WHERE idMedecin = :idMedecin");
-                $qM->bindParam(':idMedecin', $this->getIdMedecin());
-                
-                $qM->execute();
+                // Si oui
+                if ($search) {
+                    
+                    if (count(Medecin::getUsagers($medecin)) > 0) {
+                        throw new Exception("Ce medecin est référent d'au moins un usager, il ne peut donc pas être supprimé.");
+                    } else {
+                        // supprimer dans la table Medecin
+                        $qM = self::getBD()->prepare("DELETE FROM Medecin WHERE idMedecin = :idMedecin");
+                        $qM->bindParam(':idMedecin', $medecin->getIdMedecin());
 
-                // supprimer la personne
-                $qP = $this->getBD()->prepare("DELETE FROM Personne WHERE idPersonne = :idMedecin");
-                $qM->bindParam(':idMedecin', $this->getIdMedecin());
+                        $qM->execute();
 
-                $qP->execute();
+                        // supprimer la personne
+                        $qP = self::getBD()->prepare("DELETE FROM Personne WHERE idPersonne = :idMedecin");
+                        $qP->bindParam(':idMedecin', $medecin->getIdMedecin());
 
-            } else {
-                echo "Ce medecin n'existe pas dans la base de données.";
+                        $qP->execute();
+                    }
+
+                } else {
+                    throw new Exception("Ce medecin n'existe pas dans la base de données.");
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
             }
         }
     }

@@ -1,27 +1,35 @@
 <html>
+    <head>
+        <title>Liste des usagers</title>
+        <link rel="stylesheet" href="../../style/style.css">
+    </head>
     <body>
         <h1>Usagers :</h1>
         <?php
-            include "../../modele/usager.php";
-            include "../../repository/repoUsager.php";
+            include "../../services/serviceUsager.php";
 
-            //$resultat = serviceUsager::getUsagerAgeSexe(0,0);
+            $resultat = serviceUsager::getService()->getUsagerAgeSexe(0,0);
 
             // Vérifier si la requête a réussi
-            /*
+            
             if ($resultat) {
                 // Afficher les résultats
-                echo "<ul>";
-                while ($row = $resultat->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<li>" . $row["nom"] . " - " . $row["prenom"] . "</li>";
+                echo '<div class="affichageResult">';
+                foreach ($resultat as $row) {
+                    echo '<div class="result">' . $row["nom"] . ' - ' . $row["prenom"] . '</div>';
                 }
-                echo "</ul>";
+                echo "</div>";
                 
             } else {
                 // En cas d'erreur dans la requête
                 echo "Erreur dans la requête : " . $mysqlClient->error;
             }
-            */
+            
         ?>
+        <div class="bouton-add">
+            <form action="addUsager.php">
+                <button>Ajouter un usager</button>
+            </form>
+        </div>
     </body>
 </html>
