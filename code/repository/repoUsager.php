@@ -63,7 +63,8 @@
             // remplissage de la liste de tout les usagers
             $liste = array();
             foreach ($resultats as $result) {
-                $usager = new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferant'], $result['adresseComplete'], $result['codePostal'], $result['dateNaissance'], $result['lieuNaissance'], $result['NumSecuriteSociale']);
+                $dateNaissance = new DateTime($result['dateNaissance']);
+                $usager = new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferent'], $result['adresseComplete'], $result['codePostal'], $dateNaissance, $result['lieuNaissance'], $result['numSecuriteSociale']);
                 $liste[$result['idUsager']] = $usager;
             }
             
