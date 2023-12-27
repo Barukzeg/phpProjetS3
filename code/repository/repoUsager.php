@@ -42,7 +42,7 @@
     
             // retour d'une instance de Usager
             if ($result) {
-                return new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferant'], $result['adresseComplete'], $result['codePostal'], $result['dateNaissance'], $result['lieuNaissance'], $result['NumSecuriteSociale']);
+                return new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferent'], $result['adresseComplete'], $result['codePostal'], $result['dateNaissance'], $result['lieuNaissance'], $result['NumSecuriteSociale']);
             } else {
                 return null;
             }
@@ -117,10 +117,10 @@
                     $idPersonne = self::getBD()->lastInsertId();
             
                     // Insérer dans la table Usager
-                    $qU = self::getBD()->prepare("INSERT INTO Usager (idUsager, idReferant, adresseComplete, codePostal, dateNaissance, lieuNaissance, NumSecuriteSociale) 
-                                                            VALUES (:idUsager, :idReferant, :adresseComplete, :codePostal, :dateNaissance, :lieuNaissance, :NumSecuriteSociale)");
+                    $qU = self::getBD()->prepare("INSERT INTO Usager (idUsager, idReferent, adresseComplete, codePostal, dateNaissance, lieuNaissance, NumSecuriteSociale) 
+                                                            VALUES (:idUsager, :idReferent, :adresseComplete, :codePostal, :dateNaissance, :lieuNaissance, :NumSecuriteSociale)");
                     $qU->bindParam(':idUsager', $idPersonne);
-                    $qU->bindParam(':idReferant', $usager->getIdReferant());
+                    $qU->bindParam(':idReferent', $usager->getidReferent());
                     $qU->bindParam(':adresseComplete', $usager->getAdresseComplete());
                     $qU->bindParam(':codePostal', $usager->getCodePostal());
                     $qU->bindParam(':dateNaissance', $usager->getDateNaissance());
@@ -160,9 +160,9 @@
             
                     // update Usager
                     $qU = self::getBD()->prepare("UPDATE Usager 
-                                                    SET idReferant = :idReferant, adresseComplete = :adresseComplete, codePostal = :codePostal, dateNaissance = :dateNaissance, lieuNaissance = :lieuNaissance, NumSecuriteSociale = :NumSecuriteSociale 
+                                                    SET idReferent = :idReferent, adresseComplete = :adresseComplete, codePostal = :codePostal, dateNaissance = :dateNaissance, lieuNaissance = :lieuNaissance, NumSecuriteSociale = :NumSecuriteSociale 
                                                     WHERE idUsager = :idUsager");
-                    $qU->bindParam(':idReferant', $usager->getIdReferant());
+                    $qU->bindParam(':idReferent', $usager->getidReferent());
                     $qU->bindParam(':adresseComplete', $usager->getAdresseComplete());
                     $qU->bindParam(':codePostal', $usager->getCodePostal());
                     $qU->bindParam(':dateNaissance', $usager->getDateNaissance());
