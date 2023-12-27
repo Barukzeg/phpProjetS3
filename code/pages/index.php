@@ -1,4 +1,8 @@
 <html>
+    <head>
+        <title>Accueil</title>
+        <link rel="stylesheet" href="/phpProjetS3/code/style/style.css">
+    </head>
     <?php include "header.php"; ?>
     <body>
         <div>
