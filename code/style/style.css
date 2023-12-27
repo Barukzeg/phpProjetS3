@@ -19,7 +19,7 @@ header {
     font-size: 16px;
 }
 
-.items{
+nav{
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -28,19 +28,12 @@ header {
     height: 100%;
 }
 
-.boite-logo{
+.boite-logo a{
     display: flex;
     align-items: left;
     height: 100%;
 }
 
-.boite-titre{
-    height: 100%;
-    vertical-align: middle;
-    margin-top: 30px;
-    margin-left: 20px;
-    color: #000;
-}
 .boite-boutons{
     display: contents;
     align-items: right;
@@ -89,29 +82,5 @@ a{
 }
 
 body{
-    width: 100%;
     background-color: #c4f9f3;
 }
-
-/* listeUsager.php */
-.affichageResultat {
-    margin: 0 auto;
-    width: 80%;
-    box-shadow: 0 0 10px rgb(88, 88, 88);
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.result{
-    margin: 0 auto;
-    width: 80%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-
-/* addUsager.php */
-

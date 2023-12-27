@@ -1,0 +1,44 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h1{
+    font-size: 40px;
+    text-align: center;
+}
+
+.affichageResultat {
+    box-shadow: 0 0 10px rgb(88, 88, 88);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.result{
+    margin: auto;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.bouton-add{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+button{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button:hover{
+    background-color: #ccc;
+}
