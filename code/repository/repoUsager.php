@@ -9,7 +9,7 @@
         private BDD $db;
 
         // Constructeur
-        private function __construct() {
+        public function __construct() {
             $this->db = BDD::getBDD();
         }
 
@@ -95,7 +95,7 @@
         }
 
         // ajoute un usager
-        public function addUsager(Usager $usager) {
+        public function addUsager($usager) {
     
             try {
                 // il existe ?
@@ -123,11 +123,12 @@
                     $qU->bindParam(':idReferent', $usager->getidReferent());
                     $qU->bindParam(':adresseComplete', $usager->getAdresseComplete());
                     $qU->bindParam(':codePostal', $usager->getCodePostal());
-                    $qU->bindParam(':dateNaissance', $usager->getDateNaissance());
+                    $dateNaissance = $usager->getDateNaissance()->format('Y-m-d');
+                    $qU->bindParam(':dateNaissance', $dateNaissance);
                     $qU->bindParam(':lieuNaissance', $usager->getLieuNaissance());
                     $qU->bindParam(':NumSecuriteSociale', $usager->getNumSecuriteSociale());
                     
-                    $qU->execute();
+                    return $qU->execute();
 
                 } else {
                     throw new Exception("Cet usager existe déjà dans la base de données.");
