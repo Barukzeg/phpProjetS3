@@ -108,9 +108,13 @@
                     // insertion personne
                     $qP = self::getBD()->prepare("INSERT INTO Personne (nom, prenom, civilite) 
                                                                 VALUES (:nom, :prenom, :civilite)");
-                    $qP->bindParam(':nom', $usager->getNom());
-                    $qP->bindParam(':prenom', $usager->getPrenom());
-                    $qP->bindParam(':civilite', $usager->getCivilite());
+                    
+                    $nom = $usager->getNom();
+                    $qP->bindParam(':nom', $nom);
+                    $prenom = $usager->getPrenom();
+                    $qP->bindParam(':prenom', $prenom);
+                    $civilite = $usager->getCivilite();
+                    $qP->bindParam(':civilite', $civilite);
 
                     $qP->execute();
             
@@ -121,13 +125,18 @@
                     $qU = self::getBD()->prepare("INSERT INTO Usager (idUsager, idReferent, adresseComplete, codePostal, dateNaissance, lieuNaissance, NumSecuriteSociale) 
                                                             VALUES (:idUsager, :idReferent, :adresseComplete, :codePostal, :dateNaissance, :lieuNaissance, :NumSecuriteSociale)");
                     $qU->bindParam(':idUsager', $idPersonne);
-                    $qU->bindParam(':idReferent', $usager->getidReferent());
-                    $qU->bindParam(':adresseComplete', $usager->getAdresseComplete());
-                    $qU->bindParam(':codePostal', $usager->getCodePostal());
+                    $idReferent = $usager->getidReferent();
+                    $qU->bindParam(':idReferent', $idReferent);
+                    $adresseComplete = $usager->getAdresseComplete();
+                    $qU->bindParam(':adresseComplete', $adresseComplete);
+                    $codePostal = $usager->getCodePostal();
+                    $qU->bindParam(':codePostal', $codePostal);
                     $dateNaissance = $usager->getDateNaissance()->format('Y-m-d');
                     $qU->bindParam(':dateNaissance', $dateNaissance);
-                    $qU->bindParam(':lieuNaissance', $usager->getLieuNaissance());
-                    $qU->bindParam(':NumSecuriteSociale', $usager->getNumSecuriteSociale());
+                    $lieuNaissance = $usager->getLieuNaissance();
+                    $qU->bindParam(':lieuNaissance', $lieuNaissance);
+                    $numSecuriteSociale = $usager->getNumSecuriteSociale();
+                    $qU->bindParam(':NumSecuriteSociale', $numSecuriteSociale);
                     
                     return $qU->execute();
 
@@ -194,15 +203,16 @@
             
                     // supprimer dans la table Usager
                     $qM = self::getBD()->prepare("DELETE FROM Usager WHERE idUsager = :idUsager");
-                    $qM->bindParam(':idUsager', $usager->getIdUsager());
+                    $idUsager = $usager->getIdUsager();
+                    $qM->bindParam(':idUsager', $idUsager);
                     
                     $qM->execute();
 
                     // supprimer la personne
                     $qP = self::getBD()->prepare("DELETE FROM Personne WHERE idPersonne = :idUsager");
-                    $qP->bindParam(':idUsager', $usager->getIdUsager());
+                    $qP->bindParam(':idUsager', $idUsager);
 
-                    $qP->execute();
+                    return $qP->execute();
 
                 } else {
                     throw new Exception("Cet usager n'existe pas dans la base de données.");
