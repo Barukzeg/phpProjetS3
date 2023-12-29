@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/addUsager.css"/>
     <body>
         <div>
-            <form action="traitement.php" method="post">
+            <form action="traitementAddUsager.php" method="post">
                 <label for="nom">Nom :</label>
                 <input type="text" id="nom" name="nom" required>
 
