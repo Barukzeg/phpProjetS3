@@ -2,7 +2,7 @@
 html{
     width: auto;
     height: auto;
-    font-family: "Verdana", "Arial", sans-serif;
+    font-family: "OCR A Std", monospace, "Verdana", "Arial", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,3 +83,34 @@ a{
 body{
     background-color: #c4f9f3;
 }
+
+/* Index */
+
+h1{
+    font-size: 30px;
+    text-align: center;
+}
+
+.boite-index{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+    .boite-index a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        width: 100%;
+        height: 100%;
+    }
+
+    .boite-index a:hover{
+        background-color: #c4f9f3;
+        transition: 0.1s;
+        scale : 1.2;
+    }
