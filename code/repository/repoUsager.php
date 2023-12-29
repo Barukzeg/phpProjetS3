@@ -88,7 +88,8 @@
     
             // retour d'une instance de Usager
             if ($result) {
-                return new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferent'], $result['adresseComplete'], $result['codePostal'], $result['dateNaissance'], $result['lieuNaissance'], $result['NumSecuriteSociale']);
+                $result['dateNaissance'] = new DateTime($result['dateNaissance']);
+                return new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferent'], $result['adresseComplete'], $result['codePostal'], $result['dateNaissance'], $result['lieuNaissance'], $result['numSecuriteSociale']);
             } else {
                 return null;
             }
