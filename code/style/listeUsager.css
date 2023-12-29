@@ -1,28 +1,29 @@
 .content{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
 }
 
 h1{
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
 }
 
-.affichageResultat {
-    box-shadow: 0 0 10px rgb(88, 88, 88);
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
+.affichageResult{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 10px;
 }
 
 .result{
-    margin: auto;
-    width: 80%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 10px;
+    border: 2px solid #acacac;
+    border-radius: 5px;
 }
 
 .bouton-add{
@@ -35,10 +36,23 @@ button{
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-shadow: 0 0 2px rgb(88, 88, 88);
     padding: 5px;
-    margin-bottom: 10px;
+    font-family: "OCR A Std", monospace;
 }
 
 button:hover{
     background-color: #ccc;
+    scale: 1.1;
+    transition: 0.03s;
+}
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.result button{
+    width: 100px;
 }
