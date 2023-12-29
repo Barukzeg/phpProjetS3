@@ -25,7 +25,7 @@
 
         // Getters
         public function getIdUsager() {
-            return $this->idUsager;
+            return parent::getIdPersonne();
         }
         public function getidReferent() {
             return $this->idReferent;
