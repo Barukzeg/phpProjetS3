@@ -12,23 +12,28 @@
                 $dateNaissance = new DateTime($date);
                 $villeNaissance = $_POST['villeNaissance'];
                 $numSecu = $_POST['numSecu'];
-                echo '<h2>Les données suivantes ont été enregistré :</h2>';
-                echo '<p><strong>Nom :</strong> '.$nom.'</p>';
-                echo '<p><strong>Prénom :</strong> '.$prenom.'</p>';
-                echo '<p><strong>Civilité :</strong> '.$civilite.'</p>';
-                echo '<p><strong>Adresse :</strong> '.$adresse.'</p>';
-                echo '<p><strong>Code postal :</strong> '.$codepostal.'</p>';
-                echo '<p><strong>Date de naissance :</strong> '.$date.'</p>';
-                echo '<p><strong>Ville de naissance :</strong> '.$villeNaissance.'</p>';
-                echo '<p><strong>Numéro de sécurité sociale :</strong> '.$numSecu.'</p>';
                 $usager = new Usager(1,$nom, $prenom, $civilite, 1,$adresse, $codepostal, $dateNaissance, $villeNaissance, $numSecu);
                 $repoUsager = new RepoUsager();
                 $resultat = $repoUsager->addUsager($usager);
                 if ($resultat) {
-                    echo "Usager ajouté";
+                    echo '<h2>Les données suivantes ont été enregistré :</h2>';
+                    echo '<p><strong>Nom :</strong> '.$nom.'</p>';
+                    echo '<p><strong>Prénom :</strong> '.$prenom.'</p>';
+                    echo '<p><strong>Civilité :</strong> '.$civilite.'</p>';
+                    echo '<p><strong>Adresse :</strong> '.$adresse.'</p>';
+                    echo '<p><strong>Code postal :</strong> '.$codepostal.'</p>';
+                    echo '<p><strong>Date de naissance :</strong> '.$date.'</p>';
+                    echo '<p><strong>Ville de naissance :</strong> '.$villeNaissance.'</p>';
+                    echo '<p><strong>Numéro de sécurité sociale :</strong> '.$numSecu.'</p>';
                 } else {
                     echo "Erreur dans la requête : " . $mysqlClient->error;
                 }
+                echo '
+                <div class="bouton-add">
+                    <form action="listeUsager.php">
+                        <button>Retour à la liste des usagers</button>
+                    </form>
+                </div>';
             }
         ?>
     </body>

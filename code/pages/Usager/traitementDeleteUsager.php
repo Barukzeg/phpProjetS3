@@ -9,8 +9,14 @@
                 if ($resultat) {
                     echo "Usager : ".$usager->getNom()." ".$usager->getPrenom()." supprimé";
                 } else {
-                    echo "Erreur dans la requête : " . $mysqlClient->error;
+                    echo "Erreur dans la requête de supression ";
                 }
+                echo '
+                <div class="bouton-add">
+                    <form action="listeUsager.php">
+                        <button>Retour à la liste des usagers</button>
+                    </form>
+                </div>';
             }
         ?>
     </body>
