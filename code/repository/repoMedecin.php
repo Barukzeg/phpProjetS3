@@ -9,7 +9,7 @@
         private BDD $db;
 
         // Constructeur
-        private function __construct() {
+        public function __construct() {
             $this->db = BDD::getBDD();
         }
 
@@ -107,9 +107,12 @@
                     // insertion personne
                     $qP = self::getBD()->prepare("INSERT INTO Personne (nom, prenom, civilite) 
                                                                 VALUES (:nom, :prenom, :civilite)");
-                    $qP->bindParam(':nom', $medecin->getNom());
-                    $qP->bindParam(':prenom', $medecin->getPrenom());
-                    $qP->bindParam(':civilite', $medecin->getCivilite());
+                    $nom = $medecin->getNom();
+                    $qP->bindParam(':nom', $nom);
+                    $prenom = $medecin->getPrenom();
+                    $qP->bindParam(':prenom', $prenom);
+                    $civilite = $medecin->getCivilite();
+                    $qP->bindParam(':civilite', $civilite);
 
                     $qP->execute();
             
@@ -121,7 +124,7 @@
                                                                     VALUES (:idMedecin)");
                     $qM->bindParam(':idMedecin', $idPersonne);
                     
-                    $qM->execute();
+                    return $qM->execute();
 
                 } else {
                     throw new Exception("Ce medecin existe déjà.");
