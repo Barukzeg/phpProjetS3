@@ -1,8 +1,8 @@
 <?php
 
-    include '../modele/medecin.php';
-    include '../repository/repoMedecin.php';
-    include '../repository/repoRendezVous.php';
+    include_once '../../modele/medecin.php';
+    include_once '../../repository/repoMedecin.php';
+    include_once '../../repository/repoRendezVous.php';
 
     class ServiceMedecin {
 
@@ -13,7 +13,7 @@
 
         public static function getService() {
             if (self::$instance === null) {
-                self::$instance = new ServiceUsager();
+                self::$instance = new ServiceMedecin();
             }
             return self::$instance;
         }

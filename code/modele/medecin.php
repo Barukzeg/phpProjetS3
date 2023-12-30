@@ -13,7 +13,7 @@
 
         // Getters
         public function getIdMedecin() {
-            return $this->idMedecin;
+            return parent::getIdPersonne();
         }
 
         // Setters

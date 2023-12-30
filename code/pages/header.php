@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="btn">
-                <a href="">
+                <a href="/phpProjetS3/code/pages/Medecin/listeMedecin.php">
                     <img src="/phpProjetS3/code/image/iconMedecin.png" alt="icon Medecin">
                     <p>Accès à la liste des médecins</p>
                 </a>
