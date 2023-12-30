@@ -1,7 +1,7 @@
 <?php
 
-    include '../modele/rendezVous.php';
-    include '../bd/bdd.php'
+    include_once '../../modele/rendezVous.php';
+    include_once '../../bd/bdd.php';
 
     class RepoRendezVous {
 

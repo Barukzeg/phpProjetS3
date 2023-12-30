@@ -1,7 +1,7 @@
 <?php
     
-    include 'medecin.php';
-    include 'usager.php';
+    include_once 'medecin.php';
+    include_once 'usager.php';
 
     class RendezVous {
 
