@@ -12,7 +12,7 @@
                 $dateNaissance = new DateTime($date);
                 $villeNaissance = $_POST['villeNaissance'];
                 $numSecu = $_POST['numSecu'];
-                $usager = new Usager(1,$nom, $prenom, $civilite, 1,$adresse, $codepostal, $dateNaissance, $villeNaissance, $numSecu);
+                $usager = new Usager(1,$nom, $prenom, $civilite, 4,$adresse, $codepostal, $dateNaissance, $villeNaissance, $numSecu);
                 $repoUsager = new RepoUsager();
                 $resultat = $repoUsager->addUsager($usager);
                 if ($resultat) {
@@ -26,7 +26,7 @@
                     echo '<p><strong>Ville de naissance :</strong> '.$villeNaissance.'</p>';
                     echo '<p><strong>Numéro de sécurité sociale :</strong> '.$numSecu.'</p>';
                 } else {
-                    echo "Erreur dans la requête : " . $mysqlClient->error;
+                    echo "Erreur dans la requête : d'ajout de l'usager" ;
                 }
                 echo '
                 <div class="bouton-add">

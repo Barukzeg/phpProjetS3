@@ -17,7 +17,8 @@
                 </form>
             </div>
             <?php
-                include "../../services/serviceUsager.php";
+                include_once "../../services/serviceUsager.php";
+                include_once "../../repository/repoMedecin.php";
                 include_once "../../modele/Usager.php";
 
                 try{
@@ -48,7 +49,9 @@
                                 .'Adresse : '.$row->getAdresseComplete().' '.$row->getCodePostal().'<br>'
                                 .'Date de naissance : '.$row->getDateNaissance()->format('d/m/Y').'<br>'
                                 .'Ville de naissance : '.$ville.'<br>'
-                                .'Numéro de sécurité sociale : '.$row->getNumSecuriteSociale().'
+                                .'Numéro de sécurité sociale : '.$row->getNumSecuriteSociale().'<br>';
+                                $medecin = RepoMedecin::getById($row->getidReferent());
+                                echo 'Médecin référent : '.$medecin->getNom().' '.$medecin->getPrenom().'
                             </div>
                             <div class="btn-container">
                                 <form action="updateUsager.php" method="post">
