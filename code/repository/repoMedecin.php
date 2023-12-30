@@ -1,7 +1,7 @@
 <?php
 
-    include '../modele/medecin.php';
-    include '../bd/bdd.php';
+    include_once '../../modele/medecin.php';
+    include_once '../../bd/bdd.php';
 
     class RepoMedecin {
 
