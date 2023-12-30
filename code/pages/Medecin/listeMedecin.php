@@ -47,11 +47,11 @@
                                 .'Sexe : '.$sexe.'
                             </div>
                             <div class="btn-container">
-                                <form action="updateUsager.php" method="post">
+                                <form action="updateMedecin.php" method="post">
                                     <input type="hidden" name="idMedecin" value="'.$row->getIdMedecin().'">
                                     <button type="submit">Modifier</button>
                                 </form>
-                                <form action="traitementDeleteUsager.php" method="post">
+                                <form action="traitementDeleteMedecin.php" method="post">
                                     <input type="hidden" name="idMedecin" value="'.$row->getIdMedecin().'">
                                     <button type="submit">Supprimer</button>
                                 </form>
