@@ -20,7 +20,7 @@
 
                 <label for="medecinRef">Medecin référent</label>
                 <select id="medecinRef" name="medecinRef" required>
-                    <option value="null">Pas de medecin référent</option>
+                    <option value="non">Pas de medecin référent</option>
                     <?php
                         include "../../repository/repoMedecin.php";
                         $medecins = RepoMedecin::getAll();
