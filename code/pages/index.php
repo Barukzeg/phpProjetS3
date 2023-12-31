@@ -15,7 +15,7 @@
                 </a>
             </div>
             <div class="btn-index">
-                <a href="">
+                <a href="/phpProjetS3/code/pages/Medecin/listeMedecin.php">
                     <p>Accès à la liste des médecins</p>
                 </a>
             </div>
