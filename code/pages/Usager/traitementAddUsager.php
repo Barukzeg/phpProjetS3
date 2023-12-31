@@ -3,14 +3,14 @@
         <?php
             include "../../services/serviceUsager.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $nom = $_POST['nom'];
-                $prenom = $_POST['prenom'];
+                $nom = ucfirst($_POST['nom']);
+                $prenom = ucfirst($_POST['prenom']);
                 $civilite = $_POST['civilite'];
                 $adresse = $_POST['adresse'];
                 $codepostal = $_POST['codepostal'];
                 $date = $_POST['dateNaissance'];
                 $dateNaissance = new DateTime($date);
-                $villeNaissance = $_POST['villeNaissance'];
+                $villeNaissance = ucfirst($_POST['villeNaissance']);
                 $numSecu = $_POST['numSecu'];
                 $usager = new Usager(1,$nom, $prenom, $civilite, 4,$adresse, $codepostal, $dateNaissance, $villeNaissance, $numSecu);
                 $repoUsager = new RepoUsager();
