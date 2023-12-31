@@ -27,6 +27,10 @@ nav{
     height: 100%;
 }
 
+button{
+    font-family: "OCR A Std", monospace, "Verdana", "Arial", sans-serif;
+}
+
 .boite-logo a{
     display: flex;
     align-items: left;

@@ -18,6 +18,18 @@
                     <option value="Autre">Autre/Ne se prononce pas</option>
                 </select>
 
+                <label for="medecinRef">Medecin référent</label>
+                <select id="medecinRef" name="medecinRef" required>
+                    <option value="non">Pas de medecin référent</option>
+                    <?php
+                        include "../../repository/repoMedecin.php";
+                        $medecins = RepoMedecin::getAll();
+                        foreach ($medecins as $medecin) {
+                            echo "<option value='".$medecin->getIdMedecin()."'>".$medecin->getNom()." ".$medecin->getPrenom()."</option>";
+                        }
+                    ?>
+                </select>
+
                 <label for="adresse">Adresse :</label>
                 <input type="text" id="adresse" name="adresse" required>
 

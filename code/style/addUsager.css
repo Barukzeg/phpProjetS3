@@ -1,10 +1,7 @@
 body {
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
 }
 
@@ -16,7 +13,8 @@ body {
 }
 
 form {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 
@@ -30,6 +28,7 @@ input, select {
     box-sizing: border-box;
     margin-top: 4px;
     margin-bottom: 8px;
+    border-radius: 5px;
 }
 
 .btn-container {
