@@ -39,7 +39,6 @@
                                 $sexe = 'Non renseigné';
                                 break;
                         }
-                        $ville = ucfirst($row->getLieuNaissance());
                         echo '
                         <div class="result">
                             <div class="info">'
@@ -48,7 +47,7 @@
                                 .'Sexe : '.$sexe.'<br>'
                                 .'Adresse : '.$row->getAdresseComplete().' '.$row->getCodePostal().'<br>'
                                 .'Date de naissance : '.$row->getDateNaissance()->format('d/m/Y').'<br>'
-                                .'Ville de naissance : '.$ville.'<br>'
+                                .'Ville de naissance : '.$row->getLieuNaissance().'<br>'
                                 .'Numéro de sécurité sociale : '.$row->getNumSecuriteSociale().'<br>';
                                 $medecin = RepoMedecin::getById($row->getidReferent());
                                 echo 'Médecin référent : '.$medecin->getNom().' '.$medecin->getPrenom().'

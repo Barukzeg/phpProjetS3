@@ -3,8 +3,8 @@
         <?php
             include "../../services/serviceMedecin.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $nom = $_POST['nom'];
-                $prenom = $_POST['prenom'];
+                $nom = ucfirst($_POST['nom']);
+                $prenom = ucfirst($_POST['prenom']);
                 $civilite = $_POST['civilite'];
                 $medecin = new Medecin(1,$nom,$prenom,$civilite);
                 $repoMedecin = new RepoMedecin();
