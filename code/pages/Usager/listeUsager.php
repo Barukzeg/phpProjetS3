@@ -18,7 +18,7 @@
             </div>
             <?php
                 include_once "../../services/serviceUsager.php";
-                include_once "../../repository/repoMedecin.php";
+                include_once "../../services/serviceMedecin.php";
                 include_once "../../modele/Usager.php";
 
                 try{
