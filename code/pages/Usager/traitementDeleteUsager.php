@@ -3,9 +3,12 @@
         <?php
             include "../../services/serviceUsager.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $id = $_POST['idUsager'];
+                $nom = serviceUsager::getService()->get($id)->getNom();
+                $prenom = serviceUsager::getService()->get($id)->getPrenom();
                 $resultat = serviceUsager::getService()->delete($_POST['idUsager']);
                 if ($resultat) {
-                    echo "Usager : ".$usager->getNom()." ".$usager->getPrenom()." supprimé";
+                    echo "Usager : ".$nom." ".$prenom." supprimé";
                 } else {
                     echo "Erreur dans la requête de supression ";
                 }

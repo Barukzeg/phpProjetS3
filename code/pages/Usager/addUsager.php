@@ -37,13 +37,13 @@
                 <input type="text" id="codepostal" name="codepostal" required>
 
                 <label for="dateNaissance">Date de naissance :</label>
-                <input type="date" id="dateNaissance" name="dateNaissance" required>
+                <input type="date" id="dateNaissance" name="dateNaissance" min="1900-01-01" max="<?php echo date('Y-m-d'); ?>" required>
 
                 <label for="villeNaissance">Ville de naissance :</label>
                 <input type="text" id="villeNaissance" name="villeNaissance" required>
 
                 <label for="numSecu">Numéro de sécurité sociale :</label>
-                <input type="text" id="numSecu" name="numSecu" required>
+                <input type="text" id="numSecu" name="numSecu" pattern="\d{15}" required>
 
                 <div class="btn-container">
                     <button type="submit">Valider</button>

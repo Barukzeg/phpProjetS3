@@ -41,13 +41,15 @@
                 <input type="text" id="codepostal" name="codepostal" value="<?php echo $user->getCodePostal(); ?>" required>
 
                 <label for="dateNaissance">Date de naissance :</label>
-                <input type="date" id="dateNaissance" name="dateNaissance" value="<?php echo $user->getDateNaissance()->format('Y-m-d'); ?>" required>
+                <input type="date" id="dateNaissance" name="dateNaissance" value="<?php echo $user->getDateNaissance()->format('Y-m-d'); ?>" min="1900-01-01" max="<?php echo date('Y-m-d'); ?>" required>
 
                 <label for="villeNaissance">Ville de naissance :</label>
                 <input type="text" id="villeNaissance" name="villeNaissance" value="<?php echo $user->getLieuNaissance(); ?>" required>
 
                 <label for="numSecu">Numéro de sécurité sociale :</label>
-                <input type="text" id="numSecu" name="numSecu" value="<?php echo $user->getNumSecuriteSociale(); ?>" required>
+                <input type="text" id="numSecu" name="numSecu" pattern="\d{15}" value="<?php echo $user->getNumSecuriteSociale(); ?>" required>
+
+                <input type="hidden" name="idUsager" value="<?php echo $user->getIdUsager(); ?>">
 
                 <div class="btn-container">
                     <button type="submit">Valider</button>

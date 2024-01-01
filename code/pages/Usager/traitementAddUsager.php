@@ -7,7 +7,7 @@
                 $prenom = ucfirst($_POST['prenom']);
                 $civilite = $_POST['civilite'];
                 if ($_POST['medecinRef'] == "null") { 
-                    $medecinRef = 4; 
+                    $medecinRef = 1; 
                 } else { 
                     $medecinRef = $_POST['medecinRef']; 
                 }

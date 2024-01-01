@@ -105,7 +105,8 @@
         }
 
         public function delete($id) {
-            return RepoUsager::getRepo()->remUsager($id);
+            $usager = RepoUsager::getRepo()->getById($id);
+            return RepoUsager::getRepo()->remUsager($usager);
         }
     }
 ?>

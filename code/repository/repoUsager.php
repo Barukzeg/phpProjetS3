@@ -171,10 +171,14 @@
                     $qP = self::getBD()->prepare("UPDATE Personne 
                                                     SET nom = :nom, prenom = :prenom, civilite = :civilite 
                                                     WHERE idPersonne = :idUsager");
-                    $qP->bindParam(':nom', $usager->getNom());
-                    $qP->bindParam(':prenom', $usager->getPrenom());
-                    $qP->bindParam(':civilite', $usager->getCivilite());
-                    $qP->bindParam(':idUsager', $usager->getIdUsager());
+                    $nom = $usager->getNom();
+                    $qP->bindParam(':nom', $nom);
+                    $prenom = $usager->getPrenom();
+                    $qP->bindParam(':prenom', $prenom);
+                    $civilite = $usager->getCivilite();
+                    $qP->bindParam(':civilite', $civilite);
+                    $idUsager = $usager->getIdUsager();
+                    $qP->bindParam(':idUsager', $idUsager);
 
                     $qP->execute();
             
@@ -182,15 +186,21 @@
                     $qU = self::getBD()->prepare("UPDATE Usager 
                                                     SET idReferent = :idReferent, adresseComplete = :adresseComplete, codePostal = :codePostal, dateNaissance = :dateNaissance, lieuNaissance = :lieuNaissance, NumSecuriteSociale = :NumSecuriteSociale 
                                                     WHERE idUsager = :idUsager");
-                    $qU->bindParam(':idReferent', $usager->getidReferent());
-                    $qU->bindParam(':adresseComplete', $usager->getAdresseComplete());
-                    $qU->bindParam(':codePostal', $usager->getCodePostal());
-                    $qU->bindParam(':dateNaissance', $usager->getDateNaissance());
-                    $qU->bindParam(':lieuNaissance', $usager->getLieuNaissance());
-                    $qU->bindParam(':NumSecuriteSociale', $usager->getNumSecuriteSociale());
-                    $qU->bindParam(':idUsager', $usager->getIdUsager());
+                    $idReferent = $usager->getidReferent();
+                    $qU->bindParam(':idReferent', $idReferent);
+                    $adresseComplete = $usager->getAdresseComplete();
+                    $qU->bindParam(':adresseComplete', $adresseComplete);
+                    $codePostal = $usager->getCodePostal();
+                    $qU->bindParam(':codePostal', $codePostal);
+                    $dateNaissance = $usager->getDateNaissance()->format('Y-m-d');
+                    $qU->bindParam(':dateNaissance', $dateNaissance);
+                    $lieuNaissance = $usager->getLieuNaissance();
+                    $qU->bindParam(':lieuNaissance', $lieuNaissance);
+                    $NumSecuriteSociale = $usager->getNumSecuriteSociale();
+                    $qU->bindParam(':NumSecuriteSociale', $NumSecuriteSociale);
+                    $qU->bindParam(':idUsager', $idUsager);
                     
-                    $qU->execute();
+                    return $qU->execute();
 
                 } else {
                     throw new Exception("Cet usager n'existe pas dans la base de données.");
