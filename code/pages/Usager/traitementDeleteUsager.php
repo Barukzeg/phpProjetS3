@@ -3,7 +3,7 @@
         <?php
             include "../../services/serviceUsager.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $resultat = serviceMedecin::getService()->delete($_POST['idUsager']);
+                $resultat = serviceUsager::getService()->delete($_POST['idUsager']);
                 if ($resultat) {
                     echo "Usager : ".$usager->getNom()." ".$usager->getPrenom()." supprimé";
                 } else {

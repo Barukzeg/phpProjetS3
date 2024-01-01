@@ -17,7 +17,7 @@
                 $dateNaissance = new DateTime($date);
                 $villeNaissance = ucfirst($_POST['villeNaissance']);
                 $numSecu = $_POST['numSecu'];
-                $resultat = serviceMedecin::getService()->add($nom, $prenom, $civilite, $medecinRef, $adresse, $codepostal, $dateNaissance, $villeNaissance, $numSecu);
+                $resultat = serviceUsager::getService()->add($nom, $prenom, $civilite, $medecinRef, $adresse, $codepostal, $dateNaissance, $villeNaissance, $numSecu);
                 if ($resultat) {
                     echo '<h2>Les données suivantes ont été enregistré :</h2>';
                     echo '<p><strong>Nom :</strong> '.$nom.'</p>';
