@@ -53,12 +53,12 @@
                                 echo 'Médecin référent : '.$medecin->getNom().' '.$medecin->getPrenom().'
                             </div>
                             <div class="btn-container">
-                                <form action="updateUsager.php" method="post">
-                                    <input type="hidden" name="numSecu" value="'.$row->getNumSecuriteSociale().'">
+                                <form action="modUsager.php" method="post">
+                                    <input type="hidden" name="idUsager" value="'.$row->getIdUsager().'">
                                     <button type="submit">Modifier</button>
                                 </form>
                                 <form action="traitementDeleteUsager.php" method="post">
-                                    <input type="hidden" name="numSecu" value="'.$row->getNumSecuriteSociale().'">
+                                    <input type="hidden" name="idUsager" value="'.$row->getIdUsager().'">
                                     <button type="submit">Supprimer</button>
                                 </form>
                             </div>
