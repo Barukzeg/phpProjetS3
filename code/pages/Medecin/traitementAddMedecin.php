@@ -6,9 +6,7 @@
                 $nom = ucfirst($_POST['nom']);
                 $prenom = ucfirst($_POST['prenom']);
                 $civilite = $_POST['civilite'];
-                $medecin = new Medecin(1,$nom,$prenom,$civilite);
-                $repoMedecin = new RepoMedecin();
-                $resultat = $repoMedecin->addMedecin($medecin);
+                $resultat = serviceMedecin::getService()->add($nom, $prenom, $civilite);
                 if ($resultat) {
                     echo '<h2>Les données suivantes ont été enregistré :</h2>';
                     echo '<p><strong>Nom :</strong> '.$nom.'</p>';

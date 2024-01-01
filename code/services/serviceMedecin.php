@@ -50,5 +50,23 @@
 
             return $listMedecin;
         }
+
+        public function get($id) {
+            return RepoMedecin::getRepo()->getById($id);
+        }
+
+        public function add($nom, $prenom, $civilite) {
+            $medecin = new Medecin(0, $nom, $prenom, $civilite);
+            return RepoMedecin::getRepo()->addMedecin($medecin);
+        }
+
+        public function update($id, $nom, $prenom, $civilite) {
+            $medecin = new Medecin($id, $nom, $prenom, $civilite);
+            return RepoMedecin::getRepo()->updateMedecin($medecin);
+        }
+
+        public function delete($id) {
+            return RepoMedecin::getRepo()->remMedecin($id);
+        }
     }
 ?>
