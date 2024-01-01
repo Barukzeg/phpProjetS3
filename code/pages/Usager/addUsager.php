@@ -23,7 +23,7 @@
                     <option value="null">Pas de medecin référent</option>
                     <?php
                         include "../../repository/repoMedecin.php";
-                        $medecins = RepoMedecin::getAll();
+                        $medecins = serviceMedecin::getService()->getMedecinAlpha();
                         foreach ($medecins as $medecin) {
                             echo "<option value='".$medecin->getIdMedecin()."'>".$medecin->getNom()." ".$medecin->getPrenom()."</option>";
                         }

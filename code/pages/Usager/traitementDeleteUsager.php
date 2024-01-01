@@ -3,9 +3,7 @@
         <?php
             include "../../services/serviceUsager.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $repoUsager = new RepoUsager();
-                $usager = $repoUsager->getByNumSoc($_POST['numSecu']);
-                $resultat = $repoUsager->remUsager($usager);
+                $resultat = serviceMedecin::getService()->delete($_POST['idUsager']);
                 if ($resultat) {
                     echo "Usager : ".$usager->getNom()." ".$usager->getPrenom()." supprimé";
                 } else {

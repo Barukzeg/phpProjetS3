@@ -89,5 +89,23 @@
 
             return $listUsagers;
         }
+
+        public function get($id) {
+            return RepoUsager::getRepo()->getById($id);
+        }
+
+        public function add($nom, $prenom, $civilite, $dateNaissance, $idReferent, $adresseComplete, $codePostal, $lieuNaissance, $NumSecuriteSociale) {
+            $usager = new Usager(0, $nom, $prenom, $civilite, $dateNaissance, $idReferent, $adresseComplete, $codePostal, $lieuNaissance, $NumSecuriteSociale);
+            return RepoUsager::getRepo()->addUsager($usager);
+        }
+
+        public function update($id, $nom, $prenom, $civilite, $dateNaissance, $idReferent, $adresseComplete, $codePostal, $lieuNaissance, $NumSecuriteSociale) {
+            $usager = new Usager($id, $nom, $prenom, $civilite, $dateNaissance, $idReferent, $adresseComplete, $codePostal, $lieuNaissance, $NumSecuriteSociale);
+            return RepoUsager::getRepo()->updateUsager($usager);
+        }
+
+        public function delete($id) {
+            return RepoUsager::getRepo()->remUsager($id);
+        }
     }
 ?>

@@ -3,9 +3,7 @@
         <?php
             include "../../services/serviceMedecin.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $repoMedecin = new RepoMedecin();
-                $medecin = $repoMedecin->getById($_POST['idMedecin']);
-                $resultat = $repoMedecin->remMedecin($medecin);
+                $resultat = serviceMedecin::getService()->delete($_POST['idMedecin']);
                 if ($resultat) {
                     echo "Medecin : ".$medecin->getNom()." ".$medecin->getPrenom()." supprimé";
                 } else {

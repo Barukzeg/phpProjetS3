@@ -49,7 +49,7 @@
                                 .'Date de naissance : '.$row->getDateNaissance()->format('d/m/Y').'<br>'
                                 .'Ville de naissance : '.$row->getLieuNaissance().'<br>'
                                 .'Numéro de sécurité sociale : '.$row->getNumSecuriteSociale().'<br>';
-                                $medecin = RepoMedecin::getById($row->getidReferent());
+                                $medecin = serviceMedecin::getService()->get($row->getidReferent());
                                 echo 'Médecin référent : '.$medecin->getNom().' '.$medecin->getPrenom().'
                             </div>
                             <div class="btn-container">
