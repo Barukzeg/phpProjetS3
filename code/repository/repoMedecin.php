@@ -1,7 +1,7 @@
 <?php
 
-    include '../modele/medecin.php';
-    include '../bd/bdd.php';
+    include_once '../../modele/medecin.php';
+    include_once '../../bd/bdd.php';
 
     class RepoMedecin {
 
@@ -107,9 +107,12 @@
                     // insertion personne
                     $qP = self::getBD()->prepare("INSERT INTO Personne (nom, prenom, civilite) 
                                                                 VALUES (:nom, :prenom, :civilite)");
-                    $qP->bindParam(':nom', $medecin->getNom());
-                    $qP->bindParam(':prenom', $medecin->getPrenom());
-                    $qP->bindParam(':civilite', $medecin->getCivilite());
+                    $nom = $medecin->getNom();
+                    $qP->bindParam(':nom', $nom);
+                    $prenom = $medecin->getPrenom();
+                    $qP->bindParam(':prenom', $prenom);
+                    $civilite = $medecin->getCivilite();
+                    $qP->bindParam(':civilite', $civilite);
 
                     $qP->execute();
             
@@ -121,7 +124,7 @@
                                                                     VALUES (:idMedecin)");
                     $qM->bindParam(':idMedecin', $idPersonne);
                     
-                    $qM->execute();
+                    return $qM->execute();
 
                 } else {
                     throw new Exception("Ce medecin existe déjà.");
@@ -145,12 +148,16 @@
                     $qP = self::getBD()->prepare("UPDATE Personne 
                                                     SET nom = :nom, prenom = :prenom, civilite = :civilite 
                                                     WHERE idPersonne = :idMedecin");
-                    $qP->bindParam(':nom', $medecin->getNom());
-                    $qP->bindParam(':prenom', $medecin->getPrenom());
-                    $qP->bindParam(':civilite', $medecin->getCivilite());
-                    $qP->bindParam(':idMedecin', $medecin->getIdMedecin());
+                    $nom = $medecin->getNom();
+                    $qP->bindParam(':nom', $nom);
+                    $prenom = $medecin->getPrenom();
+                    $qP->bindParam(':prenom', $prenom);
+                    $civilite = $medecin->getCivilite();
+                    $qP->bindParam(':civilite', $civilite);
+                    $idMedecin = $medecin->getIdMedecin();
+                    $qP->bindParam(':idMedecin', $idMedecin);
 
-                    $qP->execute();
+                    return $qP->execute();
 
                 } else {
                     throw new Exception("Ce medecin n'existe pas dans la base de données.");
@@ -174,7 +181,8 @@
                                                         FROM Usager u, Personne p 
                                                         WHERE u.idUsager = p.idPersonne 
                                                         AND u.idReferent = :idReferant");
-                    $query->bindParam(':idReferant', $medecin->getIdMedecin());
+                    $idMedecin = $medecin->getIdMedecin();
+                    $query->bindParam(':idReferant', $idMedecin);
 
                     // execution
                     $query->execute();
@@ -207,20 +215,21 @@
                 // Si oui
                 if ($search) {
                     
-                    if (count(Medecin::getUsagers($medecin)) > 0) {
+                    if (count(self::getUsagers($medecin)) > 0) {
                         throw new Exception("Ce medecin est référent d'au moins un usager, il ne peut donc pas être supprimé.");
                     } else {
                         // supprimer dans la table Medecin
                         $qM = self::getBD()->prepare("DELETE FROM Medecin WHERE idMedecin = :idMedecin");
-                        $qM->bindParam(':idMedecin', $medecin->getIdMedecin());
+                        $idMedecin = $medecin->getIdMedecin();
+                        $qM->bindParam(':idMedecin', $idMedecin);
 
                         $qM->execute();
 
                         // supprimer la personne
                         $qP = self::getBD()->prepare("DELETE FROM Personne WHERE idPersonne = :idMedecin");
-                        $qP->bindParam(':idMedecin', $medecin->getIdMedecin());
+                        $qP->bindParam(':idMedecin', $idMedecin);
 
-                        $qP->execute();
+                        return $qP->execute();
                     }
 
                 } else {

@@ -1,21 +1,21 @@
 <?php
 
-    include "personne.php";
+    include_once "personne.php";
 
     class Usager extends Personne {
 
         private int $idUsager;
-        private int $idReferant;
+        private int $idReferent;
         private string $adresseComplete;
         private string $codePostal;
-        private date $dateNaissance;
+        private DateTime $dateNaissance;
         private string $lieuNaissance;
         private string $NumSecuriteSociale;
 
         // Constructeur
-        public function __construct(int $idUsager, string $nom, string $prenom, string $civilite, int $idReferant, string $adresseComplete, string $codePostal, date $dateNaissance, string $lieuNaissance, string $NumSecuriteSociale) {
+        public function __construct(int $idUsager, string $nom, string $prenom, string $civilite, int $idReferent, string $adresseComplete, string $codePostal, DateTime $dateNaissance, string $lieuNaissance, string $NumSecuriteSociale) {
             parent::__construct($idUsager, $nom, $prenom, $civilite);
-            $this-> idReferant = $idReferant;
+            $this-> idReferent = $idReferent;
             $this-> adresseComplete = $adresseComplete;
             $this-> codePostal = $codePostal;
             $this-> dateNaissance = $dateNaissance;
@@ -25,10 +25,10 @@
 
         // Getters
         public function getIdUsager() {
-            return $this->idUsager;
+            return parent::getIdPersonne();
         }
-        public function getIdReferant() {
-            return $this->idReferant;
+        public function getidReferent() {
+            return $this->idReferent;
         }
         public function getAdresseComplete() {
             return $this->adresseComplete;
@@ -50,8 +50,8 @@
         public function setIdUsager(int $idUsager) {
             $this->idUsager = $idUsager;
         }
-        public function setIdReferant(int $idReferant) {
-            $this->idReferant = $idReferant;
+        public function setidReferent(int $idReferent) {
+            $this->idReferent = $idReferent;
         }
         public function setAdresseComplete(string $adresseComplete) {
             $this->adresseComplete = $adresseComplete;
@@ -59,7 +59,7 @@
         public function setCodePostal(string $codePostal) {
             $this->codePostal = $codePostal;
         }
-        public function setDateNaissance(date $dateNaissance) {
+        public function setDateNaissance(DateTime $dateNaissance) {
             $this->dateNaissance = $dateNaissance;
         }
         public function setLieuNaissance(string $lieuNaissance) {

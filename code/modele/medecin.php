@@ -1,6 +1,6 @@
 <?php
 
-    include 'personne.php';
+    include_once 'personne.php';
     
     class Medecin extends Personne {
 
@@ -13,7 +13,7 @@
 
         // Getters
         public function getIdMedecin() {
-            return $this->idMedecin;
+            return parent::getIdPersonne();
         }
 
         // Setters
