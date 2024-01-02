@@ -156,10 +156,14 @@
                         // requete
                         $query = self::getBD()->prepare("INSERT INTO RendezVous (idMedecin, idClient, dateEtHeure, dureeMinutes) 
                         VALUES (:idM, :idC, :dateEtHeure, :dureeMinutes)");
-                        $query->bindParam(':idM', $rendezVous->getIdMedecin());
-                        $query->bindParam(':idC', $rendezVous->getIdClient());
-                        $query->bindParam(':dateEtHeure', $rendezVous->getDateEtHeure());
-                        $query->bindParam(':dureeMinutes', $rendezVous->getDureeMinutes());
+                        $idM = $rendezVous->getIdMedecin();
+                        $query->bindParam(':idM', $idM);
+                        $idC = $rendezVous->getIdClient();
+                        $query->bindParam(':idC', $idC);
+                        $dateEtHeure = $rendezVous->getDateEtHeure();
+                        $query->bindParam(':dateEtHeure', $dateEtHeure);
+                        $dureeMinutes = $rendezVous->getDureeMinutes();
+                        $query->bindParam(':dureeMinutes', $dureeMinutes);
 
                         // execution
                         $query->execute();
@@ -183,10 +187,14 @@
                     if (!self::isOccupied($rendezVous->getIdMedecin(), $rendezVous->getDateEtHeure(), $rendezVous->getDureeMinutes())) {
                         // requete
                         $query = self::getBD()->prepare("UPDATE RendezVous SET dureeMinutes = :dureeMinutes WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
-                        $query->bindParam(':idM', $rendezVous->getIdMedecin());
-                        $query->bindParam(':idC', $rendezVous->getIdClient());
-                        $query->bindParam(':dateEtHeure', $rendezVous->getDateEtHeure());
-                        $query->bindParam(':dureeMinutes', $rendezVous->getDureeMinutes());
+                        $idM = $rendezVous->getIdMedecin();
+                        $query->bindParam(':idM', $idM);
+                        $idC = $rendezVous->getIdClient();
+                        $query->bindParam(':idC', $idC);
+                        $dateEtHeure = $rendezVous->getDateEtHeure();
+                        $query->bindParam(':dateEtHeure', $dateEtHeure);
+                        $dureeMinutes = $rendezVous->getDureeMinutes();
+                        $query->bindParam(':dureeMinutes', $dureeMinutes);
 
                         // execution
                         $query->execute();
@@ -208,9 +216,12 @@
                 if (self::getById($rendezVous->getIdMedecin(), $rendezVous->getIdClient(), $rendezVous->getDateEtHeure()) != null) {
                     // requete
                     $query = self::getBD()->prepare("DELETE FROM RendezVous WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
-                    $query->bindParam(':idM', $rendezVous->getIdMedecin());
-                    $query->bindParam(':idC', $rendezVous->getIdClient());
-                    $query->bindParam(':dateEtHeure', $rendezVous->getDateEtHeure());
+                    $idM = $rendezVous->getIdMedecin();
+                    $query->bindParam(':idM', $idM);
+                    $idC = $rendezVous->getIdClient();
+                    $query->bindParam(':idC', $idC);
+                    $dateEtHeure = $rendezVous->getDateEtHeure();
+                    $query->bindParam(':dateEtHeure', $dateEtHeure);
 
                     // execution
                     $query->execute();

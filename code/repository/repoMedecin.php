@@ -148,10 +148,14 @@
                     $qP = self::getBD()->prepare("UPDATE Personne 
                                                     SET nom = :nom, prenom = :prenom, civilite = :civilite 
                                                     WHERE idPersonne = :idMedecin");
-                    $qP->bindParam(':nom', $medecin->getNom());
-                    $qP->bindParam(':prenom', $medecin->getPrenom());
-                    $qP->bindParam(':civilite', $medecin->getCivilite());
-                    $qP->bindParam(':idMedecin', $medecin->getIdMedecin());
+                    $nom = $medecin->getNom();
+                    $qP->bindParam(':nom', $nom);
+                    $prenom = $medecin->getPrenom();
+                    $qP->bindParam(':prenom', $prenom);
+                    $civilite = $medecin->getCivilite();
+                    $qP->bindParam(':civilite', $civilite);
+                    $idMedecin = $medecin->getIdMedecin();
+                    $qP->bindParam(':idMedecin', $idMedecin);
 
                     return $qP->execute();
 
