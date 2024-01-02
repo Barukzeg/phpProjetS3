@@ -47,7 +47,7 @@
                                 .'Sexe : '.$sexe.'
                             </div>
                             <div class="btn-container">
-                                <form action="updateMedecin.php" method="post">
+                                <form action="modMedecin.php" method="post">
                                     <input type="hidden" name="idMedecin" value="'.$row->getIdMedecin().'">
                                     <button type="submit">Modifier</button>
                                 </form>
