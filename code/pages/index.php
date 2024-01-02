@@ -25,7 +25,7 @@
                 </a>
             </div>
             <div class="btn-index">
-                <a href="">
+                <a href="/phpProjetS3/code/pages/Stats/statistiques.php">
                     <p>Accès aux statistiques</p>
                 </a>
             </div>

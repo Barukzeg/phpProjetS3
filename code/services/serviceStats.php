@@ -25,11 +25,12 @@
 
             $listeRDV = RepoRendezVous::getRepo()->getByMedecin($id);
             $total = 0;
+            if ($listeRDV != null) {
+                foreach ($listeRDV as $rdv) {
 
-            foreach ($listeRDV as $rdv) {
-
-                if ($rdv->getDateEtHeure() < new DateTime('now')) {
-                    $total += $rdv->getDureeMinutes();
+                    if ($rdv->getDateEtHeure() < new DateTime('now')) {
+                        $total += $rdv->getDureeMinutes();
+                    }
                 }
             }
 
