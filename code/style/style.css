@@ -37,6 +37,11 @@ button{
     height: 100%;
 }
 
+.boite-logo img{
+    width: 50%;
+    height: auto;
+}
+
 .boite-boutons{
     display: contents;
     align-items: right;

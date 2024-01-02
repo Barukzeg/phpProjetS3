@@ -3,7 +3,7 @@
     <nav>
         <div class="boite-logo">
             <a href="/phpProjetS3/code/pages/index.php">
-                <img src="/phpProjetS3/code/image/placeholder.webp" alt="logo cabinet medical">
+                <img src="/phpProjetS3/code/image/logo_cab_med.png" alt="logo cabinet medical">
             </a>
         </div>
         <!-- TODO modif le titre pour que ce soit jolie-->
