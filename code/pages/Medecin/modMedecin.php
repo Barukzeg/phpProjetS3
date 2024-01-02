@@ -26,7 +26,8 @@
                 
                 <div class="btn-container">
                     <button type="submit">Valider</button>
-                    <button type="reset">Vider</button>
+                    <button type="reset">Réinitialiser</button>
+                    <button type="button" onclick="history.back()">Retour</button>
                 </div>
             </form>
         </div>
