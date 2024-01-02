@@ -1,7 +1,7 @@
 <html>
     <body>
         <?php
-            include "../../services/serviceMedecin.php";
+            include_once "../../services/serviceMedecin.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $resultat = serviceMedecin::getService()->delete($_POST['idMedecin']);
                 if ($resultat) {

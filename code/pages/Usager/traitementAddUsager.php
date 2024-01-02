@@ -1,7 +1,7 @@
 <html>
     <body>
         <?php
-            include "../../services/serviceUsager.php";
+            include_once "../../services/serviceUsager.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $nom = ucfirst($_POST['nom']);
                 $prenom = ucfirst($_POST['prenom']);

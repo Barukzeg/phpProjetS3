@@ -1,7 +1,7 @@
 <?php
 
-    include "../../modele/usager.php";
-    include "../../bd/bdd.php";
+    include_once "../../modele/usager.php";
+    include_once "../../bd/bdd.php";
 
     class RepoUsager {
 

@@ -1,6 +1,6 @@
 <?php
 
-    include "../../repository/repoUsager.php";
+    include_once "../../repository/repoUsager.php";
 
     class ServiceUsager {
 

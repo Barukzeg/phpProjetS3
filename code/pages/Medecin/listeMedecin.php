@@ -7,7 +7,7 @@
     <!-- TODO réparer le header
     parce que la ca marche mais c'est chemin absolu
     dcp c'est pas bien -->
-    <?php include "../header.php"; ?>
+    <?php include_once "../header.php"; ?>
     <body>
         <div class="content">
             <h1>Liste des medecins :</h1>
