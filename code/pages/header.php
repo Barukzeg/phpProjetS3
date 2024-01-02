@@ -28,7 +28,7 @@
                 </a>
             </div>
             <div class="btn">
-                <a href="">
+                <a href="/phpProjetS3/code/pages/Stats/statistiques.php">
                     <img src="/phpProjetS3/code/image/iconStat.png" alt="icon Statistique">
                     <p>Accès aux statistiques</p>
                 </a>
