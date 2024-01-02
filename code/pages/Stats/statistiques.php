@@ -26,17 +26,17 @@
                         <tr>
                             <td>Moins de 25 ans</td>
                             <td>'.serviceStats::getService()->getCountUsagerAgeSexe(0,0).'</td>
-                            <td>'.serviceStats::getService()->getCountUsagerAgeSexe(1,0).'</td>
+                            <td>'.serviceStats::getService()->getCountUsagerAgeSexe(0,1).'</td>
                         </tr>
                         <tr>
                             <td>Entre 25 et 50 ans </td>
-                            <td>'.serviceStats::getService()->getCountUsagerAgeSexe(0,1).'</td>
+                            <td>'.serviceStats::getService()->getCountUsagerAgeSexe(1,0).'</td>
                             <td>'.serviceStats::getService()->getCountUsagerAgeSexe(1,1).'</td>
                         </tr>
                         <tr>
                             <td>Plus de 50 ans</td>
-                            <td>'.serviceStats::getService()->getCountUsagerAgeSexe(0,2).'</td>
-                            <td>'.serviceStats::getService()->getCountUsagerAgeSexe(1,2).'</td>
+                            <td>'.serviceStats::getService()->getCountUsagerAgeSexe(2,0).'</td>
+                            <td>'.serviceStats::getService()->getCountUsagerAgeSexe(2,1).'</td>
                         </tr>
                     </table>
                 </div>';
