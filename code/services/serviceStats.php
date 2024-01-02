@@ -113,11 +113,13 @@
             $listeFinale = array();
 
             //tri des usagers
-            foreach ($listUsagers as $user){
-                $ageF = ($user->getDateNaissance()->diff(new DateTime('now')))->y;
-                $sexeF = $user->getCivilite();
-                if ((($ageF) >= $age1 && ($ageF <= $age2)) && ($sexeF == $sexe)){
-                    $listeFinale[] = $user;
+            if ($listUsagers != null) {
+                foreach ($listUsagers as $user){
+                    $ageF = ($user->getDateNaissance()->diff(new DateTime('now')))->y;
+                    $sexeF = $user->getCivilite();
+                    if ((($ageF) >= $age1 && ($ageF <= $age2)) && ($sexeF == $sexe)){
+                        $listeFinale[] = $user;
+                    }
                 }
             }
 
