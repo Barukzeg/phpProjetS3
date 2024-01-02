@@ -11,22 +11,26 @@
         <div class="boite-index">
             <div class="btn-index">
                 <a href="/phpProjetS3/code/pages/Usager/listeUsager.php">
-                    <p>Accès à la liste des usagers</p>
+                    <img src="/phpProjetS3/code/image/iconUsager.png" alt="icon User">
+                    <p>Liste des usagers</p>
                 </a>
             </div>
             <div class="btn-index">
                 <a href="/phpProjetS3/code/pages/Medecin/listeMedecin.php">
-                    <p>Accès à la liste des médecins</p>
+                    <img src="/phpProjetS3/code/image/iconMedecin.png" alt="icon Medecin">
+                    <p>Liste des médecins</p>
                 </a>
             </div>
             <div class="btn-index">
                 <a href="">
-                    <p>Accès à la liste des rendez-vous</p>
+                    <img src="/phpProjetS3/code/image/iconRDV.png" alt="icon RDV">
+                    <p>Liste des rendez-vous</p>
                 </a>
             </div>
             <div class="btn-index">
                 <a href="/phpProjetS3/code/pages/Stats/statistiques.php">
-                    <p>Accès aux statistiques</p>
+                    <img src="/phpProjetS3/code/image/iconStat.png" alt="icon Statistique">
+                    <p>Statistiques</p>
                 </a>
             </div>
         </div>

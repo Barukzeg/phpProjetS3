@@ -64,22 +64,13 @@ button{
     flex-direction: row;
     overflow: hidden;
 }
-    .btn p{
-        display: none;
-    }
 
     .btn:hover{
         background-color: #c4f9f3;
         transition: 0.1s;
         transform : scale(1.2);
     }
-    .btn:hover img{
-        display: none;
-    }
-    .btn:hover p{
-        display: block;
-        font-size: 16px;
-    }
+
 
 img {
     width: 30%;
@@ -103,9 +94,12 @@ h1{
 }
 
 .boite-index{
-    display: flex;
-    flex-direction: row;
+    display: grid;
     justify-content: space-around;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
     .boite-index a{
@@ -123,5 +117,28 @@ h1{
     .boite-index a:hover{
         background-color: #c4f9f3;
         transition: 0.1s;
-        scale : 1.2;
+        transform : scale(1.2);
     }
+
+.btn-index{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 250px;
+    height: 250px;
+}
+
+.btn-index img{
+    width: 50%;
+    height: auto;
+}
+.btn-index p{
+    display: none;
+}
+.btn-index:hover img{
+    display: none;
+}
+.btn-index:hover p{
+    display: block;
+    font-size: 16px;
+}
