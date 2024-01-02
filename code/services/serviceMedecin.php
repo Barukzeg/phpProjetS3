@@ -18,19 +18,6 @@
             return self::$instance;
         }
 
-        //nombre d'heures de travail d'un medecin
-        public function getTotalHeures($id) {
-
-            $listeRDV = RepoRendezVous::getRepo()->getByMedecin($id);
-            $total = 0;
-
-            foreach ($listeRDV as $rdv) {
-                $total += $rdv->getDureeMinutes();
-            }
-
-            return $total/60;
-        }
-
         //fonction qui retourne tout les medecins, triés par ordre alphabétique
         public function getMedecinAlpha() {
 
