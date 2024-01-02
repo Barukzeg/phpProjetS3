@@ -9,6 +9,7 @@ html{
 }
 header {
     display: flex;
+    justify-content: center;
     background-color: #a5a5a5;
     box-shadow: 0 0 10px rgb(88, 88, 88);
     border-radius: 10px;
@@ -45,7 +46,7 @@ button{
 .boite-boutons{
     display: contents;
     align-items: right;
-    height: 100%;
+    width: 50%;
     justify-content: center;
     align-items: right;
     flex-wrap: nowrap;
@@ -61,6 +62,7 @@ button{
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    overflow: hidden;
 }
     .btn p{
         display: none;
@@ -69,10 +71,10 @@ button{
     .btn:hover{
         background-color: #c4f9f3;
         transition: 0.1s;
-        scale : 1.2;
+        transform : scale(1.2);
     }
     .btn:hover img{
-        display : none;
+        display: none;
     }
     .btn:hover p{
         display: block;
