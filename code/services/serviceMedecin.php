@@ -2,7 +2,6 @@
 
     include_once '../../modele/medecin.php';
     include_once '../../repository/repoMedecin.php';
-    include_once '../../repository/repoRendezVous.php';
 
     class ServiceMedecin {
 
@@ -53,7 +52,8 @@
         }
 
         public function delete($id) {
-            return RepoMedecin::getRepo()->remMedecin($id);
+            $medecin = RepoMedecin::getRepo()->getById($id);
+            return RepoMedecin::getRepo()->remMedecin($medecin);
         }
     }
 ?>

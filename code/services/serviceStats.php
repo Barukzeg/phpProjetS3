@@ -58,7 +58,7 @@
                 );
             }
 
-            $compare = function($med1, $med2) {
+            function tri($med1, $med2) {
                 $res = strcmp($med1['nom'], $med2['nom']);
                 if ($res == 0) {
                     $res = strcmp($med1['prenom'], $med2['prenom']);
@@ -66,7 +66,7 @@
                 return $res;
             };
 
-            usort($resultats, $compare);
+            usort($resultats, "tri");
     
             return $resultats;
         }

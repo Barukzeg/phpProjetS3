@@ -104,7 +104,7 @@
         }
 
         // get si un medecin est occupé à une date et heure donnée
-        public static function isOccupied(int $idM, DateTime $dateEtHeure, int $dureeMinutes) {
+        private static function isOccupied(int $idM, DateTime $dateEtHeure, int $dureeMinutes) {
 
             $sqlDateEtHeure = $dateEtHeure->format('Y-m-d');
 
