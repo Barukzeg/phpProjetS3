@@ -40,6 +40,10 @@
                 <label for="dureeRDV">Durée :</label>
                 <input type="number" id="dureeRDV" name="dureeRDV" min="10" max="120" value="<?php echo $rdv->getDureeMinutes(); ?>" required>
 
+                <input type="hidden" name="idC" value="<?php echo $rdv->getIdClient(); ?>">
+                <input type="hidden" name="idM" value="<?php echo $rdv->getIdMedecin(); ?>">
+                <input type="hidden" name="DateEtHeure" value="<?php echo $rdv->getDateEtHeure(); ?>">
+
                 <div class="btn-container">
                     <button type="submit">Valider</button>
                     <button type="reset">Réinitialiser</button>

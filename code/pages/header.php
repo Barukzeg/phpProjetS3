@@ -15,7 +15,7 @@
             <a href="/phpProjetS3/code/pages/Medecin/listeMedecin.php" class="btn">
                 <p>Liste des médecins</p>
             </a>
-            <a href="" class="btn">
+            <a href="/phpProjetS3/code/pages/RendezVous/listeRDV.php" class="btn">
                 <p>Liste des rendez-vous</p>
             </a>
             <a href="/phpProjetS3/code/pages/Stats/statistiques.php" class="btn">

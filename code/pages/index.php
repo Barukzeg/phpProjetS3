@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="btn-index">
-                <a href="">
+                <a href="/phpProjetS3/code/pages/RendezVous/listeRDV.php">
                     <img src="/phpProjetS3/code/image/iconRDV.png" alt="icon RDV">
                     <p>Liste des rendez-vous</p>
                 </a>

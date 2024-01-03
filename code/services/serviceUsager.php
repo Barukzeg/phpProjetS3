@@ -24,7 +24,7 @@
             //récupération des usagers
             $listUsagers = RepoUsager::getRepo()->getAll();
 
-            function tri($user1, $user2){
+            function triU($user1, $user2){
                 $sorted = strcmp($user1->getNom(), $user2->getNom());
                 if ($sorted == 0){
                     $sorted = strcmp($user1->getPrenom(), $user2->getPrenom());
@@ -33,7 +33,7 @@
             }
 
             //tri des usagers
-            usort($listUsagers, "tri");
+            usort($listUsagers, "triU");
 
             return $listUsagers;
         }

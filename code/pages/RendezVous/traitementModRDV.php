@@ -1,41 +1,29 @@
 <html>
     <body>
         <?php
-            include_once "../../services/serviceRendezVous.php";
+            include "../../services/serviceUsager.php";
+            include "../../services/serviceMedecin.php";
+            include "../../services/serviceRendezVous.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $id = $_POST['idUsager'];
-                $nom = ucfirst($_POST['nom']);
-                $prenom = ucfirst($_POST['prenom']);
-                $civilite = $_POST['civilite'];
-                if ($_POST['medecinRef'] == "null") { 
-                    $medecinRef = 4; 
-                } else { 
-                    $medecinRef = $_POST['medecinRef']; 
-                }
-                $adresse = $_POST['adresse'];
-                $codepostal = $_POST['codepostal'];
-                $date = $_POST['dateNaissance'];
-                $dateNaissance = new DateTime($date);
-                $villeNaissance = ucfirst($_POST['villeNaissance']);
-                $numSecu = $_POST['numSecu'];
-                $resultat = serviceRendezVous::getService()->update($id, $nom, $prenom, $civilite, $medecinRef, $adresse, $codepostal, $dateNaissance, $villeNaissance, $numSecu);
+                $NidC = $_POST['usager'];
+                $NidM = $_POST['medecin'];
+                $NdateEtHeure = DateTime::createFromFormat('Y-m-d H:i', $_POST['dateRDV'] . ' ' . $_POST['heureRDV']);
+                $dureeMinutes = $_POST['dureeRDV'];
+                $resultat = serviceRendezVous::getService()->update($_POST['idC'], $_POST['idM'], $_POST['DateEtHeure'], $NidC, $NidM, $NdateEtHeure, $dureeMinutes);
                 if ($resultat) {
                     echo '<h2>Les données suivantes ont été modifiées :</h2>';
-                    echo '<p><strong>Nom :</strong> '.$nom.'</p>';
-                    echo '<p><strong>Prénom :</strong> '.$prenom.'</p>';
-                    echo '<p><strong>Civilité :</strong> '.$civilite.'</p>';
-                    echo '<p><strong>Adresse :</strong> '.$adresse.'</p>';
-                    echo '<p><strong>Code postal :</strong> '.$codepostal.'</p>';
-                    echo '<p><strong>Date de naissance :</strong> '.$date.'</p>';
-                    echo '<p><strong>Ville de naissance :</strong> '.$villeNaissance.'</p>';
-                    echo '<p><strong>Numéro de sécurité sociale :</strong> '.$numSecu.'</p>';
+                    echo '<p><strong>Usager :</strong> '.serviceUsager::get($idC)->getNom().' '.serviceUsager::get($idC)->getPrenom().'</p>';
+                    echo '<p><strong>Médecin :</strong> '.serviceMedecin::get($idM)->getNom().' '.serviceMedecin::get($idM)->getPrenom().'</p>';
+                    echo '<p><strong>Date :</strong> '.$dateEtHeure->format('Y-m-d').'</p>';
+                    echo '<p><strong>Heure :</strong> '.$dateEtHeure->format('H:i').'</p>';
+                    echo '<p><strong>Durée :</strong> '.$dureeMinutes.' min</p>';
                 } else {
-                    echo "Erreur dans la requête : de modification de l'usager" ;
+                    echo "Erreur dans la requête : de modification d'un rendez vous" ;
                 }
                 echo '
                 <div class="bouton-add">
-                    <form action="listeUsager.php">
-                        <button>Retour à la liste des usagers</button>
+                    <form action="listeRDV.php">
+                        <button>Retour à la liste des rdv</button>
                     </form>
                 </div>';
             }

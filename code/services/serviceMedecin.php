@@ -23,7 +23,7 @@
             //récupération des usagers
             $listMedecin = RepoMedecin::getRepo()->getAll();
 
-            function tri($med1, $med2){
+            function triM($med1, $med2){
                 $sorted = strcmp($med1->getNom(), $med2->getNom());
                 if ($sorted == 0){
                     $sorted = strcmp($med1->getPrenom(), $med2->getPrenom());
@@ -32,7 +32,7 @@
             }
 
             //tri des usagers
-            usort($listMedecin, "tri");
+            usort($listMedecin, "triM");
 
             return $listMedecin;
         }

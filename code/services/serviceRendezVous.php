@@ -5,16 +5,16 @@
     include_once '../../modele/rendezVous.php';
     include_once '../../repository/repoRendezVous.php';
 
-    class ServiceRenezVous {
+    class ServiceRendezVous {
 
-        private static ?ServiceRenezVous $instance = null;    //singleton
+        private static ?ServiceRendezVous $instance = null;    //singleton
 
         // Constructeur
         private function __construct() {}
 
         public static function getService() {
             if (self::$instance === null) {
-                self::$instance = new ServiceRenezVous();
+                self::$instance = new ServiceRendezVous();
             }
             return self::$instance;
         }
@@ -28,9 +28,11 @@
             return RepoRendezVous::getRepo()->addRendezVous($rendezVous);
         }
 
-        public function update(int $idM, int $idC, DateTime $dateEtHeure, int $dureeMinutes) {
-            $rendezVous = new RendezVous($idM, $idC, $dateEtHeure, $dureeMinutes);
-            return RepoRendezVous::getRepo()->updateRendezVous($rendezVous);
+        public function update(int $idM, int $idC, DateTime $dateEtHeure, int $NidM, int $NidC, DateTime $NdateEtHeure, int $dureeMinutes) {
+            $rendezVous = RepoRendezVous::getRepo()->getById($idM, $idC, $dateEtHeure);
+            return RepoRendezVous::getRepo()->remRendezVous($rendezVous);
+            $NrendezVous = new RendezVous($NidM, $NidC, $NdateEtHeure, $dureeMinutes);
+            return RepoRendezVous::getRepo()->addRendezVous($NrendezVous);
         }
 
         public function delete(int $idM, int $idC, DateTime $dateEtHeure) {
@@ -49,15 +51,17 @@
         public function getRDVChronological() {
             $rdvs = RepoRendezVous::getRepo()->getAll();
 
-            function tri($rdv1, $rdv2) {
-                $result = strcmp($date1->format('Y-m-d'), $date2->format('Y-m-d'));
-                if ($result == 0) {
-                    $result = strcmp($date1->format('H:i'), $date2->format('H:i'));
+            if ($rdvs != null) {
+                function tri($rdv1, $rdv2) {
+                    $result = strcmp($date1->format('Y-m-d'), $date2->format('Y-m-d'));
+                    if ($result == 0) {
+                        $result = strcmp($date1->format('H:i'), $date2->format('H:i'));
+                    }
+                    return $result;
                 }
-                return $result;
+    
+                usort($rdvs, "tri");
             }
-
-            usort($rdvs, "tri");
 
             return $rdvs;
         }
