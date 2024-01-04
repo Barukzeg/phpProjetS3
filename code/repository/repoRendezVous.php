@@ -166,7 +166,7 @@
                         $query->bindParam(':dureeEnMinutes', $dureeEnMinutes);
 
                         // execution
-                        $query->execute();
+                        return $query->execute();
                     } else {
                         throw new Exception("Medecin non disponible");
                     }
@@ -191,13 +191,13 @@
                         $query->bindParam(':idM', $idM);
                         $idC = $rendezVous->getIdClient();
                         $query->bindParam(':idC', $idC);
-                        $dateEtHeure = $rendezVous->getDateEtHeure();
+                        $dateEtHeure = $rendezVous->getDateEtHeure()->format('Y-m-d H:i');
                         $query->bindParam(':dateEtHeure', $dateEtHeure);
                         $dureeEnMinutes = $rendezVous->getDureeMinutes();
                         $query->bindParam(':dureeEnMinutes', $dureeEnMinutes);
 
                         // execution
-                        $query->execute();
+                        return $query->execute();
                     } else {
                         throw new Exception("Medecin non disponible");
                     }
@@ -220,11 +220,11 @@
                     $query->bindParam(':idM', $idM);
                     $idC = $rendezVous->getIdClient();
                     $query->bindParam(':idC', $idC);
-                    $dateEtHeure = $rendezVous->getDateEtHeure();
+                    $dateEtHeure = $rendezVous->getDateEtHeure()->format('Y-m-d H:i');
                     $query->bindParam(':dateEtHeure', $dateEtHeure);
 
                     // execution
-                    $query->execute();
+                    return $query->execute();
                 } else {
                     throw new Exception("RendezVous inexistant");
                 }
