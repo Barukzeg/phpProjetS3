@@ -1,6 +1,8 @@
 <html>
     <body>
         <?php
+            include_once "../../services/serviceUsager.php";
+            include_once "../../services/serviceMedecin.php";
             include_once "../../services/serviceRendezVous.php";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $idC = $_POST['usager'];
@@ -17,6 +19,10 @@
                     echo '<p><strong>Durée :</strong> '.$dureeMinutes.' min</p>';
                 } else {
                     echo "Erreur dans la requête : d'ajout d'un rendez vous" ;
+                    echo '<p><strong>Usager :</strong> '.serviceUsager::get($idC)->getNom().' '.serviceUsager::get($idC)->getPrenom().'</p>';
+                    echo '<p><strong>Médecin :</strong> '.serviceMedecin::get($idM)->getNom().' '.serviceMedecin::get($idM)->getPrenom().'</p>';
+                    echo '<p><strong>Usager :</strong> '.$idC.' </p>';
+                    echo '<p><strong>Médecin :</strong> '.$idM.' </p>';
                 }
                 echo '
                 <div class="bouton-add">

@@ -13,7 +13,7 @@
         // Constructeur
         public function __construct(int $idMedecin, int $idClient, DateTime $dateEtHeure, int $dureeMinutes) {
             $this->idMedecin = $idMedecin;
-            $this->didClientate = $idClient;
+            $this->idClient = $idClient;
             $this->dateEtHeure = $dateEtHeure;
             $this->dureeMinutes = $dureeMinutes;
         }

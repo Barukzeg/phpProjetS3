@@ -17,41 +17,41 @@
             return self::$instance;
         }
 
-        //fonction qui retourne tout les medecins, triés par ordre alphabétique
-        public function getMedecinAlpha() {
+        private static function triM($med1, $med2){
+            $sorted = strcmp($med1->getNom(), $med2->getNom());
+            if ($sorted == 0){
+                $sorted = strcmp($med1->getPrenom(), $med2->getPrenom());
+            }
+            return $sorted;
+        }
+
+        //fonction qui retourne tous les medecins, triés par ordre alphabétique
+        public static function getMedecinAlpha() {
 
             //récupération des usagers
             $listMedecin = RepoMedecin::getRepo()->getAll();
 
-            function triM($med1, $med2){
-                $sorted = strcmp($med1->getNom(), $med2->getNom());
-                if ($sorted == 0){
-                    $sorted = strcmp($med1->getPrenom(), $med2->getPrenom());
-                }
-                return $sorted;
-            }
-
             //tri des usagers
-            usort($listMedecin, "triM");
+            usort($listMedecin, array('ServiceMedecin', 'triM'));
 
             return $listMedecin;
         }
 
-        public function get($id) {
+        public static function get($id) {
             return RepoMedecin::getRepo()->getById($id);
         }
 
-        public function add($nom, $prenom, $civilite) {
+        public static function add($nom, $prenom, $civilite) {
             $medecin = new Medecin(0, $nom, $prenom, $civilite);
             return RepoMedecin::getRepo()->addMedecin($medecin);
         }
 
-        public function update($id, $nom, $prenom, $civilite) {
+        public static function update($id, $nom, $prenom, $civilite) {
             $medecin = new Medecin($id, $nom, $prenom, $civilite);
             return RepoMedecin::getRepo()->updateMedecin($medecin);
         }
 
-        public function delete($id) {
+        public static function delete($id) {
             $medecin = RepoMedecin::getRepo()->getById($id);
             return RepoMedecin::getRepo()->remMedecin($medecin);
         }

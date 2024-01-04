@@ -120,10 +120,10 @@
 
             // execution
             $query->execute();
-            $result = $query->fetch(PDO::FETCH_ASSOC);
+            $results = $query->fetchAll(PDO::FETCH_ASSOC);
 
             // retour d'un booleen pour savoir si le medecin est occupé à la date et heure donnée
-            foreach ($result as $rdv) {
+            foreach ($results as $rdv) {
 
                 //dates de debut et fin de la durée donnée
                 $dateInD = $dateEtHeure;
@@ -154,13 +154,13 @@
                 if (self::getById($rendezVous->getIdMedecin(), $rendezVous->getIdClient(), $rendezVous->getDateEtHeure()) == null) {
                     if (!self::isOccupied($rendezVous->getIdMedecin(), $rendezVous->getDateEtHeure(), $rendezVous->getDureeMinutes())) {
                         // requete
-                        $query = self::getBD()->prepare("INSERT INTO RendezVous (idMedecin, idClient, dateEtHeure, dureeMinutes) 
+                        $query = self::getBD()->prepare("INSERT INTO RendezVous (idMedecin, idClient, dateEtHeure, dureeEnMinutes) 
                         VALUES (:idM, :idC, :dateEtHeure, :dureeMinutes)");
                         $idM = $rendezVous->getIdMedecin();
                         $query->bindParam(':idM', $idM);
                         $idC = $rendezVous->getIdClient();
                         $query->bindParam(':idC', $idC);
-                        $dateEtHeure = $rendezVous->getDateEtHeure();
+                        $dateEtHeure = $rendezVous->getDateEtHeure()->format('Y-m-d H:i');
                         $query->bindParam(':dateEtHeure', $dateEtHeure);
                         $dureeMinutes = $rendezVous->getDureeMinutes();
                         $query->bindParam(':dureeMinutes', $dureeMinutes);
@@ -186,7 +186,7 @@
                     
                     if (!self::isOccupied($rendezVous->getIdMedecin(), $rendezVous->getDateEtHeure(), $rendezVous->getDureeMinutes())) {
                         // requete
-                        $query = self::getBD()->prepare("UPDATE RendezVous SET dureeMinutes = :dureeMinutes WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
+                        $query = self::getBD()->prepare("UPDATE RendezVous SET dureeEnMinutes = :dureeMinutes WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
                         $idM = $rendezVous->getIdMedecin();
                         $query->bindParam(':idM', $idM);
                         $idC = $rendezVous->getIdClient();

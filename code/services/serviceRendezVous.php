@@ -19,36 +19,36 @@
             return self::$instance;
         }
 
-        public function get(int $idM, int $idC, DateTime $dateEtHeure) {
+        public static function get(int $idM, int $idC, DateTime $dateEtHeure) {
             return RepoRendezVous::getRepo()->getById($idM, $idC, $dateEtHeure);
         }
 
-        public function add(int $idM, int $idC, DateTime $dateEtHeure, int $dureeMinutes) {
+        public static function add(int $idM, int $idC, DateTime $dateEtHeure, int $dureeMinutes) {
             $rendezVous = new RendezVous($idM, $idC, $dateEtHeure, $dureeMinutes);
             return RepoRendezVous::getRepo()->addRendezVous($rendezVous);
         }
 
-        public function update(int $idM, int $idC, DateTime $dateEtHeure, int $NidM, int $NidC, DateTime $NdateEtHeure, int $dureeMinutes) {
+        public static function update(int $idM, int $idC, DateTime $dateEtHeure, int $NidM, int $NidC, DateTime $NdateEtHeure, int $dureeMinutes) {
             $rendezVous = RepoRendezVous::getRepo()->getById($idM, $idC, $dateEtHeure);
-            return RepoRendezVous::getRepo()->remRendezVous($rendezVous);
+            RepoRendezVous::getRepo()->remRendezVous($rendezVous);
             $NrendezVous = new RendezVous($NidM, $NidC, $NdateEtHeure, $dureeMinutes);
             return RepoRendezVous::getRepo()->addRendezVous($NrendezVous);
         }
 
-        public function delete(int $idM, int $idC, DateTime $dateEtHeure) {
+        public static function delete(int $idM, int $idC, DateTime $dateEtHeure) {
             $rendezVous = RepoRendezVous::getRepo()->getById($idM, $idC, $dateEtHeure);
             return RepoRendezVous::getRepo()->remRendezVous($rendezVous);
         }
 
-        public function getAllOfM(int $idM) {
+        public static function getAllOfM(int $idM) {
             return RepoRendezVous::getRepo()->getByMedecin($idM);
         }
 
-        public function getAllOfC(int $idC) {
+        public static function getAllOfC(int $idC) {
             return RepoRendezVous::getRepo()->getByClient($idC);
         }
 
-        public function getRDVChronological() {
+        public static function getRDVChronological() {
             $rdvs = RepoRendezVous::getRepo()->getAll();
 
             if ($rdvs != null) {
@@ -59,7 +59,7 @@
                     }
                     return $result;
                 }
-    
+
                 usort($rdvs, "tri");
             }
 
