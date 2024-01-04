@@ -179,25 +179,44 @@
         }
 
         // modifie un rendezVous
-        public static function updateRendezVous(RendezVous $rendezVous) {
+        public static function updateRendezVous(RendezVous $rendezVous, DateTime $NdateEtHeure, int $dureeMinutes) {
     
             try {
                 if (self::getById($rendezVous->getIdMedecin(), $rendezVous->getIdClient(), $rendezVous->getDateEtHeure()) != null) {
-                    
-                    if (!self::isOccupied($rendezVous->getIdMedecin(), $rendezVous->getDateEtHeure(), $rendezVous->getDureeMinutes())) {
+                    if ($rendezVous->getDateEtHeure() == $NdateEtHeure && $rendezVous->getDureeMinutes() == $dureeMinutes) {
+                        return true;
+                    } else if (!self::isOccupied($rendezVous->getIdMedecin(), $NdateEtHeure, $dureeMinutes)) {
                         // requete
-                        $query = self::getBD()->prepare("UPDATE RendezVous SET dureeEnMinutes = :dureeEnMinutes WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
+                        $query = self::getBD()->prepare("UPDATE RendezVous 
+                                                            SET dureeEnMinutes = :dureeEnMinutes
+                                                            WHERE idMedecin = :idM 
+                                                            AND idClient = :idC 
+                                                            AND dateEtHeure = :dateEtHeure");
                         $idM = $rendezVous->getIdMedecin();
                         $query->bindParam(':idM', $idM);
                         $idC = $rendezVous->getIdClient();
                         $query->bindParam(':idC', $idC);
                         $dateEtHeure = $rendezVous->getDateEtHeure()->format('Y-m-d H:i');
                         $query->bindParam(':dateEtHeure', $dateEtHeure);
-                        $dureeEnMinutes = $rendezVous->getDureeMinutes();
-                        $query->bindParam(':dureeEnMinutes', $dureeEnMinutes);
+                        $query->bindParam(':dureeEnMinutes', $dureeMinutes);
 
                         // execution
                         return $query->execute();
+
+                        // requete
+                        $query2 = self::getBD()->prepare("UPDATE RendezVous 
+                                                            SET dateEtHeure = :NdateEtHeure
+                                                            WHERE idMedecin = :idM 
+                                                            AND idClient = :idC 
+                                                            AND dateEtHeure = :dateEtHeure");
+                        $query2->bindParam(':idM', $idM);
+                        $query2->bindParam(':idC', $idC);
+                        $query2->bindParam(':dateEtHeure', $dateEtHeure);
+                        $NdateEtHeure = $NdateEtHeure->format('Y-m-d H:i');
+                        $query2->bindParam(':NdateEtHeure', $NdateEtHeure);
+
+                        // execution
+                        return $query2->execute();
                     } else {
                         throw new Exception("Medecin non disponible");
                     }

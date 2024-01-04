@@ -28,11 +28,9 @@
             return RepoRendezVous::getRepo()->addRendezVous($rendezVous);
         }
 
-        public static function update(int $idM, int $idC, DateTime $dateEtHeure, int $NidM, int $NidC, DateTime $NdateEtHeure, int $dureeMinutes) {
+        public static function update(int $idM, int $idC, DateTime $dateEtHeure, DateTime $NdateEtHeure, int $dureeMinutes) {
             $rendezVous = RepoRendezVous::getRepo()->getById($idM, $idC, $dateEtHeure);
-            RepoRendezVous::getRepo()->remRendezVous($rendezVous);
-            $NrendezVous = new RendezVous($NidM, $NidC, $NdateEtHeure, $dureeMinutes);
-            return RepoRendezVous::getRepo()->addRendezVous($NrendezVous);
+            return RepoRendezVous::getRepo()->updateRendezVous($rendezVous, $NdateEtHeure, $dureeMinutes);
         }
 
         public static function delete(int $idM, int $idC, DateTime $dateEtHeure) {
