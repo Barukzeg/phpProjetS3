@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/addUsager.css"/>
     <?php
         include_once "../../services/serviceRendezVous.php";
-        $rdv = serviceRendezVous::getService()->get($_POST['idClient'], $_POST['idMedecin'], $_POST['dateEtHeure']);
+        $rdv = serviceRendezVous::getService()->get($_POST['idC'], $_POST['idM'], new DateTime($_POST['DateEtHeure']));
     ?>
     <body>
         <div>

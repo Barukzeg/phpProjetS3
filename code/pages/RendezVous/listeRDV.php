@@ -42,13 +42,13 @@
                                 <td>'.$row->getDateEtHeure()->format('Y-m-d').'</td>
                                 <td>'.$row->getDateEtHeure()->format('H:i').'</td>
                                 <td>'.$row->getDureeMinutes().' min</td>
-                                <td>'.serviceUsager::getService()->get($row->getIdClient())->getNom().' '.serviceUsager::getService()->get($row->getIdUsager())->getPrenom().'</td>
+                                <td>'.serviceUsager::getService()->get($row->getIdClient())->getNom().' '.serviceUsager::getService()->get($row->getIdClient())->getPrenom().'</td>
                                 <td>'.serviceMedecin::getService()->get($row->getIdMedecin())->getNom().' '.serviceMedecin::getService()->get($row->getIdMedecin())->getPrenom().'</td>
                                 <td>
-                                    <form action="modifRDV.php" method="post">
+                                    <form action="modRDV.php" method="post">
                                         <input type="hidden" name="idC" value="'.$row->getIdClient().'">
                                         <input type="hidden" name="idM" value="'.$row->getIdMedecin().'">
-                                        <input type="hidden" name="DateEtHeure" value="'.$row->getDateEtHeure().'">
+                                        <input type="hidden" name="DateEtHeure" value="'.$row->getDateEtHeure()->format('Y-m-d H:i').'">
                                         <button type="submit">Modifier</button>
                                     </form>
                                 </td>
@@ -56,7 +56,7 @@
                                     <form action="traitementDeleteRDV.php" method="post">
                                         <input type="hidden" name="idC" value="'.$row->getIdClient().'">
                                         <input type="hidden" name="idM" value="'.$row->getIdMedecin().'">
-                                        <input type="hidden" name="DateEtHeure" value="'.$row->getDateEtHeure().'">
+                                        <input type="hidden" name="DateEtHeure" value="'.$row->getDateEtHeure()->format('Y-m-d H:i').'">
                                         <button type="submit">Supprimer</button>
                                     </form>
                                 </td>

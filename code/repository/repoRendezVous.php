@@ -247,7 +247,7 @@
             if ($result) {
                 $rendezVous = array();
                 foreach ($result as $row) {
-                    $rendezVous[] = new RendezVous($row['idMedecin'], $row['idClient'], $row['dateEtHeure'], new DateTime($row['dureeEnMinutes']));
+                    $rendezVous[] = new RendezVous($row['idMedecin'], $row['idClient'], new DateTime($row['dateEtHeure']), $row['dureeEnMinutes']);
                 }
                 return $rendezVous;
             } else {
