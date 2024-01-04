@@ -29,7 +29,7 @@ Create Table Usager (
 Create Table RendezVous(
     idMedecin int,
     idClient int,
-    dateEtHeure date,
+    dateEtHeure datetime,
     dureeEnMinutes int,
     constraint pk_medecinClient primary key (idMedecin, idClient, DateEtHeure),
     constraint fk_medecin foreign key (idMedecin) references Medecin(idMedecin),

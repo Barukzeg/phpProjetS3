@@ -47,7 +47,7 @@
     
             // retour d'une instance de RendezVous
             if ($result) {
-                return new RendezVous($result['idMedecin'], $result['idClient'], $result['dateEtHeure'], $result['dureeMinutes']);
+                return new RendezVous($result['idMedecin'], $result['idClient'], new DateTime($result['dateEtHeure']), $result['dureeEnMinutes']);
             } else {
                 return null;
             }
@@ -70,7 +70,7 @@
             if ($resultats) {
                 $rendezVous = array();
                 foreach ($resultats as $result) {
-                    $rendezVous[] = new RendezVous($result['idMedecin'], $result['idClient'], $result['dateEtHeure'], $result['dureeMinutes']);
+                    $rendezVous[] = new RendezVous($result['idMedecin'], $result['idClient'], new DateTime($result['dateEtHeure']), $result['dureeEnMinutes']);
                 }
                 return $rendezVous;
             } else {
@@ -95,7 +95,7 @@
             if ($resultats) {
                 $rendezVous = array();
                 foreach ($resultats as $result) {
-                    $rendezVous[] = new RendezVous($result['idMedecin'], $result['idClient'], $result['dateEtHeure'], $result['dureeMinutes']);
+                    $rendezVous[] = new RendezVous($result['idMedecin'], $result['idClient'], new DateTime($result['dateEtHeure']), $result['dureeEnMinutes']);
                 }
                 return $rendezVous;
             } else {
@@ -104,7 +104,7 @@
         }
 
         // get si un medecin est occupé à une date et heure donnée
-        private static function isOccupied(int $idM, DateTime $dateEtHeure, int $dureeMinutes) {
+        private static function isOccupied(int $idM, DateTime $dateEtHeure, int $dureeEnMinutes) {
 
             $sqlDateEtHeure = $dateEtHeure->format('Y-m-d');
 
@@ -127,11 +127,11 @@
 
                 //dates de debut et fin de la durée donnée
                 $dateInD = $dateEtHeure;
-                $dateInF = $dateInD->add(new DateInterval('PT'.$dureeMinutes.'M'));
+                $dateInF = $dateInD->add(new DateInterval('PT'.$dureeEnMinutes.'M'));
 
                 //dates de debut et fin d'un des rendezVous trouvés
                 $dateD = new DateTime($rdv['dateEtHeure']);
-                $dateF = $dateD->add(new DateInterval('PT'.$rdv['dureeMinutes'].'M'));
+                $dateF = $dateD->add(new DateInterval('PT'.$rdv['dureeEnMinutes'].'M'));
 
                 //si la date de debut de la duree donnée est entre les dates de debut et fin d'un des rendezVous trouvés
                 if ($dateInD >= $dateD && $dateInD <= $dateF) {
@@ -155,15 +155,15 @@
                     if (!self::isOccupied($rendezVous->getIdMedecin(), $rendezVous->getDateEtHeure(), $rendezVous->getDureeMinutes())) {
                         // requete
                         $query = self::getBD()->prepare("INSERT INTO RendezVous (idMedecin, idClient, dateEtHeure, dureeEnMinutes) 
-                        VALUES (:idM, :idC, :dateEtHeure, :dureeMinutes)");
+                        VALUES (:idM, :idC, :dateEtHeure, :dureeEnMinutes)");
                         $idM = $rendezVous->getIdMedecin();
                         $query->bindParam(':idM', $idM);
                         $idC = $rendezVous->getIdClient();
                         $query->bindParam(':idC', $idC);
                         $dateEtHeure = $rendezVous->getDateEtHeure()->format('Y-m-d H:i');
                         $query->bindParam(':dateEtHeure', $dateEtHeure);
-                        $dureeMinutes = $rendezVous->getDureeMinutes();
-                        $query->bindParam(':dureeMinutes', $dureeMinutes);
+                        $dureeEnMinutes = $rendezVous->getDureeMinutes();
+                        $query->bindParam(':dureeEnMinutes', $dureeEnMinutes);
 
                         // execution
                         $query->execute();
@@ -186,15 +186,15 @@
                     
                     if (!self::isOccupied($rendezVous->getIdMedecin(), $rendezVous->getDateEtHeure(), $rendezVous->getDureeMinutes())) {
                         // requete
-                        $query = self::getBD()->prepare("UPDATE RendezVous SET dureeEnMinutes = :dureeMinutes WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
+                        $query = self::getBD()->prepare("UPDATE RendezVous SET dureeEnMinutes = :dureeEnMinutes WHERE idMedecin = :idM AND idClient = :idC AND dateEtHeure = :dateEtHeure");
                         $idM = $rendezVous->getIdMedecin();
                         $query->bindParam(':idM', $idM);
                         $idC = $rendezVous->getIdClient();
                         $query->bindParam(':idC', $idC);
                         $dateEtHeure = $rendezVous->getDateEtHeure();
                         $query->bindParam(':dateEtHeure', $dateEtHeure);
-                        $dureeMinutes = $rendezVous->getDureeMinutes();
-                        $query->bindParam(':dureeMinutes', $dureeMinutes);
+                        $dureeEnMinutes = $rendezVous->getDureeMinutes();
+                        $query->bindParam(':dureeEnMinutes', $dureeEnMinutes);
 
                         // execution
                         $query->execute();
@@ -247,7 +247,7 @@
             if ($result) {
                 $rendezVous = array();
                 foreach ($result as $row) {
-                    $rendezVous[] = new RendezVous($row['idMedecin'], $row['idClient'], $row['dateEtHeure'], $row['dureeMinutes']);
+                    $rendezVous[] = new RendezVous($row['idMedecin'], $row['idClient'], $row['dateEtHeure'], new DateTime($row['dureeEnMinutes']));
                 }
                 return $rendezVous;
             } else {
