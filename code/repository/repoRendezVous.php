@@ -126,7 +126,7 @@
             foreach ($results as $rdv) {
 
                 //dates de debut et fin de la durée donnée
-                $dateInD = $dateEtHeure;
+                $dateInD = new DateTime($dateEtHeure->format('Y-m-d H:i'));
                 $dateInF = $dateInD->add(new DateInterval('PT'.$dureeEnMinutes.'M'));
 
                 //dates de debut et fin d'un des rendezVous trouvés
@@ -146,6 +146,8 @@
                     return true;
                 }
             }
+
+            return false;
         }
 
         // ajoute un rendezVous
