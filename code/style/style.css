@@ -58,7 +58,7 @@ button{
 .btn{
     display: flex;
     width: 20%;
-    background-color: #fff;
+    background-color: #dedede;
     margin: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
@@ -108,7 +108,7 @@ h1{
 .boite-index{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10%;
+    gap: 5%;
 }
 
     .boite-index a{
@@ -130,8 +130,8 @@ h1{
     }
 
 .btn-index{
-    height: 200px;
-    margin-top: 20px;
+    height: 250px;
+    margin-top: 10px;
 }
 
 .btn-index img{
