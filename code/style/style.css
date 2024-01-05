@@ -48,11 +48,11 @@ button{
 }
 
 .boite-boutons{
+    vertical-align: middle;
     display: contents;
     align-items: right;
     width: 50%;
     justify-content: center;
-    align-items: right;
     flex-wrap: nowrap;
 }
 
@@ -74,6 +74,21 @@ button{
         scale: 1.2;
     }
 
+#btn-deco{
+    align-items: center;
+    width: 100px;
+    background-color: #a5a5a5;
+    box-shadow: 0 0 0;
+}
+    #btn-deco img{
+        height: 40px;
+        width: auto;
+    }
+
+#btn-deco:hover{
+    transition: 0.1s;
+    scale: 1.2;
+}
 
 img {
     width: 30%;
