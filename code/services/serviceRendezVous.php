@@ -51,6 +51,8 @@
 
             if ($rdvs != null) {
                 function tri($rdv1, $rdv2) {
+                    $date1 = $rdv1->getDateEtHeure();
+                    $date2 = $rdv2->getDateEtHeure();
                     $result = strcmp($date1->format('Y-m-d'), $date2->format('Y-m-d'));
                     if ($result == 0) {
                         $result = strcmp($date1->format('H:i'), $date2->format('H:i'));
