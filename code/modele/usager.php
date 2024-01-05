@@ -5,7 +5,7 @@
     class Usager extends Personne {
 
         private int $idUsager;
-        private int $idReferent;
+        private ?int $idReferent;
         private string $adresseComplete;
         private string $codePostal;
         private DateTime $dateNaissance;
@@ -13,7 +13,7 @@
         private string $NumSecuriteSociale;
 
         // Constructeur
-        public function __construct(int $idUsager, string $nom, string $prenom, string $civilite, int $idReferent, string $adresseComplete, string $codePostal, DateTime $dateNaissance, string $lieuNaissance, string $NumSecuriteSociale) {
+        public function __construct(int $idUsager, string $nom, string $prenom, string $civilite, ?int $idReferent, string $adresseComplete, string $codePostal, DateTime $dateNaissance, string $lieuNaissance, string $NumSecuriteSociale) {
             parent::__construct($idUsager, $nom, $prenom, $civilite);
             $this-> idReferent = $idReferent;
             $this-> adresseComplete = $adresseComplete;

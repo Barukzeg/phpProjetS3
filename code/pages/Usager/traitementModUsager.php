@@ -7,10 +7,9 @@
                 $nom = ucfirst($_POST['nom']);
                 $prenom = ucfirst($_POST['prenom']);
                 $civilite = $_POST['civilite'];
-                if ($_POST['medecinRef'] == "null") { 
-                    $medecinRef = 4; 
-                } else { 
-                    $medecinRef = $_POST['medecinRef']; 
+                $medecinRef = $_POST['medecinRef']; 
+                if ($medecinRef == 'null') {
+                    $medecinRef = null;
                 }
                 $adresse = $_POST['adresse'];
                 $codepostal = $_POST['codepostal'];
