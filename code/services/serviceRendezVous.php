@@ -62,7 +62,7 @@
 
         public static function getRDVChronological() {
 
-            $rdvs = RepoRendezVous::getRepo()->getAll();
+            $rdvs = self::getAllFuture();
 
             if ($rdvs != null) {
                 function tri($rdv1, $rdv2) {
@@ -82,7 +82,7 @@
 
         public static function getRDVNonChronological() {
 
-            $rdvs = self::getAllFuture();
+            $rdvs = RepoRendezVous::getRepo()->getAll();
 
             if ($rdvs != null) {
                 function tri($rdv2, $rdv1) {
