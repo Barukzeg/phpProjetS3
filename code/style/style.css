@@ -32,6 +32,7 @@ button{
     font-family: "OCR A Std", monospace, "Verdana", "Arial", sans-serif;
 }
 
+/* Menu */
 .boite-logo{
     display: flex;
     width: 50%;
@@ -101,7 +102,6 @@ body{
 }
 
 /* Index */
-
 h1{
     font-size: 30px;
     text-align: center;
@@ -111,8 +111,6 @@ h1{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10%;
-    margin-left: 30%;
-    margin-right: 30%;
 }
 
     .boite-index a{
@@ -134,12 +132,12 @@ h1{
     }
 
 .btn-index{
-    width: 250px;
-    height: 250px;
+    height: 200px;
+    margin-top: 20px;
 }
 
 .btn-index img{
-    width: 50%;
+    width: 30%;
     height: auto;
 }
 .btn-index p{
@@ -151,4 +149,12 @@ h1{
 .btn-index:hover p{
     display: block;
     font-size: 16px;
+}
+
+#index-left{
+    padding-left: 70%;
+}
+
+#index-right{
+    padding-right: 70%;
 }
