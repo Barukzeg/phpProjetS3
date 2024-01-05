@@ -1,5 +1,6 @@
 <?php
 
+    include_once "../../bd/bdd.php";
     class Identifiants {
 
         private static $instance = null;
@@ -19,7 +20,7 @@
         // Méthode de vérification des identifiants
         public function verifId(string $login, string $mdp) {
             $bd = BDD::getBDD();
-            $req = $bd->prepare("SELECT * FROM Identifiants WHERE login = :login AND mdp = :mdp");
+            $req = BDD::getBDD()->getConnection()->prepare("SELECT * FROM Identifiants WHERE login = :login AND mdp = :mdp");
             $req->bindParam(':login', $login);
             $req->bindParam(':mdp', $mdp);
             $req->execute();

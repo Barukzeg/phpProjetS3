@@ -8,6 +8,13 @@
         exit();
     } else {
         echo "Nom d'utilisateur ou mot de passe incorrect.";
+        
+        echo '
+        <div class="bouton-add">
+            <form action="login.php">
+                <button>Retour à la page de connexion</button>
+            </form>
+        </div>';
     }
 
 ?>

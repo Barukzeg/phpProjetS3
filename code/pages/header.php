@@ -21,7 +21,7 @@
             <a href="/phpProjetS3/code/pages/Stats/statistiques.php" class="btn">
                 <p>Statistiques</p>
             </a>
-            <a href="" class="btn" id="btn-deco">
+            <a href="/phpProjetS3/code/pages/Login/logout.php" class="btn" id="btn-deco">
                 <img src="/phpProjetS3/code/image/iconDeco.png" alt="Deconnexion">
             </a>
         </div>
