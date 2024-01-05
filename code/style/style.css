@@ -156,3 +156,18 @@ h1{
 #index-right{
     padding-right: 70%;
 }
+
+.tri{
+    background-color: #c4f9f3;
+    border: 0px;
+    box-shadow: 0 0 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.tri:hover{
+    background-color: #c4f9f3;
+    transition: 0s;
+    scale: 1;
+    cursor: pointer;
+}
