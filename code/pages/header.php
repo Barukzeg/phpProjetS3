@@ -21,6 +21,9 @@
             <a href="/phpProjetS3/code/pages/Stats/statistiques.php" class="btn">
                 <p>Statistiques</p>
             </a>
+            <a href="" class="btn">
+                <img src="" alt="Deconnexion">
+            </a>
         </div>
     </nav>
 </header>

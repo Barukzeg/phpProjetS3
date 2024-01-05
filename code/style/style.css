@@ -21,7 +21,7 @@ header {
 
 nav{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
     gap: 20px;
     width: 100%;
@@ -32,14 +32,18 @@ button{
     font-family: "OCR A Std", monospace, "Verdana", "Arial", sans-serif;
 }
 
+.boite-logo{
+    display: flex;
+    width: 50%;
+    flex-wrap: nowrap;
+}
 .boite-logo a{
     display: flex;
-    align-items: left;
     height: 100%;
 }
 
 .boite-logo img{
-    width: 50%;
+    width: 35%;
     height: auto;
 }
 
@@ -62,13 +66,12 @@ button{
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    overflow: hidden;
 }
 
     .btn:hover{
         background-color: #c4f9f3;
         transition: 0.1s;
-        transform : scale(1.2);
+        scale: 1.2;
     }
 
 
@@ -84,6 +87,7 @@ a{
 
 body{
     background-color: #c4f9f3;
+    width: 100%;
 }
 
 /* Index */
@@ -95,7 +99,6 @@ h1{
 
 .boite-index{
     display: grid;
-    justify-content: space-around;
     grid-template-columns: repeat(2, 1fr);
     gap: 10%;
     margin-left: 30%;
@@ -121,9 +124,6 @@ h1{
     }
 
 .btn-index{
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     width: 250px;
     height: 250px;
 }
