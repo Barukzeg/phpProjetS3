@@ -60,13 +60,9 @@
             return $results;
         }
 
-        public static function getRDVChronological(boolean $future) {
+        public static function getRDVChronological() {
 
-            if ($future) {
-                $rdvs = self::getAllFuture();
-            } else {
-                $rdvs = RepoRendezVous::getRepo()->getAll();
-            }
+            $rdvs = RepoRendezVous::getRepo()->getAll();
 
             if ($rdvs != null) {
                 function tri($rdv1, $rdv2) {
@@ -84,13 +80,9 @@
             return $rdvs;
         }
 
-        public static function getRDVNonChronological(boolean $future) {
+        public static function getRDVNonChronological() {
 
-            if ($future) {
-                $rdvs = self::getAllFuture();
-            } else {
-                $rdvs = RepoRendezVous::getRepo()->getAll();
-            }
+            $rdvs = self::getAllFuture();
 
             if ($rdvs != null) {
                 function tri($rdv2, $rdv1) {
