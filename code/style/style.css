@@ -141,10 +141,10 @@ h1{
 .btn-index p{
     display: none;
 }
-.btn-index:hover img{
+.btn-index a:hover img{
     display: none;
 }
-.btn-index:hover p{
+.btn-index a:hover p{
     display: block;
     font-size: 16px;
 }
