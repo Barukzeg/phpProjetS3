@@ -85,11 +85,6 @@ button{
         width: auto;
     }
 
-#btn-deco:hover{
-    transition: 0.1s;
-    scale: 1.2;
-}
-
 img {
     width: 30%;
     height: auto;
