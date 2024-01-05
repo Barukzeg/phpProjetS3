@@ -35,3 +35,9 @@ Create Table RendezVous(
     constraint fk_medecin foreign key (idMedecin) references Medecin(idMedecin),
     constraint fk_clientUser foreign key (idClient) references Usager(idUsager)
 );
+
+Create Table Identifiants(
+    login varchar(50),
+    mdp varchar(50),
+    constraint pk_login primary key(login)
+);
