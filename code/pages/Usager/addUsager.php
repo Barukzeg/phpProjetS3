@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+    <?php require_once "../Login/verif.php"; ?>
     <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/style.css"/>
     <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/addUsager.css"/>
     <body>

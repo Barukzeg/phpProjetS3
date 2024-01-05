@@ -1,4 +1,6 @@
+<!DOCTYPE HTML>
 <html>
+    <?php require_once "../Login/verif.php"; ?>
     <head>
         <title>Statistiques</title>
         <link rel="stylesheet" href="/phpProjetS3/code/style/style.css">
