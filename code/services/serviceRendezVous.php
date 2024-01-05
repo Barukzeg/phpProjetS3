@@ -59,7 +59,25 @@
                     }
                     return $result;
                 }
+                usort($rdvs, "tri");
+            }
 
+            return $rdvs;
+        }
+
+        public static function getRDVNonChronological() {
+            $rdvs = RepoRendezVous::getRepo()->getAll();
+
+            if ($rdvs != null) {
+                function tri($rdv2, $rdv1) {
+                    $date1 = $rdv1->getDateEtHeure();
+                    $date2 = $rdv2->getDateEtHeure();
+                    $result = strcmp($date1->format('Y-m-d'), $date2->format('Y-m-d'));
+                    if ($result == 0) {
+                        $result = strcmp($date1->format('H:i'), $date2->format('H:i'));
+                    }
+                    return $result;
+                }
                 usort($rdvs, "tri");
             }
 
