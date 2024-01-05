@@ -14,12 +14,12 @@ Create Table Medecin (
 
 Create Table Usager (
     idUsager int,
-    idReferent int not null,
+    idReferent int null,
     adresseComplete varchar(50),
-    codePostal decimal(5,0),
+    codePostal char(5) default '00000',
     dateNaissance date,
     lieuNaissance varchar(58),
-    numSecuriteSociale decimal(15,0) unique,
+    numSecuriteSociale char(15) unique default '000000000000000',
     constraint pk_idUser primary key(idUsager),
     constraint fk_userPersonne foreign key(idUsager) references Personne(idPersonne),
     constraint fk_medecinReferent foreign key(idReferent) references Medecin(idMedecin),

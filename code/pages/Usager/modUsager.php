@@ -17,20 +17,37 @@
                 <input type="text" id="prenom" name="prenom" value="<?php echo $user->getPrenom(); ?>" required>
 
                 <label for="civilite">Civilité :</label>
-                <select id="civilite" name="civilite" value="<?php echo $user->getCivilite(); ?>" required>
-                    <option value="M">M</option>
-                    <option value="F">Mme</option>
-                    <option value="Autre">Autre/Ne se prononce pas</option>
+                <select id="civilite" name="civilite" required>
+                    <option value="M" <?php
+                        if ($user->getCivilite() == 'M'){
+                            echo 'selected';
+                        }
+                    ?>>M</option>
+                    <option value="F" <?php
+                        if ($user->getCivilite() == 'F'){
+                            echo 'selected';
+                        }
+                    ?>>F</option>
+                    <option value="X" <?php
+                        if ($user->getCivilite() == 'X'){
+                            echo 'selected';
+                        }
+                    ?>>Autre/Ne se prononce pas</option>
                 </select>
 
                 <label for="medecinRef">Medecin référent</label>
-                <select id="medecinRef" name="medecinRef" value="<?php echo $user->getidReferent(); ?>" required>
+                <select id="medecinRef" name="medecinRef" required>
                     <option value="null">Pas de medecin référent</option>
                     <?php
                         include_once "../../services/serviceMedecin.php";
                         $medecins = serviceMedecin::getService()->getMedecinAlpha();
                         foreach ($medecins as $medecin) {
-                            echo "<option value='".$medecin->getIdMedecin()."'>".$medecin->getNom()." ".$medecin->getPrenom()."</option>";
+
+                            $isMedecinRef = '';
+                            if ($medecin->getIdMedecin() == $user->getidReferent()) {
+                                $isMedecinRef = ' selected';
+                            }
+                            echo "<option value='".$medecin->getIdMedecin()."' ".$isMedecinRef.">".$medecin->getNom()." ".$medecin->getPrenom()."</option>";
                         }
                     ?>
                 </select>

@@ -47,12 +47,17 @@
                                 .$row->getNom().' '
                                 .$row->getPrenom().'<br>'
                                 .'Sexe : '.$sexe.'<br>'
-                                .'Adresse : '.$row->getAdresseComplete().' '.$row->getCodePostal().'<br>'
+                                .'Adresse : '.$row->getCodePostal().' '.$row->getAdresseComplete().'<br>'
                                 .'Date de naissance : '.$row->getDateNaissance()->format('d/m/Y').'<br>'
                                 .'Ville de naissance : '.$row->getLieuNaissance().'<br>'
                                 .'Numéro de sécurité sociale : '.$row->getNumSecuriteSociale().'<br>';
-                                $medecin = serviceMedecin::getService()->get($row->getidReferent());
-                                echo 'Médecin référent : '.$medecin->getNom().' '.$medecin->getPrenom().'
+                                if($row->getidReferent() != null){
+                                    $medecin = serviceMedecin::getService()->get($row->getidReferent());
+                                    echo 'Médecin référent : '.$medecin->getNom().' '.$medecin->getPrenom().'<br>';
+                                } else {
+                                    echo 'Médecin référent : Aucun médecin référent<br>';
+                                }
+                                echo '
                             </div>
                             <div class="btn-container">
                                 <form action="modUsager.php" method="post">

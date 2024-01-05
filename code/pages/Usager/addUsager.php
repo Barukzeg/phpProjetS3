@@ -15,8 +15,8 @@
                 <label for="civilite">Civilité :</label>
                 <select id="civilite" name="civilite" required>
                     <option value="M">M</option>
-                    <option value="F">Mme</option>
-                    <option value="Autre">Autre/Ne se prononce pas</option>
+                    <option value="F">F</option>
+                    <option value="X">Autre/Ne se prononce pas</option>
                 </select>
 
                 <label for="medecinRef">Medecin référent</label>
