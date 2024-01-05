@@ -65,14 +65,17 @@ table{
 }
 
 tr{
-    border: 1px solid #474747;
-    border-radius: 5px;
     width: 100%;
     text-align: center;
-    justify-content: space-around;
     margin: 10px;
 }
 
 td{
-    margin: 10px;
+    border-collapse : collapse;
+    border: 1px solid #474747;
+    border-radius: 5px;
+}
+
+.tri{
+    font-family: "OCR A Std", monospace;
 }

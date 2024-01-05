@@ -25,12 +25,26 @@
                 include_once "../../modele/Usager.php";
 
                 try{
-                    $resultat = serviceRendezVous::getService()->getRDVNonChronological();
+                    if(!isset($_POST['tri'])){
+                        $tri = $_POST['tri'] = 'chronological';
+                    }
+                    if($_POST['tri'] == 'nonChronological'){
+                        $resultat = serviceRendezVous::getService()->getRDVChronological();
+                        $tri = 'chronological';
+                    }else{
+                        $resultat = serviceRendezVous::getService()->getRDVNonChronological();
+                        $tri = 'nonChronological';
+                    }
                     echo '
                     <div class="affichageResult">
                         <table>
                             <tr>
-                                <th>Date</th>
+                                <th>
+                                    <form action="listeRDV.php" method="post">
+                                        <input type="hidden" name="tri" value='.$tri.'>
+                                        <button type="submit" class="tri">Date</button>
+                                    </form>
+                                </th>
                                 <th>Heure</th>
                                 <th>Durée</th>
                                 <th>Usager</th>
