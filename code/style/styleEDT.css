@@ -1,3 +1,4 @@
+/* contenu global de la page */
 .content{
     display: flex;
     justify-content: center;
@@ -8,17 +9,20 @@
     margin-right: auto;
 }
 
+/* titres */
 h1{
     font-size: 30px;
     text-align: center;
 }
 
+/* partie tri/bouton (contient menu-deroulant et bouton-add) */
 .top {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
+/* menu pour selectionner le filtre par medecin */
 .menu-deroulant {
     display: flex;
     flex-direction: column;
@@ -32,6 +36,7 @@ h1{
     margin-right: auto;
 }
 
+/* selection du medecin */
 .menu-deroulant select {
     height: 30px;
     border-radius: 5px;
@@ -40,12 +45,14 @@ h1{
     font-family: "OCR A Std", monospace;
 }
 
+/* bouton pour appliquer le filtre */
 .menu-deroulant button {
     height: 30px;
     background-color: #a5a5a5;
     border: 2px solid #acacac;
 }
 
+/* zone du bouton pour ajouter un rdv */
 .bouton-add{
     display: flex;
     justify-content: center;
@@ -53,6 +60,7 @@ h1{
     height: 50px;
 }
 
+/* bouton ajouter rdv */
 .bouton-add button{
     width: 100px;
     height: 100%;
@@ -62,12 +70,13 @@ h1{
     background-color: #dedede;
 }
 
+/* zone avec le tableau des rdv */
 .affichageResult{
     width: 100%;
     gap: 10px;
 }
 
-
+/* boutons en général */
 button{
     background-color: #fff;
     border: 1px solid #ccc;
@@ -77,13 +86,14 @@ button{
     font-family: "OCR A Std", monospace;
 }
 
+/* survoler des boutons en général */
 button:hover{
     background-color: #ccc;
     scale: 1.1;
     transition: 0.03s;
 }
 
-
+/* la liste des rdv */
 table{
     border-collapse:separate;
     border-spacing: 5px 10px;
@@ -92,18 +102,21 @@ table{
     margin: 10px;
 }
 
+/* nom des colonnes */
 tr{
     width: 100%;
     text-align: center;
     margin: 10px;
 }
 
+/* lignes */
 td{
     border-collapse : collapse;
     border-radius: 5px;
     background-color: #a5a5a5;
 }
 
+/* boutons dans les lignes */
 td button{
     background-color: #dedede;
     border-radius: 5px;
@@ -114,6 +127,13 @@ td button{
     aspect-ratio: 2/1;
 }
 
+/* bouton modifier */
+.bouton-mod {
+    background-color: #74d879;
+    color: #1c4b1e;
+}
+
+/* survoler le bouton modifier */
 .bouton-mod:hover{
     background-color: #31c938;
     scale: 1.1;
@@ -121,6 +141,13 @@ td button{
     border-radius: 10px;
 }
 
+/* bouton supprimer */
+.bouton-del {
+    background-color: #d45151;
+    color: #420b0b;
+}
+
+/* survoler le bouton supprimer */
 .bouton-del:hover{
     background-color: #db2020;
     scale: 1.1;
@@ -128,15 +155,7 @@ td button{
     border-radius: 10px;
 }
 
-.bouton-mod {
-    background-color: #74d879;
-    color: #1c4b1e;
-}
-.bouton-del {
-    background-color: #d45151;
-    color: #420b0b;
-}
-
+/* bouton date */
 .tri{
     font-family: "OCR A Std", monospace;
 }

@@ -1,29 +1,52 @@
 <!DOCTYPE HTML>
 <html>
+    <!--
+        Page qui affiche la liste des rendez-vous, ordre changeable en cliquant sur Date
+        possède aussi un système de filtre par médecin
+    -->
+    <!-- vérification si l'utilisateur est connecté -->
     <?php require_once "../Login/verif.php"; ?>
+
     <head>
         <title>Liste des usagers</title>
         <link rel="stylesheet" href="/phpProjetS3/code/style/style.css">
         <link rel="stylesheet" href="/phpProjetS3/code/style/styleEDT.css">
     </head>
+
+    <!-- header -->
     <?php include_once "../header.php"; ?>
+
     <body>
+
+        <!-- page -->
         <div class="content">
             <h1>Liste des rendez-vous :</h1>
+
+            <!-- zone du haut de page -->
             <div class="top">
                 <div class="menu-deroulant">
+
+                    <!-- menu déroulant de filtre par medecin -->
                     <form action="listeRDV.php" method="post">
                         <label for="medecin">Trier par médecin :</label>
                         <select id="medecin" name="medecin">
-                            <option value="null" <?php
+
+                            <!-- option par défaut / sélectionnée si aucun filtre n'est appliqué (autre que lui même) -->
+                            <option value="null"
+                            <?php
                                 if(!isset($_POST['medecin']) || $_POST['medecin'] == 'null'){
                                     echo 'selected';
-                                } ?>>-- médecin --</option>
+                                }
+                            ?>
+                            >-- médecin --</option>
+
+                            <!-- options de filtre (liste des medecins) -->
                             <?php
                                 include_once "../../services/serviceMedecin.php";
                                 $medecins = serviceMedecin::getService()->getMedecinAlpha();
                                 foreach ($medecins as $medecin) {
                                     echo "<option value='".$medecin->getIdMedecin()."' ";
+                                    //si le medecin est sélectionné en tant que filtre, on le sélectionne ici aussi
                                     if (isset($_POST['medecin']) && $_POST['medecin'] == $medecin->getIdMedecin()){
                                         echo 'selected';
                                     }
@@ -31,15 +54,21 @@
                                 }
                             ?>
                         </select>
+
+                        <!-- bouton pour appliquer le filtre -->
                         <button type="submit">Trier</button>
                     </form>
                 </div>
+
+                <!-- bouton pour ajouter un rendez-vous -->
                 <div class="bouton-add">
                     <form action="addRDV.php">
                         <button><strong>Ajouter un RDV</strong></button>
                     </form>
                 </div>
             </div>
+
+            <!-- affichage des rendez-vous -->
             <?php
                 include_once "../../services/serviceRendezVous.php";
                 include_once "../../services/serviceUsager.php";
@@ -47,25 +76,34 @@
                 include_once "../../modele/Usager.php";
 
                 try{
+
+                    // si la page est chargée pour la première fois, on met le tri par défaut
                     if(!isset($_POST['tri'])){
                         $tri = $_POST['tri'] = 'chronological';
                     }
+
+                    // si aucun filtre n'est appliqué, on met le filtre par défaut (null)
                     if(!isset($_POST['medecin'])){
                         $_POST['medecin'] = 'null';
                     }
 
+                    // affichage des rendez-vous selon le filtre appliqué
                     if($_POST['medecin'] != 'null'){
                         $resultat = serviceRendezVous::getService()->getAllOfM($_POST['medecin']);
                     } else {
+
+                        // affichage des rendez-vous si aucun filtre n'est appliqué
+                        //(switch entre chronologique décroissant, et chronologique croissant des futurs rdv)
                         if($_POST['tri'] == 'nonChronological'){
                             $resultat = serviceRendezVous::getService()->getRDVChronological();
                             $tri = 'chronological';
                         } else {
-                            // Si null est sélectionné et qu'on clique sur trier, rien ne se passe
                             $resultat = serviceRendezVous::getService()->getRDVNonChronological();
                             $tri = 'nonChronological';
                         }
                     }
+
+                    // affichage des rendez-vous
                     echo '
                     <div class="affichageResult">
                         <table>
