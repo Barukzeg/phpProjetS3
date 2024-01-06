@@ -12,17 +12,30 @@
                 $client = serviceUsager::getService()->get($idC)->getNom(). ' ' .serviceUsager::getService()->get($idC)->getPrenom();
                 $dateHeure = $DateEtHeure->format('Y-m-d') .' à ' .$DateEtHeure->format('H:i');
                 $resultat = serviceRendezVous::getService()->delete($idM, $idC, $DateEtHeure);
-                if ($resultat) {
-                    echo "Rendez vous de : ".$client." avec ".$medecin." le ".$dateHeure." supprimé";
-                } else {
-                    echo "Erreur dans la requête de supression ";
-                }
                 echo '
-                <div class="bouton-add">
-                    <form action="listeRDV.php">
-                        <button>Retour à la liste des RDV</button>
-                    </form>
-                </div>';
+                <html>
+                <!DOCTYPE HTML>
+                <head>
+                    <title>Erreur</title>
+                    <link rel="stylesheet" href="/phpProjetS3/code/style/styleTrans.css">
+                </head>
+                <body>
+                    <div class="container">
+                        ';
+                        if ($resultat) {
+                            echo "<h2>Rendez vous de : ".$client." avec ".$medecin." le ".$dateHeure." supprimé.</h2>";
+                        } else {
+                            echo "<h2>Erreur dans la requête de supression du rendez-vous.</h2>";
+                        }
+                        echo '
+                        <div class="bouton">
+                            <form action="listeRDV.php">
+                                <button>Retour à la liste des rendez-vous</button>
+                            </form>
+                        </div>
+                    </div>
+                </body>
+                </html>';
             }
         ?>
     </body>
