@@ -4,7 +4,7 @@
     <head>
         <title>Liste des medecins</title>
         <link rel="stylesheet" href="/phpProjetS3/code/style/style.css">
-        <link rel="stylesheet" href="/phpProjetS3/code/style/listeUsager.css">
+        <link rel="stylesheet" href="/phpProjetS3/code/style/styleListe.css">
     </head>
     <!-- TODO réparer le header
     parce que la ca marche mais c'est chemin absolu

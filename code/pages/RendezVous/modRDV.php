@@ -2,7 +2,7 @@
 <html>
     <?php require_once "../Login/verif.php"; ?>
     <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/style.css"/>
-    <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/addUsager.css"/>
+    <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/styleForm.css"/>
     <?php
         include_once "../../services/serviceRendezVous.php";
         $rdv = serviceRendezVous::getService()->get($_POST['idM'], $_POST['idC'], new DateTime($_POST['DateEtHeure']));

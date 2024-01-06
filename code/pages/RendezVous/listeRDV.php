@@ -4,7 +4,7 @@
     <head>
         <title>Liste des usagers</title>
         <link rel="stylesheet" href="/phpProjetS3/code/style/style.css">
-        <link rel="stylesheet" href="/phpProjetS3/code/style/listeRDV.css">
+        <link rel="stylesheet" href="/phpProjetS3/code/style/styleEDT.css">
     </head>
     <!-- TODO réparer le header
     parce que la ca marche mais c'est chemin absolu

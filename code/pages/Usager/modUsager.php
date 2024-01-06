@@ -2,7 +2,7 @@
 <html>
     <?php require_once "../Login/verif.php"; ?>
     <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/style.css"/>
-    <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/addUsager.css"/>
+    <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/styleForm.css"/>
     <?php
         include_once "../../services/serviceUsager.php";
         $user = serviceUsager::getService()->get($_POST['idUsager']);
