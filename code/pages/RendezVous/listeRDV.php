@@ -6,9 +6,6 @@
         <link rel="stylesheet" href="/phpProjetS3/code/style/style.css">
         <link rel="stylesheet" href="/phpProjetS3/code/style/styleEDT.css">
     </head>
-    <!-- TODO réparer le header
-    parce que la ca marche mais c'est chemin absolu
-    dcp c'est pas bien -->
     <?php include_once "../header.php"; ?>
     <body>
         <div class="content">
@@ -16,6 +13,29 @@
             <div class="bouton-add">
                 <form action="addRDV.php">
                     <button>Ajouter un RDV</button>
+                </form>
+            </div>
+            <div class="menu-deroulant">
+                <form action="listeRDV.php" method="post">
+                    <label for="medecin">Trier par médecin :</label>
+                    <select id="medecin" name="medecin">
+                        <option value="null" <?php
+                            if(!isset($_POST['medecin']) || $_POST['medecin'] == 'null'){
+                                echo 'selected';
+                            } ?>>-- Trier par médecin --</option>
+                        <?php
+                            include_once "../../services/serviceMedecin.php";
+                            $medecins = serviceMedecin::getService()->getMedecinAlpha();
+                            foreach ($medecins as $medecin) {
+                                echo "<option value='".$medecin->getIdMedecin()."' ";
+                                if (isset($_POST['medecin']) && $_POST['medecin'] == $medecin->getIdMedecin()){
+                                    echo 'selected';
+                                }
+                                echo ">".$medecin->getNom()." ".$medecin->getPrenom()."</option>";
+                            }
+                        ?>
+                    </select>
+                    <button type="submit">Trier</button>
                 </form>
             </div>
             <?php
@@ -28,12 +48,21 @@
                     if(!isset($_POST['tri'])){
                         $tri = $_POST['tri'] = 'chronological';
                     }
-                    if($_POST['tri'] == 'nonChronological'){
-                        $resultat = serviceRendezVous::getService()->getRDVChronological();
-                        $tri = 'chronological';
-                    }else{
-                        $resultat = serviceRendezVous::getService()->getRDVNonChronological();
-                        $tri = 'nonChronological';
+                    if(!isset($_POST['medecin'])){
+                        $_POST['medecin'] = 'null';
+                    }
+
+                    if($_POST['medecin'] != 'null'){
+                        $resultat = serviceRendezVous::getService()->getAllOfM($_POST['medecin']);
+                    } else {
+                        if($_POST['tri'] == 'nonChronological'){
+                            $resultat = serviceRendezVous::getService()->getRDVChronological();
+                            $tri = 'chronological';
+                        } else {
+                            // Si null est sélectionné et qu'on clique sur trier, rien ne se passe
+                            $resultat = serviceRendezVous::getService()->getRDVNonChronological();
+                            $tri = 'nonChronological';
+                        }
                     }
                     echo '
                     <div class="affichageResult">
