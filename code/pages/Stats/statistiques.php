@@ -50,12 +50,10 @@
                     echo '<div class="statsMedecin">';
                     foreach ($resultat as $row) {
                         echo '
-                        <div class="result">
-                            <div class="info">'
-                                .$row['nom'].' '
-                                .$row['prenom'].'<br>'
-                                .'Nombre d\'heures : '.$row['heures'].'<br>
-                            </div>
+                        <div class="info">'
+                            .$row['nom'].' '
+                            .$row['prenom'].'<br>'
+                            .'Nombre d\'heures : '.$row['heures'].'<br>
                         </div>';
                     }
                     echo "</div>";

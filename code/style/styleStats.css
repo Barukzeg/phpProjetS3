@@ -1,37 +1,21 @@
+/* contenu global de la page */
 .content{
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* titres */
 h1{
     font-size: 30px;
     text-align: center;
 }
 
-.affichageResult{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 100%;
-    gap: 10px;
-}
-
-.result{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 10px;
-    border: 2px solid #acacac;
-    border-radius: 5px;
-}
-
-.bouton-add{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-}
-
+/* boutons en général */
 button{
     background-color: #fff;
     border: 1px solid #ccc;
@@ -41,18 +25,70 @@ button{
     font-family: "OCR A Std", monospace;
 }
 
+/* survoler des boutons en général */
 button:hover{
     background-color: #ccc;
     scale: 1.1;
     transition: 0.03s;
 }
 
-.btn-container{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
+/* zone des statistiques des clients */
+    /* zone avec le tableau des stats */
+    .statsClients {
+        width: 80%;
+        margin: auto;
+    }
 
-.result button{
-    width: 100px;
-}
+    /* la liste des rdv */
+    table {
+        justify-self: center;
+        width: 60%;
+        margin: auto;
+    }
+
+    /* nom des colonnes */
+    tr {
+        width: 100%;
+        text-align: center;
+        margin: 10px;
+        height: 50px;
+    }
+
+    /* lignes */
+    td {
+        border-collapse: collapse;
+        background-color: #dedede;
+        border: 1px solid #a5a5a5;
+        padding: 15px;
+    }
+
+    /* Ligne des titres */
+    tr:first-child {
+        background-color: #a5a5a5;
+    }
+
+    /* Première colonne */
+    td:first-child {
+        background-color: #a5a5a5;
+        width: 20%;
+    }
+
+/* zone sur les stats de medecins */
+    /* Stats des médecins */
+    .statsMedecin {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    /* carrés d'info */
+    .info {
+        background-color: #dedede;
+        border: 1px solid #a5a5a5;
+        border-radius: 5px;
+        padding: 10px;
+        text-align: center;
+        width: 40%; 
+        margin-bottom: 20px;
+    }
