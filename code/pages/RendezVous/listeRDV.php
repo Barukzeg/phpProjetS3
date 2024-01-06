@@ -10,33 +10,35 @@
     <body>
         <div class="content">
             <h1>Liste des rendez-vous :</h1>
-            <div class="bouton-add">
-                <form action="addRDV.php">
-                    <button>Ajouter un RDV</button>
-                </form>
-            </div>
-            <div class="menu-deroulant">
-                <form action="listeRDV.php" method="post">
-                    <label for="medecin">Trier par médecin :</label>
-                    <select id="medecin" name="medecin">
-                        <option value="null" <?php
-                            if(!isset($_POST['medecin']) || $_POST['medecin'] == 'null'){
-                                echo 'selected';
-                            } ?>>-- Trier par médecin --</option>
-                        <?php
-                            include_once "../../services/serviceMedecin.php";
-                            $medecins = serviceMedecin::getService()->getMedecinAlpha();
-                            foreach ($medecins as $medecin) {
-                                echo "<option value='".$medecin->getIdMedecin()."' ";
-                                if (isset($_POST['medecin']) && $_POST['medecin'] == $medecin->getIdMedecin()){
+            <div class="top">
+                <div class="menu-deroulant">
+                    <form action="listeRDV.php" method="post">
+                        <label for="medecin">Trier par médecin :</label>
+                        <select id="medecin" name="medecin">
+                            <option value="null" <?php
+                                if(!isset($_POST['medecin']) || $_POST['medecin'] == 'null'){
                                     echo 'selected';
+                                } ?>>-- médecin --</option>
+                            <?php
+                                include_once "../../services/serviceMedecin.php";
+                                $medecins = serviceMedecin::getService()->getMedecinAlpha();
+                                foreach ($medecins as $medecin) {
+                                    echo "<option value='".$medecin->getIdMedecin()."' ";
+                                    if (isset($_POST['medecin']) && $_POST['medecin'] == $medecin->getIdMedecin()){
+                                        echo 'selected';
+                                    }
+                                    echo ">".$medecin->getNom()." ".$medecin->getPrenom()."</option>";
                                 }
-                                echo ">".$medecin->getNom()." ".$medecin->getPrenom()."</option>";
-                            }
-                        ?>
-                    </select>
-                    <button type="submit">Trier</button>
-                </form>
+                            ?>
+                        </select>
+                        <button type="submit">Trier</button>
+                    </form>
+                </div>
+                <div class="bouton-add">
+                    <form action="addRDV.php">
+                        <button><strong>Ajouter un RDV</strong></button>
+                    </form>
+                </div>
             </div>
             <?php
                 include_once "../../services/serviceRendezVous.php";
@@ -95,7 +97,7 @@
                                             <input type="hidden" name="idC" value="'.$row->getIdClient().'">
                                             <input type="hidden" name="idM" value="'.$row->getIdMedecin().'">
                                             <input type="hidden" name="DateEtHeure" value="'.$row->getDateEtHeure()->format('Y-m-d H:i').'">
-                                            <button type="submit">Modifier</button>
+                                            <button class="bouton-mod" type="submit"><strong>Modifier</strong></button>
                                         </form>
                                     </td>
                                     <td>
@@ -103,7 +105,7 @@
                                             <input type="hidden" name="idC" value="'.$row->getIdClient().'">
                                             <input type="hidden" name="idM" value="'.$row->getIdMedecin().'">
                                             <input type="hidden" name="DateEtHeure" value="'.$row->getDateEtHeure()->format('Y-m-d H:i').'">
-                                            <button type="submit">Supprimer</button>
+                                            <button class="bouton-del" type="submit"><strong>Supprimer</strong></button>
                                         </form>
                                     </td>
                                 ';

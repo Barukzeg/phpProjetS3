@@ -108,32 +108,33 @@
 
             $results = self::getByMedecin($idM);
 
-            // retour d'un booleen pour savoir si le medecin est occupé à la date et heure donnée
-            foreach ($results as $rdv) {
-                //dates de debut et fin de la durée donnée
-                $dateInD = new DateTime($dateEtHeure->format('Y-m-d H:i'));
-                $dateInF = new DateTime($dateInD->format('Y-m-d H:i'));
-                $dateInF->add(new DateInterval('PT'.$dureeEnMinutes.'M'));
+            if ($results != null) {
+                // retour d'un booleen pour savoir si le medecin est occupé à la date et heure donnée
+                foreach ($results as $rdv) {
+                    //dates de debut et fin de la durée donnée
+                    $dateInD = new DateTime($dateEtHeure->format('Y-m-d H:i'));
+                    $dateInF = new DateTime($dateInD->format('Y-m-d H:i'));
+                    $dateInF->add(new DateInterval('PT'.$dureeEnMinutes.'M'));
 
-                //dates de debut et fin d'un des rendezVous trouvés
-                $dateD = new DateTime($rdv->getDateEtHeure()->format('Y-m-d H:i'));
-                $dateF = new DateTime($dateD->format('Y-m-d H:i'));
-                $dateF->add(new DateInterval('PT'.$rdv->getDureeMinutes().'M'));
+                    //dates de debut et fin d'un des rendezVous trouvés
+                    $dateD = new DateTime($rdv->getDateEtHeure()->format('Y-m-d H:i'));
+                    $dateF = new DateTime($dateD->format('Y-m-d H:i'));
+                    $dateF->add(new DateInterval('PT'.$rdv->getDureeMinutes().'M'));
 
-                //si la date de debut de la duree donnée est entre les dates de debut et fin d'un des rendezVous trouvés
-                if ($dateInD >= $dateD && $dateInD < $dateF) {
-                    return true;
+                    //si la date de debut de la duree donnée est entre les dates de debut et fin d'un des rendezVous trouvés
+                    if ($dateInD >= $dateD && $dateInD < $dateF) {
+                        return true;
 
-                //si la date de fin de la duree donnée est entre les dates de debut et fin d'un des rendezVous trouvés
-                } else if ($dateInF > $dateD && $dateInF <= $dateF) {
-                    return true;
+                    //si la date de fin de la duree donnée est entre les dates de debut et fin d'un des rendezVous trouvés
+                    } else if ($dateInF > $dateD && $dateInF <= $dateF) {
+                        return true;
 
-                //si la date de debut et de fin de la duree donnée est entre les dates de debut et fin d'un des rendezVous trouvés
-                } else if ($dateInD <= $dateD && $dateInF >= $dateF) {
-                    return true;
+                    //si la date de debut et de fin de la duree donnée est entre les dates de debut et fin d'un des rendezVous trouvés
+                    } else if ($dateInD <= $dateD && $dateInF >= $dateF) {
+                        return true;
+                    }
                 }
             }
-
             return false;
         }
 
