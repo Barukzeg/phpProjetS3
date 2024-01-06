@@ -15,7 +15,8 @@
                 $this -> connection = new PDO("mysql:host=$this->server;dbname=$this->db", $this->login, $this->mdp);
             }
             catch (Exception $e) {
-                die('Erreur : ' . $e->getMessage());
+                header('Location: ../pages/erreur.php');
+                exit();
             };
         }
 

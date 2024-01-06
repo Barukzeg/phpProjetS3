@@ -153,7 +153,8 @@
                         }
                     echo '</div>';
                 }catch (Exception $e){
-                    echo $e->getMessage();
+                    header('Location: ../erreur.php');
+                    exit();
                 }
             ?>
         </div>

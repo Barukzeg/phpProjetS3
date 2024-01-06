@@ -164,7 +164,8 @@
                     throw new Exception("RendezVous déjà existant");
                 }
             } catch (Exception $e) {
-                echo $e->getMessage();
+                header('Location: ../pages/erreur.php');
+                exit();
             }
         }
 
@@ -214,7 +215,8 @@
                     throw new Exception("RendezVous inexistant");
                 }
             } catch (Exception $e) {
-                echo $e->getMessage();
+                header('Location: ../pages/erreur.php');
+                exit();
             }
         }
 
@@ -238,7 +240,8 @@
                     throw new Exception("RendezVous inexistant");
                 }
             } catch (Exception $e) {
-                echo $e->getMessage();
+                header('Location: ../pages/erreur.php');
+                exit();
             }
         }
 

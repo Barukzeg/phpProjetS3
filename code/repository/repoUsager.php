@@ -153,7 +153,8 @@
                     throw new Exception("Cet usager existe déjà dans la base de données.");
                 }
             } catch (Exception $e) {
-                echo $e->getMessage();
+                header('Location: ../pages/erreur.php');
+                exit();
             }
         }
 
@@ -206,7 +207,8 @@
                     throw new Exception("Cet usager n'existe pas dans la base de données.");
                 }
             } catch (Exception $e) {
-                echo $e->getMessage();
+                header('Location: ../pages/erreur.php');
+                exit();
             }
         }
 
@@ -237,7 +239,8 @@
                     throw new Exception("Cet usager n'existe pas dans la base de données.");
                 }
             } catch (Exception $e) {
-                echo $e->getMessage();
+                header('Location: ../pages/erreur.php');
+                exit();
             }
         }
     }

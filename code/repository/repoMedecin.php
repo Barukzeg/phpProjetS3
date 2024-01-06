@@ -130,7 +130,8 @@
                     throw new Exception("Ce medecin existe déjà.");
                 }
             } catch (Exception $e) {
-                echo $e->getMessage();
+                header('Location: ../pages/erreur.php');
+                exit();
             }
         }
 
@@ -163,7 +164,8 @@
                     throw new Exception("Ce medecin n'existe pas dans la base de données.");
                 }
             } catch (Exception $e) {
-                echo $e->getMessage();
+                header('Location: ../pages/erreur.php');
+                exit();
             }
         }
 
@@ -202,7 +204,8 @@
                     throw new Exception("Ce medecin n'existe pas dans la base de données.");
                 }
             } catch (Exception $e) {
-                echo $e->getMessage();
+                header('Location: ../pages/erreur.php');
+                exit();
             }
         }
 
@@ -236,7 +239,8 @@
                     throw new Exception("Ce medecin n'existe pas dans la base de données.");
                 }
             } catch (Exception $e) {
-                echo $e->getMessage();
+                header('Location: ../pages/erreur.php');
+                exit();
             }
         }
     }
