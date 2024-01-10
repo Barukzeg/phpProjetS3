@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/styleLogin.css"/>
     <head>
         <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="/phpProjetS3/code/image/logo.ico"/>
         <title>Connexion</title>
     </head>
     <body>

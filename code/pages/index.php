@@ -3,6 +3,7 @@
     <?php require_once "./Login/verif.php"; ?>
     <head>
         <title>Accueil</title>
+        <link rel="icon" type="image/png" href="/phpProjetS3/code/image/logo.ico"/>
         <link rel="stylesheet" href="/phpProjetS3/code/style/style.css">
     </head>
     <?php include_once "header.php"; ?>

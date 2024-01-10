@@ -3,6 +3,7 @@
     <?php require_once "../Login/verif.php"; ?>
     <head>
         <title>Liste des usagers</title>
+        <link rel="icon" type="image/png" href="/phpProjetS3/code/image/logo.ico"/>
         <link rel="stylesheet" href="/phpProjetS3/code/style/style.css">
         <link rel="stylesheet" href="/phpProjetS3/code/style/styleListe.css">
     </head>

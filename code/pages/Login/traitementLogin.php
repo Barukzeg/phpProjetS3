@@ -12,6 +12,7 @@
             <!DOCTYPE HTML>
             <head>
                 <title>Erreur</title>
+                <link rel="icon" type="image/png" href="/phpProjetS3/code/image/logo.ico"/>
                 <link rel="stylesheet" href="/phpProjetS3/code/style/styleTrans.css">
             </head>
             <body>
