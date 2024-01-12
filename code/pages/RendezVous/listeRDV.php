@@ -125,7 +125,7 @@
                         if (!empty($resultat)) {
                             foreach ($resultat as $row) {
                                 $minuteEtHeure = $row->getDureeMinutes();
-                                $heure = floor($minuteEtHeure / 60);
+                                $heure = intdiv($minuteEtHeure, 60);
                                 $minute = $minuteEtHeure % 60;
                                 echo '
                                 <tr>
