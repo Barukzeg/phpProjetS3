@@ -164,7 +164,7 @@
                     throw new Exception("RendezVous déjà existant");
                 }
             } catch (Exception $e) {
-                header('Location: ../pages/erreur.php');
+                header('Location: /phpProjetS3/code/pages/erreur.php');
                 exit();
             }
         }
@@ -215,7 +215,7 @@
                     throw new Exception("RendezVous inexistant");
                 }
             } catch (Exception $e) {
-                header('Location: ../pages/erreur.php');
+                header('Location: /phpProjetS3/code/pages/erreur.php');
                 exit();
             }
         }
@@ -240,7 +240,7 @@
                     throw new Exception("RendezVous inexistant");
                 }
             } catch (Exception $e) {
-                header('Location: ../pages/erreur.php');
+                header('Location: /phpProjetS3/code/pages/erreur.php');
                 exit();
             }
         }

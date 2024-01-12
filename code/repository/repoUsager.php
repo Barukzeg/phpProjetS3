@@ -153,7 +153,7 @@
                     throw new Exception("Cet usager existe déjà dans la base de données.");
                 }
             } catch (Exception $e) {
-                header('Location: ../pages/erreur.php');
+                header('Location: /phpProjetS3/code/pages/erreur.php');
                 exit();
             }
         }
@@ -207,7 +207,7 @@
                     throw new Exception("Cet usager n'existe pas dans la base de données.");
                 }
             } catch (Exception $e) {
-                header('Location: ../pages/erreur.php');
+                header('Location: /phpProjetS3/code/pages/erreur.php');
                 exit();
             }
         }
@@ -239,7 +239,7 @@
                     throw new Exception("Cet usager n'existe pas dans la base de données.");
                 }
             } catch (Exception $e) {
-                header('Location: ../pages/erreur.php');
+                header('Location: /phpProjetS3/code/pages/erreur.php');
                 exit();
             }
         }
