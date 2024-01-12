@@ -18,7 +18,7 @@ h1{
 
 .result{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     padding: 10px;
     margin: 10px;
@@ -26,6 +26,67 @@ h1{
     border-radius: 5px;
     background-color: #dedede;
 }
+
+    .photo-btn{
+        margin-bottom: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+        .photo{
+            width: 50%;
+        }
+
+            .photo img{
+                width: 100%;
+                height: auto;
+            }
+
+        .btn-container{
+            border : 2px solid #000000;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .bouton-form{
+            border : 2px solid #001adb;
+            width: 100%;
+            border-radius: 15px;
+            font-family: "OCR A Std", monospace, "Arial", sans-serif;
+            aspect-ratio: 2/1;
+            background-color: #fff;
+            box-shadow: 0 0 0;
+        }
+            .bouton-form:hover{
+                scale: 1.1;
+                transition: 0.03s;
+            }
+
+        #bouton-mod{
+            border: 2px solid #74d879;
+            background-color: #74d879;
+            color: #1c4b1e;
+        }
+        
+            /* survoler le bouton modifier */
+            #bouton-mod:hover{
+                background-color: #31c938;
+            }
+        
+        #bouton-del{
+            border: 2px solid #d45151;
+            background-color: #d45151;
+            color: #420b0b;
+        }
+        
+            /* survoler le bouton supprimer */
+            #bouton-del:hover{
+                background-color: #db2020;
+            }
 
 .bouton-add{
     display: flex;
@@ -48,48 +109,7 @@ button:hover{
     transition: 0.03s;
 }
 
-.btn-container{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
 .result button{
     width: 100px;
 }
 
-.bouton-mod{
-    width: 100px;
-    height: 100%;
-    border-radius: 15px;
-    font-family: "OCR A Std", monospace;
-    border: 2px solid #74d879;
-    background-color: #74d879;
-    color: #1c4b1e;
-}
-
-/* survoler le bouton modifier */
-.bouton-mod:hover{
-    background-color: #31c938;
-    scale: 1.1;
-    transition: 0.03s;
-    border-radius: 20px;
-}
-
-.bouton-del{
-    width: 100px;
-    height: 100%;
-    border-radius: 15px;
-    font-family: "OCR A Std", monospace;
-    border: 2px solid #d45151;
-    background-color: #d45151;
-    color: #420b0b;
-}
-
-/* survoler le bouton supprimer */
-.bouton-del:hover{
-    background-color: #db2020;
-    scale: 1.1;
-    transition: 0.03s;
-    border-radius: 20px;
-}

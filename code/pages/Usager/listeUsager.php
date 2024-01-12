@@ -44,6 +44,22 @@
                         }
                         echo '
                         <div class="result">
+                            <div class="photo-btn">
+                                <div class="photo">
+                                    <img src="/phpProjetS3/code/image/placeholder.webp">
+                                </div>
+                                <div class="btn-container">
+                                    <form action="modUsager.php" method="post">
+                                        <input type="hidden" name="idUsager" value="'.$row->getIdUsager().'">
+                                        <button class="bouton-form" id="bouton-mod" type="submit"><strong>Modifier</strong></button>
+                                    </form>
+                                    <br>
+                                    <form action="traitementDeleteUsager.php" method="post">
+                                        <input type="hidden" name="idUsager" value="'.$row->getIdUsager().'">
+                                        <button class="bouton-form" id="bouton-del" type="submit"><strong>Supprimer</strong></button>
+                                    </form>
+                                </div>
+                            </div> 
                             <div class="info">'
                                 .$row->getNom().' '
                                 .$row->getPrenom().'<br>'
@@ -59,17 +75,6 @@
                                     echo 'Médecin référent : Aucun médecin référent<br>';
                                 }
                                 echo '
-                            </div>
-                            <div class="btn-container">
-                                <form action="modUsager.php" method="post">
-                                    <input type="hidden" name="idUsager" value="'.$row->getIdUsager().'">
-                                    <button class="bouton-mod" type="submit"><strong>Modifier</strong></button>
-                                </form>
-                                <br>
-                                <form action="traitementDeleteUsager.php" method="post">
-                                    <input type="hidden" name="idUsager" value="'.$row->getIdUsager().'">
-                                    <button class="bouton-del" type="submit"><strong>Supprimer</strong></button>
-                                </form>
                             </div>
                         </div>';
                     }
