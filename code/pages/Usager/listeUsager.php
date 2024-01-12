@@ -63,11 +63,12 @@
                             <div class="btn-container">
                                 <form action="modUsager.php" method="post">
                                     <input type="hidden" name="idUsager" value="'.$row->getIdUsager().'">
-                                    <button type="submit">Modifier</button>
+                                    <button class="bouton-mod" type="submit"><strong>Modifier</strong></button>
                                 </form>
+                                <br>
                                 <form action="traitementDeleteUsager.php" method="post">
                                     <input type="hidden" name="idUsager" value="'.$row->getIdUsager().'">
-                                    <button type="submit">Supprimer</button>
+                                    <button class="bouton-del" type="submit"><strong>Supprimer</strong></button>
                                 </form>
                             </div>
                         </div>';
