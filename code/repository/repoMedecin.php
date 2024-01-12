@@ -1,6 +1,7 @@
 <?php
 
     include_once '../../modele/medecin.php';
+    include_once '../../modele/usager.php';
     include_once '../../bd/bdd.php';
 
     class RepoMedecin {
@@ -130,7 +131,7 @@
                     throw new Exception("Ce medecin existe déjà.");
                 }
             } catch (Exception $e) {
-                header('Location: ../pages/erreur.php');
+                header('Location: /phpProjetS3/code/pages/erreur.php');
                 exit();
             }
         }
@@ -164,7 +165,7 @@
                     throw new Exception("Ce medecin n'existe pas dans la base de données.");
                 }
             } catch (Exception $e) {
-                header('Location: ../pages/erreur.php');
+                header('Location: /phpProjetS3/code/pages/erreur.php');
                 exit();
             }
         }
@@ -193,7 +194,8 @@
                     // remplissage de la liste de tout les usagers
                     $liste = array();
                     foreach ($resultats as $result) {
-                        $usager = new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['dateNaissance'], $result['adresse'], $result['telephone'], $result['idReferant']);
+                        $result['dateNaissance'] = new DateTime($result['dateNaissance']);
+                        $usager = new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferent'], $result['adresseComplete'], $result['codePostal'], $result['dateNaissance'], $result['lieuNaissance'], $result['numSecuriteSociale']);
                         $liste[$result['idUsager']] = $usager;
                     }
                     
@@ -204,7 +206,7 @@
                     throw new Exception("Ce medecin n'existe pas dans la base de données.");
                 }
             } catch (Exception $e) {
-                header('Location: ../pages/erreur.php');
+                header('Location: /phpProjetS3/code/pages/erreur.php');
                 exit();
             }
         }
@@ -239,7 +241,7 @@
                     throw new Exception("Ce medecin n'existe pas dans la base de données.");
                 }
             } catch (Exception $e) {
-                header('Location: ../pages/erreur.php');
+                header('Location: /phpProjetS3/code/pages/erreur.php');
                 exit();
             }
         }
