@@ -124,11 +124,26 @@
                             </tr>';
                         if (!empty($resultat)) {
                             foreach ($resultat as $row) {
+                                $minuteEtHeure = $row->getDureeMinutes();
+                                $heure = intdiv($minuteEtHeure, 60);
+                                $minute = $minuteEtHeure % 60;
                                 echo '
                                 <tr>
                                     <td>'.$row->getDateEtHeure()->format('d/m/Y').'</td>
                                     <td>'.$row->getDateEtHeure()->format('H:i').'</td>
-                                    <td>'.$row->getDureeMinutes().' min</td>
+                                    <td>';
+                                    if ($heure > 0){
+                                        echo $heure.'h';
+                                        if ($minute > 0){
+                                            if ($minute < 10){
+                                                echo '0';
+                                            }
+                                            echo $minute;
+                                        }
+                                    } else {
+                                        echo $minute.' min';
+                                    }
+                                    echo'</td>
                                     <td>'.serviceUsager::getService()->get($row->getIdClient())->getNom().' '.serviceUsager::getService()->get($row->getIdClient())->getPrenom().'</td>
                                     <td>'.serviceMedecin::getService()->get($row->getIdMedecin())->getNom().' '.serviceMedecin::getService()->get($row->getIdMedecin())->getPrenom().'</td>
                                     <td>
