@@ -25,7 +25,7 @@
                             echo '<p><strong>Civilité :</strong> '.$civilite.'</p>';
                         } else {
                             echo "<h2>Erreur dans la requête d'ajout du medecin.</h2>" ;
-                        }.
+                        }
                         echo '
                         <div class="bouton">
                             <form action="listeMedecin.php">
