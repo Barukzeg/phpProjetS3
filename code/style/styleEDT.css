@@ -71,6 +71,10 @@ h1{
     background-color: #dedede;
 }
 
+select:hover{
+    cursor: pointer;
+}
+
 /* zone avec le tableau des rdv */
 .affichageResult{
     width: 100%;
@@ -92,6 +96,7 @@ button:hover{
     background-color: #ccc;
     scale: 1.1;
     transition: 0.03s;
+    cursor: pointer;
 }
 
 /* la liste des rdv */
