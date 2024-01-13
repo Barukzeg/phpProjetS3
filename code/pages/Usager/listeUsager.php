@@ -31,24 +31,29 @@
                         switch($row->getCivilite()){
                             case 'M':
                                 $sexe = 'Homme';
+                                $sexeImg = 'M.png';
                                 break;
                             case 'F':
                                 $sexe = 'Femme';
+                                $sexeImg = 'F.png';
                                 break;
                             case 'A':
                                 $sexe = 'Autre';
+                                $sexeImg = 'X.png';
                                 break;
                             default:
                                 $sexe = 'Non renseigné';
+                                $sexeImg = 'X.png';
                                 break;
                         }
+                        $photo = "/phpProjetS3/code/image/".$sexeImg;
                         echo '
                         <div class="result">
                             <div class="photo-btn">
                                 <div class="photo">
-                                    <img src="/phpProjetS3/code/image/placeholder.webp">
+                                    <img src='.$photo.'>
                                 </div>
-                                <div class="btn-container">
+                                <div class="btn-container custom-buttons">
                                     <form action="modUsager.php" method="post">
                                         <input type="hidden" name="idUsager" value="'.$row->getIdUsager().'">
                                         <button class="bouton-form" id="bouton-mod" type="submit"><strong>Modifier</strong></button>
