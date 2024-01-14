@@ -16,7 +16,7 @@
             <h1>Liste des medecins :</h1>
             <div class="bouton-add">
                 <form action="addMedecin.php">
-                    <button>Ajouter un medecin</button>
+                    <button><strong>Ajouter un medecin</strong></button>
                 </form>
             </div>
             <?php

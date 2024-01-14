@@ -16,7 +16,7 @@
             <h1>Liste des usagers :</h1>
             <div class="bouton-add">
                 <form action="addUsager.php">
-                    <button>Ajouter un usager</button>
+                    <button><strong>Ajouter un usager</strong></button>
                 </form>
             </div>
             <?php

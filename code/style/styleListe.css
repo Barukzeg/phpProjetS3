@@ -23,13 +23,13 @@ h1{
     padding: 10px;
     margin: 10px;
     border: 2px solid #acacac;
-    border-radius: 5px;
-    background-color: #dedede;
+    border-radius: 15px;
+    background-color: #a5a5a5;
 }
 
     .photo-btn{
         margin-bottom: 15px;
-        width: 100%;
+        width: 98%;
         display: flex;
         justify-content: space-between;
         flex-direction: row;
@@ -86,6 +86,16 @@ h1{
     flex-direction: row;
 }
 
+    .bouton-add button {
+        width: 100px;
+        height: 100%;
+        border-radius: 15px;
+        font-family: "OCR A Std", monospace;
+        border: 2px solid #a5a5a5;
+        background-color: #dedede;
+        font-size: large;
+    }
+
 button{
     background-color: #fff;
     border: 1px solid #ccc;
@@ -106,3 +116,10 @@ button:hover{
     width: 100px;
 }
 
+.info {
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #acacac;
+    border-radius: 10px;
+    background-color: #dedede;
+}
