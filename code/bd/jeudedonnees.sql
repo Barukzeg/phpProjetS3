@@ -130,4 +130,5 @@ Insert Into Medecin(idMedecin) Values(10);
 Insert Into Medecin(idMedecin) Values(11);
 Insert Into Medecin(idMedecin) Values(12);
 
-Insert Into Usager(idUsager, idReferent, adresseComplete, codePostal, dateNaissance, lieuNaissance, numSecuriteSociale) Values(13);
+Insert Into Usager(idUsager, idReferent, adresseComplete, codePostal, dateNaissance, lieuNaissance, numSecuriteSociale) Values(13, 1, '1 rue de la paix', '75000', '1990-01-01', 'Paris', '123456789012345');
+Insert Into Usager(idUsager, idReferent, adresseComplete, codePostal, dateNaissance, lieuNaissance, numSecuriteSociale) Values(14, 2, '2 rue de la paix', '75000', '1990-01-01', 'Paris', '123456789012345');
