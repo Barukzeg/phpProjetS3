@@ -1,5 +1,10 @@
 <!DOCTYPE HTML>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="/phpProjetS3/code/image/logo.ico"/>
+        <title>Modifier RDV</title>
+    </head>
     <?php require_once "../Login/verif.php"; ?>
     <link rel="icon" type="image/png" href="/phpProjetS3/code/image/logo.ico"/>
     <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/style.css"/>
@@ -9,7 +14,7 @@
         $rdv = serviceRendezVous::getService()->get($_POST['idM'], $_POST['idC'], new DateTime($_POST['DateEtHeure']));
     ?>
     <body>
-        <div>
+        <div class="centered-container">
             <form action="traitementModRDV.php" method="post">
 
                 <label for="dateRDV">Date :</label>

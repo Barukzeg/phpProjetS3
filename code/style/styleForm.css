@@ -1,15 +1,8 @@
 body {
-    background-color: #f4f4f4;
+    background-color: #c4f9f3;
     margin: 0;
     display: flex;
     height: 100vh;
-}
-
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 form {
@@ -28,7 +21,7 @@ input, select {
     box-sizing: border-box;
     margin-top: 4px;
     margin-bottom: 8px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .btn-container {
@@ -38,7 +31,7 @@ input, select {
 
 button {
     padding: 10px;
-    background-color: #4caf50;
+    background-color: #74d879;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -47,5 +40,16 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #31c938;
+}
+
+.centered-container {
+    background-color: #a5a5a5;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

@@ -1,5 +1,10 @@
 <!DOCTYPE HTML>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="/phpProjetS3/code/image/logo.ico"/>
+        <title>Modifier Medecin</title>
+    </head>
     <?php require_once "../Login/verif.php"; ?>
     <link rel="icon" type="image/png" href="/phpProjetS3/code/image/logo.ico"/>
     <link rel="stylesheet" type="text/css" href="/phpProjetS3/code/style/style.css"/>
@@ -9,7 +14,7 @@
         $medecin = serviceMedecin::getService()->get($_POST['idMedecin']);
     ?>
     <body>
-        <div>
+        <div class="centered-container">
             <form action="traitementModMedecin.php" method="post">
                 <label for="nom">Nom :</label>
                 <input type="text" id="nom" name="nom" value="<?php echo $medecin->getNom(); ?>" required>
