@@ -1,7 +1,7 @@
 <?php
     class BDD {
-        private static $instance = null;    //singleton
-        private $connection;                //connection a la bd
+        private static ?BDD $instance = null;    //singleton
+        private PDO $connection;                 //connection a la bd
 
         ///Connexion au serveur MySQL
         private $server = "localhost";
@@ -15,12 +15,13 @@
                 $this -> connection = new PDO("mysql:host=$this->server;dbname=$this->db", $this->login, $this->mdp);
             }
             catch (Exception $e) {
-                die('Erreur : ' . $e->getMessage());
+                header('Location: ../pages/erreur.php');
+                exit();
             };
         }
 
         public static function getBDD() {
-            if (self::$instance === null) {
+            if (!isset(self::$instance)) {
                 self::$instance = new BDD();
             }
             return self::$instance;
@@ -36,6 +37,6 @@
             // Sécurité contre la duplication
             private function __clone() {}
             // Sécurité contre la désérialisation
-            private function __wakeup() {}
+            public function __wakeup() {}
     }
 ?>

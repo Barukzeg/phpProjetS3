@@ -1,18 +1,21 @@
 <?php
+
+    include_once "personne.php";
+
     class Usager extends Personne {
 
-        private $idUsager;
-        private $idReferant;
-        private $adresseComplete;
-        private $codePostal;
-        private $dateNaissance;
-        private $lieuNaissance;
-        private $NumSecuriteSociale;
+        private int $idUsager;
+        private ?int $idReferent;
+        private string $adresseComplete;
+        private string $codePostal;
+        private DateTime $dateNaissance;
+        private string $lieuNaissance;
+        private string $NumSecuriteSociale;
 
         // Constructeur
-        public function __construct($idUsager, $nom, $prenom, $civilite) {
+        public function __construct(int $idUsager, string $nom, string $prenom, string $civilite, ?int $idReferent, string $adresseComplete, string $codePostal, DateTime $dateNaissance, string $lieuNaissance, string $NumSecuriteSociale) {
             parent::__construct($idUsager, $nom, $prenom, $civilite);
-            $this-> idReferant = $idReferant;
+            $this-> idReferent = $idReferent;
             $this-> adresseComplete = $adresseComplete;
             $this-> codePostal = $codePostal;
             $this-> dateNaissance = $dateNaissance;
@@ -22,10 +25,10 @@
 
         // Getters
         public function getIdUsager() {
-            return $this->idUsager;
+            return parent::getIdPersonne();
         }
-        public function getIdReferant() {
-            return $this->idReferant;
+        public function getidReferent() {
+            return $this->idReferent;
         }
         public function getAdresseComplete() {
             return $this->adresseComplete;
@@ -44,113 +47,26 @@
         }
 
         // Setters
-        public function setIdUsager($idUsager) {
+        public function setIdUsager(int $idUsager) {
             $this->idUsager = $idUsager;
         }
-        public function setIdReferant($idReferant) {
-            $this->idReferant = $idReferant;
+        public function setidReferent(int $idReferent) {
+            $this->idReferent = $idReferent;
         }
-        public function setAdresseComplete($adresseComplete) {
+        public function setAdresseComplete(string $adresseComplete) {
             $this->adresseComplete = $adresseComplete;
         }
-        public function setCodePostal($codePostal) {
+        public function setCodePostal(string $codePostal) {
             $this->codePostal = $codePostal;
         }
-        public function setDateNaissance($dateNaissance) {
+        public function setDateNaissance(DateTime $dateNaissance) {
             $this->dateNaissance = $dateNaissance;
         }
-        public function setLieuNaissance($lieuNaissance) {
+        public function setLieuNaissance(string $lieuNaissance) {
             $this->lieuNaissance = $lieuNaissance;
         }
-        public function setNumSecuriteSociale($NumSecuriteSociale) {
+        public function setNumSecuriteSociale(string $NumSecuriteSociale) {
             $this->NumSecuriteSociale = $NumSecuriteSociale;
-        }
-
-
-        // Fonctions
-
-        // get un usager par son id
-        public static function getById($id) {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
-    
-            // requete
-            $query = $db->prepare("SELECT p.*, u.idUsager, u.idReferant, u.adresseComplete, u.codePostal, u.dateNaissance, u.lieuNaissance, u.NumSecuriteSociale FROM Personne p INNER JOIN Usager u ON p.idPersonne = u.idUsager WHERE p.idPersonne = :id");
-            $query->bindParam(':id', $id);
-
-            // execution
-            $query->execute();
-            $result = $query->fetch(PDO::FETCH_ASSOC);
-    
-            // retour d'une instance de Usager
-            if ($result) {
-                return new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferant'], $result['adresseComplete'], $result['codePostal'], $result['dateNaissance'], $result['lieuNaissance'], $result['NumSecuriteSociale']);
-            } else {
-                return null;
-            }
-        }
-
-        // get un usager par son numéro de sécurité sociale
-        public static function getByNumSoc($numSecuriteSociale) {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
-    
-            // requete
-            $query = $db->prepare("SELECT p.*, u.idUsager, u.idReferent, u.adresseComplete, u.codePostal, u.dateNaissance, u.lieuNaissance, u.NumSecuriteSociale FROM Personne p INNER JOIN Usager u ON p.idPersonne = u.idUsager WHERE u.NumSecuriteSociale = :numSecuriteSociale");
-            $query->bindParam(':numSecuriteSociale', $numSecuriteSociale);
-
-            // execution
-            $query->execute();
-            $result = $query->fetch(PDO::FETCH_ASSOC);
-    
-            // retour d'une instance de Usager
-            if ($result) {
-                return new Usager($result['idUsager'], $result['nom'], $result['prenom'], $result['civilite'], $result['idReferent'], $result['adresseComplete'], $result['codePostal'], $result['dateNaissance'], $result['lieuNaissance'], $result['NumSecuriteSociale']);
-            } else {
-                return null;
-            }
-        }
-
-        // ajoute un usager
-        public function addUsager() {
-
-            // connexion
-            $db = BDD::getBDD()->getConnection();
-    
-            // il existe ?
-            $search = Usager::getByNumSoc($this->getNumSecuriteSociale());
-
-            // Si oui
-            if (!$search) {
-
-                // insertion personne
-                $qP = $db->prepare("INSERT INTO Personne (nom, prenom, civilite) VALUES (:nom, :prenom, :civilite)");
-                $qP->bindParam(':nom', $this->getNom());
-                $qP->bindParam(':prenom', $this->getPrenom());
-                $qP->bindParam(':civilite', $this->getCivilite());
-
-                $qP->execute();
-        
-                // get l'id de la personne insérée 
-                $idPersonne = $db->lastInsertId();
-        
-                // Insérer dans la table Usager
-                $qU = $db->prepare("INSERT INTO Usager (idUsager, idReferant, adresseComplete, codePostal, dateNaissance, lieuNaissance, NumSecuriteSociale) VALUES (:idUsager, :idReferant, :adresseComplete, :codePostal, :dateNaissance, :lieuNaissance, :NumSecuriteSociale)");
-                $qU->bindParam(':idUsager', $idPersonne);
-                $qU->bindParam(':idReferant', $this->getIdReferant());
-                $qU->bindParam(':adresseComplete', $this->getAdresseComplete());
-                $qU->bindParam(':codePostal', $this->getCodePostal());
-                $qU->bindParam(':dateNaissance', $this->getDateNaissance());
-                $qU->bindParam(':lieuNaissance', $this->getLieuNaissance());
-                $qU->bindParam(':NumSecuriteSociale', $this->getNumSecuriteSociale());
-                
-                $qU->execute();
-
-            } else {
-                echo "Ce client existe déjà.";
-            }
         }
     }
 ?>

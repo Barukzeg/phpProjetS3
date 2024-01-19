@@ -2,7 +2,7 @@ Create Table Personne(
     idPersonne int auto_increment,
     nom varchar(50),
     prenom varchar(50),
-    civilite char(2),
+    civilite char,
     constraint pk_idPerson primary key(idPersonne)
 );
 
@@ -14,12 +14,12 @@ Create Table Medecin (
 
 Create Table Usager (
     idUsager int,
-    idReferent int not null,
+    idReferent int null,
     adresseComplete varchar(50),
-    codePostal decimal(5,0),
+    codePostal char(5) default '00000',
     dateNaissance date,
     lieuNaissance varchar(58),
-    NumSecuriteSociale decimal(15,0) unique,
+    numSecuriteSociale char(15) unique default '000000000000000',
     constraint pk_idUser primary key(idUsager),
     constraint fk_userPersonne foreign key(idUsager) references Personne(idPersonne),
     constraint fk_medecinReferent foreign key(idReferent) references Medecin(idMedecin),
@@ -29,9 +29,15 @@ Create Table Usager (
 Create Table RendezVous(
     idMedecin int,
     idClient int,
-    DateEtHeure date,
-    DureeEnMinutes int,
-    constraint pk_medecinClient primary key (idMedecin, idClient),
+    dateEtHeure datetime,
+    dureeEnMinutes int,
+    constraint pk_medecinClient primary key (idMedecin, idClient, DateEtHeure),
     constraint fk_medecin foreign key (idMedecin) references Medecin(idMedecin),
     constraint fk_clientUser foreign key (idClient) references Usager(idUsager)
+);
+
+Create Table Identifiants(
+    login varchar(50),
+    mdp varchar(50),
+    constraint pk_login primary key(login)
 );

@@ -1,0 +1,43 @@
+/* General */
+html{
+    width: auto;
+    height: auto;
+    font-family: "OCR A Std", monospace, "Verdana", "Arial", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+body {
+    background-color: #c4f9f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #a5a5a5;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    font-family: "OCR A Std", monospace, "Verdana", "Arial", sans-serif;
+    font-size: large;
+}

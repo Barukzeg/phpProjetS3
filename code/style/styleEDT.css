@@ -1,0 +1,167 @@
+/* contenu global de la page */
+.content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* titres */
+h1{
+    font-size: 30px;
+    text-align: center;
+}
+
+/* partie tri/bouton (contient menu-deroulant et bouton-add) */
+.top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px;
+}
+
+/* menu pour selectionner le filtre par medecin */
+.menu-deroulant {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid #acacac;
+    background-color: #dedede;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: auto;
+}
+
+/* selection du medecin */
+.menu-deroulant select {
+    height: 30px;
+    border-radius: 5px;
+    background-color: #a5a5a5;
+    border: 2px solid #acacac;
+    font-family: "OCR A Std", monospace;
+}
+
+/* bouton pour appliquer le filtre */
+.menu-deroulant button {
+    height: 30px;
+    background-color: #a5a5a5;
+    border: 2px solid #acacac;
+}
+
+/* zone du bouton pour ajouter un rdv */
+.bouton-add{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 50px;
+}
+
+/* bouton ajouter rdv */
+.bouton-add button{
+    width: 100px;
+    height: 100%;
+    border-radius: 15px;
+    font-family: "OCR A Std", monospace;
+    border: 2px solid #a5a5a5;
+    background-color: #dedede;
+}
+
+select:hover{
+    cursor: pointer;
+}
+
+/* zone avec le tableau des rdv */
+.affichageResult{
+    width: 100%;
+    gap: 10px;
+}
+
+/* boutons en général */
+button{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgb(88, 88, 88);
+    padding: 5px;
+    font-family: "OCR A Std", monospace;
+}
+
+/* survoler des boutons en général */
+button:hover{
+    background-color: #ccc;
+    scale: 1.1;
+    transition: 0.03s;
+    cursor: pointer;
+}
+
+/* la liste des rdv */
+table{
+    border-collapse:separate;
+    border-spacing: 5px 10px;
+    justify-self: center;
+    width: 100%;
+    margin: 10px;
+}
+
+/* nom des colonnes */
+tr{
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+}
+
+/* lignes */
+td{
+    border-collapse : collapse;
+    border-radius: 5px;
+    background-color: #a5a5a5;
+}
+
+/* boutons dans les lignes */
+td button{
+    background-color: #dedede;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: "OCR A Std", monospace;
+    width: 100%;
+    height: 50px;
+    aspect-ratio: 2/1;
+}
+
+/* bouton modifier */
+.bouton-mod {
+    background-color: #74d879;
+    color: #1c4b1e;
+}
+
+/* survoler le bouton modifier */
+.bouton-mod:hover{
+    background-color: #31c938;
+    scale: 1.1;
+    transition: 0.03s;
+    border-radius: 10px;
+}
+
+/* bouton supprimer */
+.bouton-del {
+    background-color: #d45151;
+    color: #420b0b;
+}
+
+/* survoler le bouton supprimer */
+.bouton-del:hover{
+    background-color: #db2020;
+    scale: 1.1;
+    transition: 0.03s;
+    border-radius: 10px;
+}
+
+/* bouton date */
+.tri{
+    font-family: "OCR A Std", monospace;
+}
