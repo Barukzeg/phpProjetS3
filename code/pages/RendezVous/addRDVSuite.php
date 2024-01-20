@@ -13,7 +13,7 @@
         <div class="centered-container">
             <form action="traitementAddRDV.php" method="post">
 
-                <input type="hidden" id="usager" name="usager" value=<?php $_POST['usager'] ?> required>
+                <input type="hidden" id="usager" name="usager" value="<?php echo $_POST['usager']; ?>" required>
 
                 <label for="medecin">Medecin :</label>
                 <select id="medecin" name="medecin" required>
