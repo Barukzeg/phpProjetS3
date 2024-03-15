@@ -1,0 +1,23 @@
+# Le serveur doit suivre les liens symboliques :
+Options +FollowSymlinks
+
+# Activation du module de réécriture d'URL :
+RewriteEngine on
+
+# Règles de réécriture d'URL :
+
+# Usagers :
+RewriteRule ^usagers   /usagers/usagers.php
+RewriteRule ^usagers/([0-9]+)$   /usagers/usagers.php?id=$1
+
+# Medecins :
+RewriteRule ^medecins   /medecins/medecins.php
+RewriteRule ^medecins/([0-9]+)$   /medecins/medecins.php?id=$1
+
+# Consultations :
+RewriteRule ^consultations   /consultations/consultations.php
+RewriteRule ^consultations/([0-9]+)$   /consultations/consultations.php?id=$1
+
+# Statistiques :
+RewriteRule ^statistiques   /statistiques/statistiques.php
+RewriteRule ^statistiques/([0-9]+)$   /statistiques/statistiques.php?id=$1
